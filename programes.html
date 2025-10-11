@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="icon" href="1745939634612[1].jpg" type="image/x-icon">
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .back {
+    background: whitesmoke;
+  }
+
+  nav .logo {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  body {
+    height: 500px;
+  }
+
+  /* nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0);
+      border-radius: 0px;
+      display: flex;
+      justify-content: center;
+      transition: background 2s;
+    }
+     nav.scrolled{
+      background: #00c8ff;
+      color: #000000;
+    }
+    nav ul li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 15px;
+      text-align: center;
+    }
+    ul a {
+      text-decoration: none;
+      color: white;
+    }
+    ul a:hover {
+      color: #0056b3;
+      text-shadow: #d5eaff;
+    }
+    .active{
+        color: #0056b3;
+    }
+    /* ul a .right{
+      display: flex;
+      justify-content: right;
+    } */
+  /* ul a .right:hover {
+      color: #0056b3;
+    }  */
+
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #00043e;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 1s;
+  }
+
+  nav.scrolled {
+    background: #016b88;
+  }
+
+  .nav-links a.active {
+    color: #00c8ff;
+    font-weight: 600;
+    border-bottom: 2px solid #00c8ff;
+    padding-bottom: 5px;
+  }
+
+
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #00c8ff;
+  }
+
+  .logo span {
+    color: white;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #00c8ff;
+  }
+
+  #contacts {
+    width: 100%;
+    margin: auto;
+    background: rgb(1, 1, 101);
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  th {
+    color: white;
+    padding: 15px;
+    font-size: 55px;
+  }
+
+  td {
+    padding: 12px;
+    color: white;
+  }
+
+  th:hover {
+    color: black;
+    background: #f1f1f1;
+    transition: 0.3s;
+  }
+
+  td:hover {
+    cursor: pointer;
+    border-bottom: 2px solid white;
+    transform: translate(2s);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 35px;
+  }
+
+  .card {
+    margin-top: 95px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-title {
+    margin-bottom: 15px;
+    color: #222;
+    position: relative;
+  }
+
+  .card-title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #007bff;
+    transition: width 0.4s ease;
+    margin: 5px auto 0;
+  }
+
+  .card:hover .card-title::after {
+    width: 50%;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card {
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .three {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+
+  .three>div {
+    background-color: #ffffff;
+    border: 3px solid rgba(0, 9, 88, 0.463);
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+    margin: 25px;
+    height: 155px;
+    border-radius: 15px;
+  }
+
+  .three>div:hover {
+    background-color: whitesmoke;
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .rainbow-animate {
+    font-size: 30px;
+    font-weight: bold;
+    animation: rainbow 7s infinite;
+  }
+
+  @keyframes rainbow {
+    0% {
+      color: red;
+    }
+
+    14% {
+      color: orange;
+    }
+
+    28% {
+      color: yellow;
+    }
+
+    42% {
+      color: green;
+    }
+
+    57% {
+      color: blue;
+    }
+
+    71% {
+      color: indigo;
+    }
+
+    85% {
+      color: violet;
+    }
+
+    100% {
+      color: red;
+    }
+  }
+ .particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00c8ff, #0077ff);
+  pointer-events: none;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  animation: fadeOut 0.8s linear forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0) translate(-50%, -50%);
+  }
+}
+
+</style>
+
+<body>
+  <section class="bag">
+    <nav>
+      <div class="logo">Tk<span>INFO-TECH</span></div>
+      <ul class="nav-links">
+        <li><a href="./index.html">HOME</a></li>
+        <li><a href="./programes.html" class="active">PROGRAMMES</a></li>
+        <li><a href="./about.html">ABOUT</a></li>
+        <li><a href="#contacts">CONTACTS</a></li>
+      </ul>
+    </nav>
+    <section class="back">
+      <div class="containermt-4">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><b>Python full stack</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+
+              <div class="card-body">
+                <h5 class="card-title"><b>Java full stack</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+
+              <div class="card-body">
+                <h5 class="card-title"><b>AwS</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+        <marquee behavior="" direction="">--Get launch your career soonnn!--</marquee>
+        <div class="row text-center mt-4">
+          <div class="col-md-4">
+            <div class="card">
+
+              <div class="card-body">
+                <h5 class="card-title"><b>UI/UX</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+
+              <div class="card-body">
+                <h5 class="card-title"><b>Digital Marketing</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><b>IOS development</b></h5>
+                <p class="card-text">
+                  Get dedicated career guidance and<br />
+                  mentoring from our mentors to <br />enhance your resume using
+                  our builder.
+                </p>
+                <center>
+                  <button type="button" class="btn btn-outline-primary">
+                    EXPLORE
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+
+    </section>
+    <br>
+    <br>
+    <h1 class="rainbow-animate">
+      <center>TK INFO-TECH Offering Top MNC's</center>
+    </h1>
+    <div class="three">
+      <div><img src="./Amazon-CF90nFBW.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="HCL-BasrQWFD.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="./Accenture-BHehTV0h.png" style width="243px" height="100px" alt=""></div>
+      <div><img src="./Amazon-CF90nFBW.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="HCL-BasrQWFD.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="./Accenture-BHehTV0h.png" style width="243px" height="100px" alt=""></div>
+      <div><img src="./Amazon-CF90nFBW.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="HCL-BasrQWFD.png" style width="253px" height="100px" alt=""></div>
+      <div><img src="./Accenture-BHehTV0h.png" style width="243px" height="100px" alt=""></div>
+
+    </div>
+    <div id="contacts">
+      <table>
+        <tr>
+          <th>
+            <h1>Our Courses</h1>
+          </th>
+          <th>
+            <h1>Contacts</h1>
+          </th>
+          <th>
+            <h1>Service</h1>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Python
+            full stack development
+          </td>
+          <td><span onclick="makecall()">
+              <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
+              +91 9597151915</span>
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>
+            Web development
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>java full
+            stack development
+          </td>
+          <td><span onclick="makecall()">
+              <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
+              +91 8667513585</span>
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Front end
+            development
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mern Full
+            stack development
+          </td>
+          <td><span onclick="makemail()">
+              <box-icon name='envelope' type='solid' color='#ffffff'
+                style="height: 15px;"></box-icon>dtharunkrishna65@gmail.com</span>
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Software
+            development
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
+            Python full stack development
+          </td>
+          <td><span onclick="makemail()">
+              <box-icon name='envelope' type='solid' color='#ffffff'
+                style="height: 15px;"></box-icon>dtharunkrish003@gmail.com</span>
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
+            design
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
+            java full stack development
+          </td>
+          <td>
+            NAME:&nbsp;&nbsp;&nbsp;
+            <input type="text" id="name" style="width: 150px; height: 25px; border-radius: 10px" />
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Digital
+            Marketing
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
+            Design
+          </td>
+          <td>
+            EMAIL: &nbsp;&nbsp;&nbsp;&nbsp;<input type="mail" id="mail"
+              style="width: 150px; height: 25px; border-radius: 10px" />
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mobile
+            development
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>AWS
+          </td>
+          <td>
+            ENQIREY:
+            <input type="text" id="enq" placeholder="Ask ?"
+              style="border-radius: 10px; width: 150px; height: 25px" />&nbsp;&nbsp;<button onclick="sendmail()" style="
+                padding: 5px 10px;
+                font-size: 10px;
+                background-color: #f1f1f1;
+                color: #00043e;
+                border-radius: 15px;
+              ">
+              Send
+            </button>
+          </td>
+          <td>
+            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>ios
+            development
+          </td>
+        </tr>
+      </table>
+      <center>
+        <p style="color: #f1f1f1">Copyright &copy; TK INFO-TECH @ 2025</p>
+      </center>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
