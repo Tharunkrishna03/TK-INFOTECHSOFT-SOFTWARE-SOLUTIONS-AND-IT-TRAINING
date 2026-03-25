@@ -1,918 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TK INFO-TECH</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-</head>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<link rel="icon" href="1745939634612[1].jpg" type="image/x-icon" />
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    height: 500px;
-  }
-
-  /* nav bar*/
-
-  /*   
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(0, 0, 0);
-      border-radius: 0px;
-      display: flex;
-      justify-content: center;
-      transition: background 2s;
-    }
-    nav.scrolled{
-      background: #00c8ff;
-      color: #000000;
-    }
-    nav ul li {
-      list-style-type: none;
-      display: inline-block;
-      font-size: 18px;
-      padding: 15px;
-      text-align: center;
-    }
-     nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 150px;
-  }
-    ul a:hover {
-      color: #0056b3;
-      text-shadow: #d5eaff;
-    }
-
-    /* ul a .right{
-      display: flex;
-      justify-content: right;
-    } */
-  /* 
-    ul a .right:hover {
-      color: #0056b3;
-    }
-    .logo{
-      text-decoration: none;
-      color: white;
-      font-weight: bolder;
-      padding: 15px;
-      margin-left: 0px;
-    }  */
-  .hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    height: auto;
-    z-index: 0;
-    transform: translate(-50%, -50%);
-    object-fit: none;
-    filter: brightness(0.8);
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 20px;
-    max-width: 700px;
-    margin-left: 10px;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background-color: #000000;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: background 1s;
-  }
-
-  nav.scrolled {
-    background: #016b88;
-  }
-
-  .nav-links a.active {
-    color: #00c8ff;
-    font-weight: 600;
-    border-bottom: 2px solid #00c8ff;
-    padding-bottom: 5px;
-  }
-
-  .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #00c8ff;
-  }
-
-  .logo span {
-    color: white;
-  }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover {
-    color: #00c8ff;
-  }
-
-  /* header image*/
-  /* .bag {
-      background: url("IrM.gif");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-    } */
-
-  .header p {
-    padding: 10px;
-    margin-top: 32px;
-    color: white;
-    font-size: 60px;
-  }
-
-  /* content given*/
-  .para {
-    padding: 10px;
-    font-size: 20px;
-    color: white;
-  }
-
-  /* first 2 buttons*/
-  .btn a {
-    text-decoration: none;
-    padding: 15px;
-    color: white;
-    font-weight: bolder;
-  }
-
-  .why {
-    border: 2px solid rgb(228, 228, 228);
-    border-radius: 5px;
-  }
-
-  .fill {
-    height: 20px;
-    width: 60px;
-    background: rgb(0, 0, 0);
-    border-radius: 5px;
-    color: transparent;
-  }
-
-  .btn {
-    display: flex;
-    gap: 15px;
-  }
-
-  .btn a {
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: 0.3s;
-  }
-
-  .btn a.why {
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn a.why:hover {
-    background: #fdfdfd;
-    color: #000000;
-  }
-
-  .btn a.fill {
-    background: #ffffff;
-    color: #000000;
-  }
-
-  .btn a.fill:hover {
-    background: #0056b3;
-    border-color: #0056b3;
-  }
-
-  /* float box*/
-  .tran {
-    display: inline-block;
-    height: 80px;
-    width: 150px;
-    padding: 8px;
-    background: rgb(255, 255, 255, 0.5);
-    border-radius: 9px;
-    text-align: center;
-    vertical-align: middle;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    transition: transform 0.3 ease, box-shadow 0.3 ease;
-  }
-
-  .tran:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 21px rgba(0, 0, 0, 0.4);
-  }
-
-  span {
-    color: white;
-  }
-
-  .image-row {
-    margin-top: 64px;
-    margin-bottom: 64px;
-    display: flex;
-    justify-content: center;
-    gap: 135px;
-  }
-
-  .image-row img {
-    width: 200px;
-    height: auto;
-  }
-  /* Default hidden state */
-.image-row img {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
-}
-
-/* Animate to visible */
-.image-row.show img {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered delay for each logo */
-.image-row.show img:nth-child(1) { transition-delay: 0.3s; }
-.image-row.show img:nth-child(2) { transition-delay: 0.3s; }
-.image-row.show img:nth-child(3) { transition-delay: 0.3s; }
-.image-row.show img:nth-child(4) { transition-delay: 0.3s; }
-
-/* Hover glow animation */
-.image-row img:hover {
-  transform: scale(1.1);
-  filter: brightness(1.4) drop-shadow(0 0 10px #00c8ff);
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-
-  .bro {
-    padding: 18px;
-    width: 100%;
-    height: 780px;
-    background-color: #d5eaff;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .container {
-    padding: 40px 15px;
-  }
-
-  .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    background: #fff;
-    position: relative;
-  }
-
-  .card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .card-title {
-    margin-bottom: 15px;
-    color: #222;
-    position: relative;
-  }
-
-  .card-title::after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 3px;
-    background: #007bff;
-    transition: width 0.2s ease;
-    margin: 5px auto 0;
-  }
-
-  .card:hover .card-title::after {
-    width: 50%;
-  }
-
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* .card {
-    animation: fadeUp 0.8s ease forwards;
-  } */
-
-  .go {
-    color: slateblue;
-    font-weight: bold;
-    text-decoration: none;
-  }
-
-  #carouselExampleCaptions {
-    padding: 20px;
-  }
-
-  #contacts {
-    width: 100%;
-    margin: auto;
-    background: rgb(1, 1, 101);
-    padding: 20px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-  }
-
-  th {
-    color: white;
-    padding: 15px;
-    font-size: 55px;
-  }
-
-  td {
-    padding: 12px;
-    color: white;
-  }
-
-  th:hover {
-    color: black;
-    background: #f1f1f1;
-    transition: 0.3s;
-  }
-
-  td:hover {
-    cursor: pointer;
-    border-bottom: 2px solid white;
-    transform: translate(2s);
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 35px;
-  }
-
-  .rainbow-animate {
-    font-size: 30px;
-    font-weight: bold;
-    animation: rainbow 7s infinite;
-  }
-
-  @keyframes rainbow {
-    0% {
-      color: red;
-    }
-
-    14% {
-      color: orange;
-    }
-
-    28% {
-      color: yellow;
-    }
-
-    42% {
-      color: green;
-    }
-
-    57% {
-      color: blue;
-    }
-
-    71% {
-      color: indigo;
-    }
-
-    85% {
-      color: violet;
-    }
-
-    100% {
-      color: red;
-    }
-  }
-
-  .carousel-item img {
-    max-width: 100%;
-    max-height: 500px;
-    margin: auto;
-  }
- .particle {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #00c8ff, #0077ff);
-  pointer-events: none;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  animation: fadeOut 0.8s linear forwards;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0) translate(-50%, -50%);
-  }
-}
-
-.card {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
-}
-
-/* When card becomes visible */
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered animation for smooth entry */
-.col-md-4:nth-child(1) .card.show { transition-delay: 0.1s; }
-.col-md-4:nth-child(2) .card.show { transition-delay: 0.3s; }
-.col-md-4:nth-child(3) .card.show { transition-delay: 0.5s; }
-
-/* Optional: hover animation */
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 200, 255, 0.2);
-  transition: all 0.4s ease;
-}
-
-
-</style>
-
-<body>
-  <!--Nav bar and logo-->
-  <div class="bag">
-    <nav>
-      <div class="logo">Tk<span>INFO-TECH</span></div>
-      <ul class="nav-links">
-        <li><a href="./index.html" class="active">HOME</a></li>
-        <li><a href="./programes.html">PROGRAMMES</a></li>
-        <li><a href="./about.html">ABOUT</a></li>
-        <li><a href="#contacts">CONTACTS</a></li>
-      </ul>
-    </nav>
-
-    <!--text in middle page-->
-    <div class="hero">
-      <video autoplay muted loop playsinline class="hero-video">
-        <source src="./3129957-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="hero-content" id="hero-content">
-        <div class="header">
-          <br />
-          <br />
-          <p>
-            BRIDGE THE GAP<br />
-            BETWEEN COLLEGE & YOUR CAREER
-          </p>
-        </div>
-        <p class="para">
-          Live Learning with Industry Experts, Jobs at Leading Tech Companies,
-          <br />and Real-World Project Experience.
-        </p>
-        <br />
-        <br />
-
-        <!-- two middle btns -->
-
-        <section class="btn">
-          <span><a href="./programes.html" class="why">Explore programes</a></span>
-          <span><a href="./form.html" class="fill">Apply for an internship</a></span>
-        </section>
-        <br />
-        <br />
-        <br />
-
-        <!-- three floating div -->
-
-        <div class="tran">
-          <span><b id="counter">0+</b><br />students</span>
-        </div>
-        <div class="tran">
-          <span><b>95%</b><br />success</span>
-        </div>
-        <div class="tran">
-          <span><b id="scounter">100+</b><br />companies</span>
-        </div>
-
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
-    </div>
-  </div>
-
-  <!-- certificaiton image row -->
-
-  <div class="image-row">
-    <img src="./Iso_logo-BDMfS3XQ.png" style="width: 200px; height: 100px" alt="" />
-    <img src="./mca_logo-6rj8cmc1.png" style="width: 200px; height: 100px" alt="" />
-    <img src="./Nasscom-ByihTscR.png" style="width: 200px; height: 100px" alt="" />
-    <img src="./Startup-india-logo1-CAJ7oHkf.png" style="width: 300px; height: 100px" alt="" />
-  </div>
-
-  <!-- small text row -->
-
-  <section class="bro">
-    <h1>
-      <center>what we have for you</center>
-    </h1>
-    <p class="co">
-      <center>
-        At <b>TK INFO-TECH</b>, we focus on delivering career-focused courses
-        that help <br />you gain practical skills and land real jobs quickly.
-        Learn the skills employers are looking for and accelerate your career
-        growth today.
-      </center>
-    </p>
-
-    <!-- card cretions -->
-
-    <div class="containermt-4">
-      <div class="row text-center">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Fellowship</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Courses</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>ATS</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row text-center mt-4">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Resume Builder</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Job Portal</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Know your CTC</b></h5>
-              <p class="card-text">
-                Get dedicated career guidance and<br />
-                mentoring from our mentors to <br />enhance your resume using
-                our builder.
-              </p>
-              <center>
-                <button type="button" class="btn btn-outline-primary">
-                  EXPLORE
-                </button>
-              </center>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <br />
-  <br />
-  <br />
-  <section class="uni">
-    <h1>
-      <center>Why choose <span class="go">TK INFO-TECH</span></center>
-    </h1>
-    <p class="co">
-      <center>
-        At <b>TK INFO-TECH</b>, we focus on delivering career-focused courses
-        that help <br />you gain practical skills and land real jobs quickly.
-        Learn the skills employers are looking for and accelerate your career
-        growth today.
-      </center>
-    </p>
-    <div id="carouselExampleCaptions" class="carousel slide">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="./medium-shot-team-sitting-table.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: #000000">ONE TO ONE INTERACTION</h5>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="./1790.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: #000000">AI BASED LAB FACILITY</h5>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="./47893821_logo_make_11_06_2023_201.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: white">BIG PRACTICE ROOM</h5>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually"></span>
-      </button>
-    </div>
-  </section>
-  <div id="contacts">
-    <table>
-      <tr>
-        <th>
-          <h1>Our Courses</h1>
-        </th>
-        <th>
-          <h1>Contacts</h1>
-        </th>
-        <th>
-          <h1>Service</h1>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Python full
-          stack development
-        </td>
-        <td>
-          <span onclick="makecall()">
-            <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
-            +91 9597151915</span>
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>
-          Web development
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>java full
-          stack development
-        </td>
-        <td>
-          <span onclick="makecall()">
-            <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
-            +91 8667513585</span>
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Front end
-          development
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mern Full
-          stack development
-        </td>
-        <td>
-          <span onclick="makemail()">
-            <box-icon name="envelope" type="solid" color="#ffffff"
-              style="height: 15px"></box-icon>dtharunkrishna65@gmail.com</span>
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Software
-          development
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
-          Python full stack development
-        </td>
-        <td>
-          <span onclick="makemail()">
-            <box-icon name="envelope" type="solid" color="#ffffff"
-              style="height: 15px"></box-icon>dtharunkrish003@gmail.com</span>
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
-          design
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
-          java full stack development
-        </td>
-        <td>
-          NAME:&nbsp;&nbsp;&nbsp;
-          <input type="text" id="name" style="width: 150px; height: 25px; border-radius: 10px" />
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Digital
-          Marketing
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
-          Design
-        </td>
-        <td>
-          EMAIL: &nbsp;&nbsp;&nbsp;&nbsp;<input type="mail" id="mail"
-            style="width: 150px; height: 25px; border-radius: 10px" />
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mobile
-          development
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>AWS
-        </td>
-        <td>
-          ENQIREY:
-          <input type="text" id="enq" placeholder="Ask ?"
-            style="border-radius: 10px; width: 150px; height: 25px" />&nbsp;&nbsp;<button onclick="sendmail()" style="
-                padding: 5px 10px;
-                font-size: 10px;
-                background-color: #f1f1f1;
-                color: #00043e;
-                border-radius: 15px;
-              ">
-            Send
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TK INFO-TECH helps students and fresh graduates build job-ready tech skills through live learning, projects, and career guidance."
+    />
+    <title>TK INFO-TECH | Career-Focused IT Training</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./favicon-tk.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+      defer
+    ></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar p-0" aria-label="Main navigation">
+        <div class="site-nav">
+          <button
+            class="sidebar-toggle d-lg-none"
+            type="button"
+            data-sidebar-target="#mobileSidebar"
+            aria-controls="mobileSidebar"
+            aria-expanded="false"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu-alt-left"></i><span class="toggle-label">Menu</span>
           </button>
-        </td>
-        <td>
-          <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>ios
-          development
-        </td>
-      </tr>
-    </table>
-    <center>
-      <p style="color: #f1f1f1">Copyright &copy; TK INFO-TECH @ 2025</p>
-    </center>
-  </div>
+          <a class="navbar-brand brand-mark" href="./index.html">TK <span>INFO-TECH</span></a>
+          <div class="desktop-nav d-none d-lg-flex ms-auto">
+            <ul class="navbar-nav flex-row align-items-center gap-lg-2">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./programes.html">Programmes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contacts">Contact</a>
+              </li>
+            </ul>
+            <a class="btn btn-brand btn-sm desktop-apply" href="./form.html">Apply now</a>
+          </div>
+        </div>
+      </nav>
+            <div
+        class="offcanvas offcanvas-start mobile-sidebar d-lg-none"
+        tabindex="-1"
+        id="mobileSidebar"
+        aria-label="Mobile navigation"
+      >
+        <div class="offcanvas-header">
+          <div class="mobile-sidebar-brand">
+            <span class="mobile-sidebar-kicker">Quick navigation</span>
+            <a class="navbar-brand brand-mark" href="./index.html">TK <span>INFO-TECH</span></a>
+            <p>Explore courses, mentoring support, contact options, and applications from one clear mobile sidebar.</p>
+          </div>
+          <button
+            type="button"
+            class="sidebar-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close navigation menu"
+          >
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <div class="offcanvas-body">
+          <nav class="mobile-icon-nav" aria-label="Mobile navigation links">
+            <a
+              class="mobile-icon-link active"
+              href="./index.html"
+              title="Home"
+              aria-label="Home"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-home"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Home</strong>
+                <small>Overview and learner highlights</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./programes.html"
+              title="Programmes"
+              aria-label="Programmes"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-book-content"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Programmes</strong>
+                <small>Career tracks and skill paths</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./about.html"
+              title="About"
+              aria-label="About"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-user-circle"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>About</strong>
+                <small>Mission, founder, and mentoring</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="#contacts"
+              title="Contact"
+              aria-label="Contact"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-envelope"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Contact</strong>
+                <small>Phone, email, and quick enquiry</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./form.html"
+              title="Apply now"
+              aria-label="Apply now"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-send"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Apply now</strong>
+                <small>Submit your internship request</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+          </nav>
+          <div class="mobile-sidebar-cta">
+            <p>Start with a quick application and we can guide you to the right programme.</p>
+            <a class="btn btn-brand btn-sm" href="./form.html" data-bs-dismiss="offcanvas">Apply now</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  <script src="./script.js"></script>
-</body>
+    <main class="page-shell">
+      <section class="hero-section">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="./3129957-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-backdrop"></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow"><i class="bx bxs-rocket"></i> Career-first learning</span>
+            <h1>Bridge the gap between college and your career.</h1>
+            <p>
+              Learn with industry experts, work on real projects, and build the confidence
+              needed to move from classroom knowledge to job-ready skills.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-brand btn-lg" href="./programes.html">Explore programmes</a>
+              <a class="btn btn-outline-light-soft btn-lg" href="./form.html">
+                Apply for internship
+              </a>
+            </div>
+            <div class="stats-grid">
+              <article class="stat-card reveal">
+                <span class="stat-number" data-count-to="1000" data-suffix="+">0+</span>
+                <span class="stat-label">Students trained</span>
+              </article>
+              <article class="stat-card reveal">
+                <span class="stat-number" data-count-to="95" data-suffix="%">0%</span>
+                <span class="stat-label">Success-focused outcomes</span>
+              </article>
+              <article class="stat-card reveal">
+                <span class="stat-number" data-count-to="100" data-suffix="+">0+</span>
+                <span class="stat-label">Company-ready pathways</span>
+              </article>
+            </div>
+          </div>
 
+          <aside class="hero-card reveal" aria-label="Highlights">
+            <h2>Why learners choose TK INFO-TECH</h2>
+            <p>
+              Every programme is designed to feel practical, structured, and easy to follow,
+              even if you are just starting your tech journey.
+            </p>
+            <ul class="info-list">
+              <li>
+                <i class="bx bxs-badge-check"></i>
+                <span>Live mentor-led sessions with guidance you can actually use.</span>
+              </li>
+              <li>
+                <i class="bx bxs-briefcase"></i>
+                <span>Portfolio projects and interview-focused practice built into learning.</span>
+              </li>
+              <li>
+                <i class="bx bxs-graduation"></i>
+                <span>Career support for resumes, ATS readiness, and internship applications.</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-space trust-strip">
+        <div class="site-container">
+          <div class="section-intro">
+            <span class="kicker">Recognitions</span>
+            <h2>Backed by trusted education and startup ecosystems</h2>
+            <p>
+              These recognitions reflect our focus on structured learning and practical career
+              readiness.
+            </p>
+          </div>
+          <div class="logo-cloud">
+            <div class="logo-badge reveal">
+              <img src="./Iso_logo-BDMfS3XQ.png" alt="ISO certification logo" loading="lazy" />
+            </div>
+            <div class="logo-badge reveal">
+              <img src="./mca_logo-6rj8cmc1.png" alt="MCA logo" loading="lazy" />
+            </div>
+            <div class="logo-badge reveal">
+              <img src="./Nasscom-ByihTscR.png" alt="Nasscom logo" loading="lazy" />
+            </div>
+            <div class="logo-badge reveal">
+              <img
+                src="./Startup-india-logo1-CAJ7oHkf.png"
+                alt="Startup India logo"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-space" id="offerings">
+        <div class="site-container">
+          <div class="section-intro">
+            <span class="kicker">What we offer</span>
+            <h2>Career tools and programmes built for faster growth</h2>
+            <p>
+              We focus on practical support that helps learners improve skills, present
+              themselves better, and get closer to real job opportunities.
+            </p>
+          </div>
+
+          <div class="surface-panel">
+            <div class="row g-3">
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-group"></i></div>
+                  <h3>Fellowship support</h3>
+                  <p>
+                    Structured mentoring, regular guidance, and accountability to keep your
+                    learning journey on track.
+                  </p>
+                  <a class="card-link" href="./form.html">Start your journey <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-book-content"></i></div>
+                  <h3>Job-ready courses</h3>
+                  <p>
+                    Learn full stack development, UI/UX, cloud, and other skills through
+                    hands-on practice instead of theory alone.
+                  </p>
+                  <a class="card-link" href="./programes.html">See all programmes <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-file-find"></i></div>
+                  <h3>ATS resume review</h3>
+                  <p>
+                    Improve how your resume performs in screening systems and make your profile
+                    easier for recruiters to shortlist.
+                  </p>
+                  <a class="card-link" href="./form.html">Request guidance <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-file-doc"></i></div>
+                  <h3>Resume builder</h3>
+                  <p>
+                    Shape your projects, achievements, and technical skills into a cleaner,
+                    more professional resume.
+                  </p>
+                  <a class="card-link" href="./form.html">Get support <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-briefcase-alt-2"></i></div>
+                  <h3>Job portal guidance</h3>
+                  <p>
+                    Learn how to position yourself for internships and entry-level roles with a
+                    clearer application strategy.
+                  </p>
+                  <a class="card-link" href="./form.html">Apply with confidence <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <article class="feature-card reveal">
+                  <div class="feature-icon"><i class="bx bxs-wallet-alt"></i></div>
+                  <h3>Salary and role clarity</h3>
+                  <p>
+                    Understand role expectations, career paths, and salary ranges so your next
+                    move feels informed.
+                  </p>
+                  <a class="card-link" href="./about.html">Learn how we guide you <i class="bx bx-right-arrow-alt"></i></a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-space" id="why-us">
+        <div class="site-container">
+          <div class="section-intro">
+            <span class="kicker">Why choose us</span>
+            <h2>Support that feels practical, personal, and career-focused</h2>
+            <p>
+              Beyond coursework, we help learners build confidence through mentoring,
+              facilities, and real practice environments.
+            </p>
+          </div>
+
+          <div class="reason-grid mb-4">
+            <article class="reason-card reveal">
+              <h3>One-to-one interaction</h3>
+              <p>
+                Ask questions freely, get guided feedback, and work through concepts with more
+                clarity.
+              </p>
+            </article>
+            <article class="reason-card reveal">
+              <h3>AI-enabled lab access</h3>
+              <p>
+                Learn with modern tools and workflows that mirror how teams build today.
+              </p>
+            </article>
+            <article class="reason-card reveal">
+              <h3>Dedicated practice rooms</h3>
+              <p>
+                Build focus, collaborate with peers, and keep momentum through consistent
+                project time.
+              </p>
+            </article>
+          </div>
+
+          <div
+            id="campusCarousel"
+            class="carousel slide carousel-fade carousel-shell reveal"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#campusCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#campusCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#campusCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="./medium-shot-team-sitting-table.jpg"
+                  alt="Students in a mentoring session"
+                />
+                <div class="carousel-caption">
+                  <h5>Personal mentoring sessions that keep learning interactive</h5>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="./1790.jpg" alt="Students using an AI-based computer lab" />
+                <div class="carousel-caption">
+                  <h5>AI-based lab facilities for modern project practice</h5>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./47893821_logo_make_11_06_2023_201.jpg"
+                  alt="Large practice room for students and workshops"
+                />
+                <div class="carousel-caption">
+                  <h5>Large practice spaces designed for teamwork and implementation</h5>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#campusCarousel"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#campusCarousel"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contacts">
+      <div class="site-container">
+        <div class="footer-grid">
+          <section class="footer-card">
+            <h2>TK INFO-TECH</h2>
+            <p>
+              Career-focused IT training with mentor support, project practice, and internship
+              pathways for students and fresh graduates.
+            </p>
+            <div class="contact-pair">
+              <i class="bx bxs-phone-call"></i>
+              <div>
+                <a href="tel:+919597151915">+91 95971 51915</a><br />
+                <a href="tel:+918667513585">+91 86675 13585</a>
+              </div>
+            </div>
+            <div class="contact-pair">
+              <i class="bx bxs-envelope"></i>
+              <div>
+                <a href="mailto:dtharunkrishna65@gmail.com">dtharunkrishna65@gmail.com</a><br />
+                <a href="mailto:dtharunkrish003@gmail.com">dtharunkrish003@gmail.com</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="footer-card">
+            <h3>Courses</h3>
+            <ul class="footer-list">
+              <li><a href="./programes.html#course-catalogue">Python Full Stack</a></li>
+              <li><a href="./programes.html#course-catalogue">Java Full Stack</a></li>
+              <li><a href="./programes.html#course-catalogue">MERN Stack</a></li>
+              <li><a href="./programes.html#course-catalogue">UI/UX Design</a></li>
+              <li><a href="./programes.html#course-catalogue">AWS Foundations</a></li>
+            </ul>
+          </section>
+
+          <section class="footer-card">
+            <h3>Services</h3>
+            <ul class="footer-list">
+              <li><a href="./form.html">Web Development</a></li>
+              <li><a href="./form.html">App Development</a></li>
+              <li><a href="./form.html">Business Erp</a></li>
+              <li><a href="./form.html">Resume guidance</a></li>
+              <li><a href="./form.html">ATS support</a></li>
+              <li><a href="./form.html">Internship applications</a></li>
+              <li><a href="./form.html">Resume guidance</a></li>
+              <li><a href="./form.html">ATS support</a></li>
+              <li><a href="./about.html">Mentoring model</a></li>
+              <li><a href="./index.html#why-us">Facilities and support</a></li>
+            </ul>
+          </section>
+
+          <section class="footer-card">
+            <h3>Quick enquiry</h3>
+            <form id="contact-form" class="contact-form" novalidate>
+              <div>
+                <label class="form-label" for="contact-name">Name</label>
+                <input
+                  class="form-control"
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label" for="contact-email">Email</label>
+                <input
+                  class="form-control"
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label" for="contact-message">Enquiry</label>
+                <textarea
+                  class="form-control"
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Tell us what you need help with"
+                  required
+                ></textarea>
+              </div>
+              <button class="btn btn-brand" type="submit">Send enquiry</button>
+              <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+
+        <p class="footer-note">Copyright &copy; TK INFO-TECH 2026. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>

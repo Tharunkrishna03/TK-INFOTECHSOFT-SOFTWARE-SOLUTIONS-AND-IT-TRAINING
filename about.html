@@ -1,429 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about TK INFO-TECH, our founder, and the career-focused learning approach behind our programmes."
+    />
+    <title>About | TK INFO-TECH</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./favicon-tk.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+      defer
+    ></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar p-0" aria-label="Main navigation">
+        <div class="site-nav">
+          <button
+            class="sidebar-toggle d-lg-none"
+            type="button"
+            data-sidebar-target="#mobileSidebar"
+            aria-controls="mobileSidebar"
+            aria-expanded="false"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu-alt-left"></i><span class="toggle-label">Menu</span>
+          </button>
+          <a class="navbar-brand brand-mark" href="./index.html">TK <span>INFO-TECH</span></a>
+          <div class="desktop-nav d-none d-lg-flex ms-auto">
+            <ul class="navbar-nav flex-row align-items-center gap-lg-2">
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./programes.html">Programmes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contacts">Contact</a>
+              </li>
+            </ul>
+            <a class="btn btn-brand btn-sm desktop-apply" href="./form.html">Apply now</a>
+          </div>
+        </div>
+      </nav>
+            <div
+        class="offcanvas offcanvas-start mobile-sidebar d-lg-none"
+        tabindex="-1"
+        id="mobileSidebar"
+        aria-label="Mobile navigation"
+      >
+        <div class="offcanvas-header">
+          <div class="mobile-sidebar-brand">
+            <span class="mobile-sidebar-kicker">Quick navigation</span>
+            <a class="navbar-brand brand-mark" href="./index.html">TK <span>INFO-TECH</span></a>
+            <p>Explore courses, mentoring support, contact options, and applications from one clear mobile sidebar.</p>
+          </div>
+          <button
+            type="button"
+            class="sidebar-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close navigation menu"
+          >
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <div class="offcanvas-body">
+          <nav class="mobile-icon-nav" aria-label="Mobile navigation links">
+            <a
+              class="mobile-icon-link"
+              href="./index.html"
+              title="Home"
+              aria-label="Home"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-home"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Home</strong>
+                <small>Overview and learner highlights</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./programes.html"
+              title="Programmes"
+              aria-label="Programmes"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-book-content"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Programmes</strong>
+                <small>Career tracks and skill paths</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link active"
+              href="./about.html"
+              title="About"
+              aria-label="About"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-user-circle"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>About</strong>
+                <small>Mission, founder, and mentoring</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="#contacts"
+              title="Contact"
+              aria-label="Contact"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-envelope"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Contact</strong>
+                <small>Phone, email, and quick enquiry</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./form.html"
+              title="Apply now"
+              aria-label="Apply now"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-send"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Apply now</strong>
+                <small>Submit your internship request</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+          </nav>
+          <div class="mobile-sidebar-cta">
+            <p>Ready to move from planning to action? Send your details and we will follow up.</p>
+            <a class="btn btn-brand btn-sm" href="./form.html" data-bs-dismiss="offcanvas">Apply now</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <link rel="icon" href="1745939634612[1].jpg" type="image/x-icon">
-</head>
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    <main class="page-shell">
+      <section class="page-hero">
+        <div class="site-container">
+          <span class="eyebrow"><i class="bx bxs-user-detail"></i> About TK INFO-TECH</span>
+          <h1>We help learners become confident, employable tech professionals.</h1>
+          <p>
+            Our approach combines hands-on practice, personal guidance, and career readiness so
+            students can grow with direction instead of guesswork.
+          </p>
+        </div>
+      </section>
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+      <section class="section-space">
+        <div class="site-container about-layout">
+          <aside class="leader-card reveal">
+            <img
+              class="leader-photo"
+              src="./Gemini_Generated_Image_37ybzm37ybzm37yb.png"
+              alt="Portrait of D. Tharun Krishna"
+              loading="lazy"
+            />
+            <div class="leader-meta">
+              <h2>D. Tharun Krishna</h2>
+              <p>Founder &amp; Chairman</p>
+              <p>TK INFO-TECH</p>
+            </div>
+            <div class="social-links" aria-label="Social profiles">
+              <a
+                href="https://www.instagram.com/tharuntk_d/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram profile"
+              >
+                <i class="bx bxl-instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tharun-krishna-d-35a6a632b/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                <i class="bx bxl-linkedin-square"></i>
+              </a>
+            </div>
+          </aside>
 
-  body {
-    /* background-color: rgb(0, 210, 255); */
-    background: url("./IrM.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
+          <section class="story-card reveal" id="mission">
+            <span class="kicker">Founder&apos;s note</span>
+            <h2>Building practical learning paths for modern careers</h2>
+            <p>
+              As the Founder and Chairman of TK INFO-TECH, I am committed to helping students
+              and working professionals build the skills needed for today&apos;s fast-evolving IT
+              landscape. My background in computer applications, machine learning, and UI/UX
+              design shaped a learning environment that values both strong fundamentals and real
+              implementation.
+            </p>
+            <p>
+              The goal of TK INFO-TECH is simple: reduce the gap between what industry expects
+              and what learners confidently deliver. That means practical training, project
+              experience, mentorship, and a learning experience that feels supportive instead of
+              overwhelming.
+            </p>
+            <div class="value-grid">
+              <article class="value-card reveal">
+                <h3>Practical learning</h3>
+                <p>
+                  Courses focus on applying skills through projects, guided tasks, and real
+                  examples.
+                </p>
+              </article>
+              <article class="value-card reveal">
+                <h3>Career readiness</h3>
+                <p>
+                  We help learners build resumes, confidence, and better preparation for
+                  interviews and internships.
+                </p>
+              </article>
+              <article class="value-card reveal">
+                <h3>Supportive mentoring</h3>
+                <p>
+                  Questions, feedback, and one-to-one guidance are part of the experience, not an
+                  afterthought.
+                </p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
 
-  /* nav .logo {
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(0, 0, 0);
-      border-radius: 0px;
-      display: flex;
-      justify-content: center;
-    }
-    nav ul li {
-      list-style-type: none;
-      display: inline-block;
-      padding: 15px;
-      text-align: center;
-    }
-    ul a {
-      text-decoration: none;
-      color: white;
-    }
-    ul a:hover {
-      color: #0056b3;
-      text-shadow: #d5eaff;
-    }*/
-  .active {
-    color: #0056b3;
-  }
+      <section class="section-space">
+        <div class="site-container">
+          <div class="surface-panel reveal">
+            <div class="section-intro mb-0">
+              <span class="kicker">What we stand for</span>
+              <h2>Technology education that feels clear, relevant, and encouraging</h2>
+              <p>
+                We aim to create a space where learners can build strong technical foundations,
+                explore current tools, and move toward meaningful opportunities with more
+                confidence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background-color: #00043e;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: background 1s;
-  }
+    <footer class="site-footer" id="contacts">
+      <div class="site-container">
+        <div class="footer-grid">
+          <section class="footer-card">
+            <h2>TK INFO-TECH</h2>
+            <p>
+              A training space built around practical learning, real guidance, and stronger
+              career outcomes for students and fresh graduates.
+            </p>
+            <div class="contact-pair">
+              <i class="bx bxs-phone-call"></i>
+              <div>
+                <a href="tel:+919597151915">+91 95971 51915</a><br />
+                <a href="tel:+918667513585">+91 86675 13585</a>
+              </div>
+            </div>
+            <div class="contact-pair">
+              <i class="bx bxs-envelope"></i>
+              <div>
+                <a href="mailto:dtharunkrishna65@gmail.com">dtharunkrishna65@gmail.com</a><br />
+                <a href="mailto:dtharunkrish003@gmail.com">dtharunkrish003@gmail.com</a>
+              </div>
+            </div>
+          </section>
 
-  nav.scrolled {
-    background: #016b88;
-  }
+          <section class="footer-card">
+            <h3>Explore</h3>
+            <ul class="footer-list">
+              <li><a href="./index.html#offerings">Student services</a></li>
+              <li><a href="./programes.html#course-catalogue">Programmes</a></li>
+              <li><a href="./about.html#mission">Mission</a></li>
+              <li><a href="./form.html">Internship application</a></li>
+            </ul>
+          </section>
 
+          <section class="footer-card">
+            <h3>Support</h3>
+            <ul class="footer-list">
+              <li><a href="./form.html">Web Development</a></li>
+              <li><a href="./form.html">App Development</a></li>
+              <li><a href="./form.html">Business Erp</a></li>
+              <li><a href="./form.html">Quick counselling</a></li>
+              <li><a href="./form.html">Resume support</a></li>
+              <li><a href="./form.html">ATS guidance</a></li>
+              <li><a href="./programes.html#partner-network">Hiring network</a></li>
+            </ul>
+          </section>
 
-  .nav-links a.active {
-    color: #00c8ff;
-    font-weight: 600;
-    border-bottom: 2px solid #00c8ff;
-    padding-bottom: 5px;
-  }
+          <section class="footer-card">
+            <h3>Quick enquiry</h3>
+            <form id="contact-form" class="contact-form" novalidate>
+              <div>
+                <label class="form-label" for="contact-name">Name</label>
+                <input
+                  class="form-control"
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label" for="contact-email">Email</label>
+                <input
+                  class="form-control"
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label" for="contact-message">Enquiry</label>
+                <textarea
+                  class="form-control"
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Tell us what you need help with"
+                  required
+                ></textarea>
+              </div>
+              <button class="btn btn-brand" type="submit">Send enquiry</button>
+              <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
 
-
-
-  .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #00c8ff;
-  }
-
-  .logo span {
-    color: white;
-  }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover {
-    color: #00c8ff;
-  }
-
-  .bio {
-    margin-top: 95px;
-    margin-left: 95px;
-    padding: 8px;
-    width: 1300px;
-    height: 600px;
-    /* border: 5px solid rgb(164, 187, 255); */
-    border-radius: 0px 50px;
-
-    box-shadow: 3px 3px 3px blue, 3px 3px 3px rgb(0, 18, 40), 3px 3px 3px rgb(20, 26, 49);
-    color: white;
-  }
-
-  .bio img {
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    border: 4px solid #00c8ff;
-    box-shadow: 0 0 25px rgba(0, 200, 255, 0.3);
-  }
-
-  .bio .tk {
-    color: #00e1ff;
-    font-weight: 600;
-  }
-
-  #contacts {
-    width: 100%;
-    margin: auto;
-    background: rgb(1, 1, 101);
-    padding: 20px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-  }
-
-  th {
-    color: white;
-    padding: 15px;
-    font-size: 55px;
-  }
-
-  td {
-    padding: 12px;
-    color: white;
-  }
-
-  th:hover {
-    color: black;
-    background: #f1f1f1;
-    transition: 0.3s;
-  }
-
-  td:hover {
-    cursor: pointer;
-    border-bottom: 2px solid white;
-    transform: translate(2s);
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 35px;
-  }
-
-  p {
-    text-align: justify;
-  }
-
-  .rainbow-animate {
-    font-size: 30px;
-    font-weight: bold;
-    animation: rainbow 7s infinite;
-  }
-
-  @keyframes rainbow {
-    0% {
-      color: red;
-    }
-
-    14% {
-      color: orange;
-    }
-
-    28% {
-      color: yellow;
-    }
-
-    42% {
-      color: green;
-    }
-
-    57% {
-      color: blue;
-    }
-
-    71% {
-      color: indigo;
-    }
-
-    85% {
-      color: violet;
-    }
-
-    100% {
-      color: red;
-    }
-  }
-.particle {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #00c8ff, #0077ff);
-  pointer-events: none;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  animation: fadeOut 0.8s linear forwards;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0) translate(-50%, -50%);
-  }
-}
-</style>
-<script>
-  function Redirect() {
-    window.location = "https://www.instagram.com/tharuntk_d/";
-  }
-  function red() {
-    window.location = "https://www.linkedin.com/in/tharun-krishna-d-35a6a632b/";
-  }
-</script>
-
-<body>
-  <section class="bag">
-    <nav>
-      <div class="logo">Tk<span>INFO-TECH</span></div>
-      <ul class="nav-links">
-        <li><a href="./index.html">HOME</a></li>
-        <li><a href="./programes.html">PROGRAMMES</a></li>
-        <li><a href="./about.html" class="active">ABOUT</a></li>
-        <li><a href="#contacts">CONTACTS</a></li>
-      </ul>
-    </nav>
-    <div class="bio">
-      <img src="./IMG_20250914_122528848~3[1].jpg" style="width:200px; height: 200px;" alt="">
-      <br>
-      <br>
-      <h3> Mr D Tharun krishna Bcom MCA</h3>
-      <h6>Founder & Chairman</h6>
-      <br>
-      <h6> TK INFO-TECH</h6>
-      <p>As the Founder and Chairman of <span class="tk">TK INFO-TECH</span>, I am dedicated to empowering students and
-        professionals with the skills required to thrive in today’s fast-evolving IT landscape. With a strong background
-        in Computer Applications, Machine Learning, and UI/UX design, I have combined academic knowledge with real-world
-        project experience to create a training environment that is both practical and future-focused. My vision is to
-        bridge the gap between industry needs and learner capabilities by offering hands-on, innovative, and
-        career-oriented IT programs. Through <span class="tk">TK INFO-TECH</span>, I strive to inspire learners to
-        embrace technology with confidence and creativity, shaping them into tomorrow’s innovators and problem-solvers.
-      </p>
-      <br>
-      <br>
-      <center><box-icon type='logo' name='instagram' onclick="Redirect();" color="#ffffff"
-          style="cursor: pointer;"></box-icon>
-        <box-icon name='linkedin' type='logo' color='#fffcfc' onclick="red()" style="cursor: pointer;"></box-icon>
-      </center>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div id="contacts">
-      <table>
-        <tr>
-          <th>
-            <h1>Our Courses</h1>
-          </th>
-          <th>
-            <h1>Contacts</h1>
-          </th>
-          <th>
-            <h1>Service</h1>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Python
-            full stack development
-          </td>
-          <td><span onclick="makecall()">
-              <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
-              +91 9597151915</span>
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>
-            Web development
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>java full
-            stack development
-          </td>
-          <td><span onclick="makecall()">
-              <box-icon name="phone-call" type="solid" color="#fcfafa" style="height: 17px"></box-icon>
-              +91 8667513585</span>
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Front end
-            development
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mern Full
-            stack development
-          </td>
-          <td><span onclick="makemail()">
-              <box-icon name='envelope' type='solid' color='#ffffff'
-                style="height: 15px;"></box-icon>dtharunkrishna65@gmail.com</span>
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Software
-            development
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
-            Python full stack development
-          </td>
-          <td><span onclick="makemail()">
-              <box-icon name='envelope' type='solid' color='#ffffff'
-                style="height: 15px;"></box-icon>dtharunkrish003@gmail.com</span>
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
-            design
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Masters
-            java full stack development
-          </td>
-          <td>
-            NAME:&nbsp;&nbsp;&nbsp;
-            <input type="text" id="name" style="width: 150px; height: 25px; border-radius: 10px" />
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Digital
-            Marketing
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>UI/UX
-            Design
-          </td>
-          <td>
-            EMAIL: &nbsp;&nbsp;&nbsp;&nbsp;<input type="mail" id="mail"
-              style="width: 150px; height: 25px; border-radius: 10px" />
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>Mobile
-            development
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>AWS
-          </td>
-          <td>
-            ENQIREY:
-            <input type="text" id="enq" placeholder="Ask ?"
-              style="border-radius: 10px; width: 150px; height: 25px" />&nbsp;&nbsp;<button onclick="sendmail()" style="
-                padding: 5px 10px;
-                font-size: 10px;
-                background-color: #f1f1f1;
-                color: #00043e;
-                border-radius: 15px;
-              ">
-              Send
-            </button>
-          </td>
-          <td>
-            <box-icon name="chevron-right-circle" type="solid" color="#fcfafa" style="height: 15px"></box-icon>ios
-            development
-          </td>
-        </tr>
-      </table>
-      <center>
-        <p style="color: #f1f1f1">Copyright &copy; TK INFO-TECH @ 2025</p>
-      </center>
-    </div>
-    <script src="./script.js"></script>
-</body>
-
+        <p class="footer-note">Copyright &copy; TK INFO-TECH 2026. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>
