@@ -16,6 +16,12 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="./favicon-tk.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script
@@ -24,6 +30,14 @@
     ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"
       defer
     ></script>
     <script src="./script.js" defer></script>
@@ -47,6 +61,9 @@
             <ul class="navbar-nav flex-row align-items-center gap-lg-2">
               <li class="nav-item">
                 <a class="nav-link" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./services.html">Services</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./programes.html">Programmes</a>
@@ -97,6 +114,23 @@
               <span class="mobile-icon-copy">
                 <strong>Home</strong>
                 <small>Overview and learner highlights</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./services.html"
+              title="Services"
+              aria-label="Services"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-briefcase-alt-2"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Services</strong>
+                <small>Career services and digital support</small>
               </span>
               <span class="mobile-link-arrow" aria-hidden="true">
                 <i class="bx bx-chevron-right"></i>
@@ -361,8 +395,8 @@
             <h3>Helpful links</h3>
             <ul class="footer-list">
               <li><a href="./programes.html#course-catalogue">Browse programmes</a></li>
+              <li><a href="./services.html#services-catalogue">Services overview</a></li>
               <li><a href="./about.html#mission">About our mission</a></li>
-              <li><a href="./index.html#offerings">Student services</a></li>
               <li><a href="./index.html#why-us">Why choose us</a></li>
             </ul>
           </section>

@@ -8,12 +8,21 @@
       content="TK INFO-TECH helps students and fresh graduates build job-ready tech skills through live learning, projects, and career guidance."
     />
     <title>TK INFO-TECH | Career-Focused IT Training</title>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="./favicon-tk.svg" type="image/svg+xml" />
@@ -26,9 +35,53 @@
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
       defer
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
     <script src="./script.js" defer></script>
   </head>
   <body>
+    <div class="intro-screen" id="introScreen" aria-label="Welcome experience">
+      <div class="intro-card">
+        <span class="intro-orb orb-left" aria-hidden="true"></span>
+        <span class="intro-orb orb-right" aria-hidden="true"></span>
+        <span class="intro-kicker"><i class="bx bxs-rocket"></i> Launch your future</span>
+        <h2 class="intro-title" data-intro-title>
+          Are You Ready to Start a Career With TK INFOTECH?
+        </h2>
+        <p class="intro-copy">
+          Explore learning paths, career services, and practical guidance in one smoother,
+          easier-to-follow experience.
+        </p>
+        <div class="intro-power-shell">
+          <p class="intro-power-label">Power On Experience</p>
+          <button
+            class="intro-power-button"
+            type="button"
+            data-intro-enter
+            aria-label="Start the TK INFO-TECH experience"
+            aria-pressed="false"
+          >
+            <span class="intro-power-glow" aria-hidden="true"></span>
+            <span class="intro-power-core">
+              <i class="bx bx-power-off intro-power-icon" aria-hidden="true"></i>
+            </span>
+          </button>
+          <p class="intro-power-status">
+            Tap the power button to open the TK INFO-TECH journey.
+          </p>
+          <p class="intro-hint">
+            A calmer interface, clearer content, and guided motion will meet you inside.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <header class="site-header">
       <nav class="navbar p-0" aria-label="Main navigation">
         <div class="site-nav">
@@ -47,6 +100,9 @@
             <ul class="navbar-nav flex-row align-items-center gap-lg-2">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./services.html">Services</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./programes.html">Programmes</a>
@@ -97,6 +153,23 @@
               <span class="mobile-icon-copy">
                 <strong>Home</strong>
                 <small>Overview and learner highlights</small>
+              </span>
+              <span class="mobile-link-arrow" aria-hidden="true">
+                <i class="bx bx-chevron-right"></i>
+              </span>
+            </a>
+            <a
+              class="mobile-icon-link"
+              href="./services.html"
+              title="Services"
+              aria-label="Services"
+            >
+              <span class="mobile-icon-symbol">
+                <i class="bx bxs-briefcase-alt-2"></i>
+              </span>
+              <span class="mobile-icon-copy">
+                <strong>Services</strong>
+                <small>Career services and digital support</small>
               </span>
               <span class="mobile-link-arrow" aria-hidden="true">
                 <i class="bx bx-chevron-right"></i>
@@ -198,8 +271,8 @@
             <span class="eyebrow"><i class="bx bxs-rocket"></i> Career-first learning</span>
             <h1>Bridge the gap between college and your career.</h1>
             <p>
-              Learn with industry experts, work on real projects, and build the confidence
-              needed to move from classroom knowledge to job-ready skills.
+              Learn through job-ready education, then use our services for resumes, ATS,
+              internships, and digital growth so your progress feels complete from learning to action.
             </p>
             <div class="hero-actions">
               <a class="btn btn-brand btn-lg" href="./programes.html">Explore programmes</a>
@@ -226,8 +299,8 @@
           <aside class="hero-card reveal" aria-label="Highlights">
             <h2>Why learners choose TK INFO-TECH</h2>
             <p>
-              Every programme is designed to feel practical, structured, and easy to follow,
-              even if you are just starting your tech journey.
+              We connect education and services in one place, so learners can build skills,
+              improve profiles, and move toward real opportunities without confusion.
             </p>
             <ul class="info-list">
               <li>
@@ -321,7 +394,7 @@
                     Improve how your resume performs in screening systems and make your profile
                     easier for recruiters to shortlist.
                   </p>
-                  <a class="card-link" href="./form.html">Request guidance <i class="bx bx-right-arrow-alt"></i></a>
+                  <a class="card-link" href="./services.html#ats-support">Request guidance <i class="bx bx-right-arrow-alt"></i></a>
                 </article>
               </div>
               <div class="col-md-6 col-xl-4">
@@ -332,7 +405,7 @@
                     Shape your projects, achievements, and technical skills into a cleaner,
                     more professional resume.
                   </p>
-                  <a class="card-link" href="./form.html">Get support <i class="bx bx-right-arrow-alt"></i></a>
+                  <a class="card-link" href="./services.html#resume-guidance">Get support <i class="bx bx-right-arrow-alt"></i></a>
                 </article>
               </div>
               <div class="col-md-6 col-xl-4">
@@ -343,7 +416,7 @@
                     Learn how to position yourself for internships and entry-level roles with a
                     clearer application strategy.
                   </p>
-                  <a class="card-link" href="./form.html">Apply with confidence <i class="bx bx-right-arrow-alt"></i></a>
+                  <a class="card-link" href="./services.html#internship-applications">Apply with confidence <i class="bx bx-right-arrow-alt"></i></a>
                 </article>
               </div>
               <div class="col-md-6 col-xl-4">
@@ -364,6 +437,39 @@
 
       <section class="section-space" id="why-us">
         <div class="site-container">
+          <div class="section-intro">
+            <span class="kicker">Education + Services</span>
+            <h2>Learn the skill, then use the right support to move faster</h2>
+            <p>
+              TK INFO-TECH combines practical education with career services so users do not
+              have to switch between multiple places to learn, improve, and apply.
+            </p>
+          </div>
+
+          <div class="reason-grid mb-4">
+            <article class="reason-card reveal">
+              <h3>Education that builds confidence</h3>
+              <p>
+                Programmes focus on clear concepts, guided projects, and structured practice for
+                learners who want job-ready understanding.
+              </p>
+            </article>
+            <article class="reason-card reveal">
+              <h3>Services that improve outcomes</h3>
+              <p>
+                Resume support, ATS guidance, application strategy, and digital services help
+                you use what you learn more effectively.
+              </p>
+            </article>
+            <article class="reason-card reveal">
+              <h3>One smoother user journey</h3>
+              <p>
+                From discovery to action, the site now makes it easier to understand where
+                education ends, where services begin, and how both work together.
+              </p>
+            </article>
+          </div>
+
           <div class="section-intro">
             <span class="kicker">Why choose us</span>
             <h2>Support that feels practical, personal, and career-focused</h2>
@@ -511,14 +617,12 @@
           <section class="footer-card">
             <h3>Services</h3>
             <ul class="footer-list">
-              <li><a href="./form.html">Web Development</a></li>
-              <li><a href="./form.html">App Development</a></li>
-              <li><a href="./form.html">Business Erp</a></li>
-              <li><a href="./form.html">Resume guidance</a></li>
-              <li><a href="./form.html">ATS support</a></li>
-              <li><a href="./form.html">Internship applications</a></li>
-              <li><a href="./form.html">Resume guidance</a></li>
-              <li><a href="./form.html">ATS support</a></li>
+              <li><a href="./services.html#web-development">Web Development</a></li>
+              <li><a href="./services.html#app-development">App Development</a></li>
+              <li><a href="./services.html#business-erp">Business ERP</a></li>
+              <li><a href="./services.html#resume-guidance">Resume guidance</a></li>
+              <li><a href="./services.html#ats-support">ATS support</a></li>
+              <li><a href="./services.html#internship-applications">Internship applications</a></li>
               <li><a href="./about.html">Mentoring model</a></li>
               <li><a href="./index.html#why-us">Facilities and support</a></li>
             </ul>
@@ -571,3 +675,4 @@
     </footer>
   </body>
 </html>
+

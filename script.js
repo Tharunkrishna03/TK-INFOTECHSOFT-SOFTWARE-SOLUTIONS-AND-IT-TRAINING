@@ -5,8 +5,11 @@
 };
 
 const PRIMARY_EMAIL = "dtharunkrishna65@gmail.com";
+const INTRO_STORAGE_KEY = "tkIntroSeen";
 
 document.addEventListener("DOMContentLoaded", () => {
+  initPageTransitions();
+  initIntroExperience();
   initHeaderState();
   initMobileSidebar();
   initStaggeredCardMotion();
@@ -125,19 +128,323 @@ function initMobileSidebar() {
   });
 }
 
-
-function initRevealAnimations() {
-  const items = document.querySelectorAll(".reveal");
-
-  if (!items.length) {
+function initPageTransitions() {
+  if (document.querySelector(".page-loader")) {
     return;
   }
 
+  const loader = document.createElement("div");
+  loader.className = "page-loader";
+  loader.setAttribute("aria-hidden", "true");
+  loader.innerHTML = `
+    <div class="page-loader-panel">
+      <span class="page-loader-label">Loading next step</span>
+      <div class="page-loader-pulse" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="page-loader-copy">Opening the next TK INFO-TECH page...</p>
+    </div>
+  `;
+
+  document.body.append(loader);
+
+  window.addEventListener("pageshow", () => {
+    document.body.classList.remove("page-transitioning");
+    loader.classList.remove("is-visible");
+  });
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+
+    if (!shouldTriggerPageTransition(link, event)) {
+      return;
+    }
+
+    event.preventDefault();
+    document.body.classList.add("page-transitioning");
+    loader.classList.add("is-visible");
+
+    window.setTimeout(() => {
+      window.location.href = link.href;
+    }, 220);
+  });
+}
+
+function shouldTriggerPageTransition(link, event) {
   if (
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-    !("IntersectionObserver" in window)
+    !link ||
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    link.hasAttribute("download") ||
+    link.target === "_blank"
   ) {
-    items.forEach((item) => item.classList.add("is-visible"));
+    return false;
+  }
+
+  const rawHref = link.getAttribute("href") || "";
+
+  if (
+    !rawHref ||
+    rawHref.startsWith("#") ||
+    rawHref.startsWith("mailto:") ||
+    rawHref.startsWith("tel:") ||
+    rawHref.startsWith("javascript:")
+  ) {
+    return false;
+  }
+
+  const nextUrl = new URL(link.href, window.location.href);
+
+  if (nextUrl.origin !== window.location.origin) {
+    return false;
+  }
+
+  if (nextUrl.pathname === window.location.pathname && nextUrl.hash) {
+    return false;
+  }
+
+  return (
+    nextUrl.pathname !== window.location.pathname ||
+    nextUrl.search !== window.location.search
+  );
+}
+
+function initIntroExperience() {
+  const intro = document.getElementById("introScreen");
+  const enterButton = intro?.querySelector("[data-intro-enter]");
+  const introCard = intro?.querySelector(".intro-card");
+  const powerGlow = intro?.querySelector(".intro-power-glow");
+  const powerStatus = intro?.querySelector(".intro-power-status");
+
+  if (!intro || !enterButton || !introCard) {
+    return;
+  }
+
+  if (getSessionStorageValue(INTRO_STORAGE_KEY) === "true") {
+    intro.hidden = true;
+    return;
+  }
+
+  const reduceMotion = shouldReduceMotion();
+  const hasGsap = typeof gsap !== "undefined";
+
+  document.body.classList.add("intro-active");
+
+  if (hasGsap && !reduceMotion) {
+    gsap.fromTo(
+      introCard,
+      { y: 32, autoAlpha: 0, scale: 0.96 },
+      { y: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" }
+    );
+
+    gsap.fromTo(
+      introCard.children,
+      { y: 16, autoAlpha: 0 },
+      {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power2.out",
+        delay: 0.15,
+      }
+    );
+
+    gsap.to(intro.querySelectorAll(".intro-orb"), {
+      xPercent: 6,
+      yPercent: -8,
+      duration: 5.2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.2,
+    });
+  }
+
+  const finishIntro = () => {
+    intro.hidden = true;
+    document.body.classList.remove("intro-active");
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+  };
+
+  enterButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (enterButton.dataset.busy === "true") {
+      return;
+    }
+
+    enterButton.dataset.busy = "true";
+    intro.classList.add("is-armed");
+    enterButton.setAttribute("aria-pressed", "true");
+    setSessionStorageValue(INTRO_STORAGE_KEY, "true");
+    powerStatus?.classList.add("is-live");
+
+    if (!hasGsap || reduceMotion) {
+      finishIntro();
+      return;
+    }
+
+    const exitTimeline = gsap.timeline({ onComplete: finishIntro });
+
+    if (powerGlow) {
+      exitTimeline.to(
+        powerGlow,
+        {
+          autoAlpha: 1,
+          scale: 1.08,
+          duration: 0.28,
+          ease: "power2.out",
+        },
+        0
+      );
+    }
+
+    exitTimeline.to(
+      enterButton,
+      {
+        scale: 1.06,
+        duration: 0.28,
+        ease: "power2.out",
+      },
+      0
+    );
+
+    if (powerStatus) {
+      exitTimeline.to(
+        powerStatus,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.3,
+          ease: "power1.out",
+        },
+        0.1
+      );
+    }
+
+    exitTimeline.to(
+      introCard,
+      {
+        y: -18,
+        scale: 0.97,
+        duration: 0.35,
+        ease: "power2.in",
+      },
+      0
+    );
+
+    exitTimeline.to(
+      intro,
+      {
+        autoAlpha: 0,
+        duration: 0.65,
+        ease: "power2.out",
+      },
+      0.24
+    );
+  });
+}
+
+function shouldReduceMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function getSessionStorageValue(key) {
+  try {
+    return sessionStorage.getItem(key);
+  } catch (error) {
+    console.error("Session storage read error:", error);
+    return null;
+  }
+}
+
+function setSessionStorageValue(key, value) {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch (error) {
+    console.error("Session storage write error:", error);
+  }
+}
+
+
+function initRevealAnimations() {
+  const items = Array.from(document.querySelectorAll(".reveal"));
+  const textBlocks = Array.from(
+    document.querySelectorAll(
+      ".hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > p, .hero-copy > .hero-actions, .page-hero > .site-container, .section-intro"
+    )
+  );
+
+  if (!items.length && !textBlocks.length) {
+    return;
+  }
+
+  const hasGsap =
+    typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+
+  if (shouldReduceMotion()) {
+    [...items, ...textBlocks].forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    textBlocks.forEach((item, index) => {
+      gsap.set(item, { autoAlpha: 0, y: 34 });
+
+      ScrollTrigger.create({
+        trigger: item.closest(".hero-copy, .page-hero, .section-intro") || item,
+        start: "top 86%",
+        once: true,
+        onEnter: () => {
+          item.classList.add("is-visible");
+          gsap.to(item, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.72,
+            delay: index === 0 ? 0.08 : 0,
+            ease: "power3.out",
+          });
+        },
+      });
+    });
+
+    items.forEach((item, index) => {
+      const motion = getRevealMotion(item, index);
+      const delay =
+        Number.parseFloat(item.style.getPropertyValue("--reveal-delay")) || 0;
+
+      gsap.set(item, { autoAlpha: 0, x: motion.x, y: motion.y });
+
+      ScrollTrigger.create({
+        trigger: item,
+        start: "top 88%",
+        once: true,
+        onEnter: () => {
+          item.classList.add("is-visible");
+          gsap.to(item, {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            duration: 0.82,
+            delay: delay * 0.75,
+            ease: "power3.out",
+          });
+        },
+      });
+    });
+
     return;
   }
 
@@ -156,7 +463,34 @@ function initRevealAnimations() {
     }
   );
 
-  items.forEach((item) => observer.observe(item));
+  [...items, ...textBlocks].forEach((item) => observer.observe(item));
+}
+
+function getRevealMotion(item, index) {
+  if (
+    item.matches(
+      ".feature-card, .reason-card, .programme-card, .value-card, .footer-card, .partner-tile, .logo-badge, .stat-card"
+    )
+  ) {
+    return {
+      x: index % 2 === 0 ? -88 : 88,
+      y: 22,
+    };
+  }
+
+  if (item.matches(".story-card, .application-card, .info-panel, .leader-card")) {
+    return { x: -54, y: 24 };
+  }
+
+  if (item.matches(".hero-card")) {
+    return { x: 64, y: 0 };
+  }
+
+  if (item.matches(".cta-banner, .carousel-shell")) {
+    return { x: 0, y: 46 };
+  }
+
+  return { x: 0, y: 38 };
 }
 
 function initStaggeredCardMotion() {
@@ -239,27 +573,24 @@ function initPointerAnimation() {
     return;
   }
 
-  const dot = document.createElement("div");
-  const ring = document.createElement("div");
+  const star = document.createElement("div");
 
-  dot.className = "cursor-dot";
-  ring.className = "cursor-ring";
-  document.body.append(dot, ring);
+  star.className = "cursor-star";
+  document.body.append(star);
   document.body.classList.add("pointer-enabled");
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
+  let starX = mouseX;
+  let starY = mouseY;
+  let lastSparkAt = 0;
 
   const render = () => {
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
+    starX += (mouseX - starX) * 0.22;
+    starY += (mouseY - starY) * 0.22;
 
-    dot.style.left = `${mouseX}px`;
-    dot.style.top = `${mouseY}px`;
-    ring.style.left = `${ringX}px`;
-    ring.style.top = `${ringY}px`;
+    star.style.left = `${starX}px`;
+    star.style.top = `${starY}px`;
 
     window.requestAnimationFrame(render);
   };
@@ -268,12 +599,30 @@ function initPointerAnimation() {
     const isInteractive = Boolean(
       target &&
         target.closest(
-          "a, button, .btn, .mobile-icon-link, .sidebar-toggle, .sidebar-close"
+          "a, button, .btn, .mobile-icon-link, .sidebar-toggle, .sidebar-close, input, textarea, select, label"
         )
     );
 
-    dot.classList.toggle("is-hover", isInteractive);
-    ring.classList.toggle("is-hover", isInteractive);
+    star.classList.toggle("is-hover", isInteractive);
+    return isInteractive;
+  };
+
+  const spawnSpark = (x, y, isInteractive = false) => {
+    const spark = document.createElement("span");
+    spark.className = `cursor-spark${isInteractive ? " is-hover" : ""}`;
+    spark.style.left = `${x}px`;
+    spark.style.top = `${y}px`;
+    spark.style.setProperty("--spark-x", `${randomBetween(-22, 22)}px`);
+    spark.style.setProperty("--spark-y", `${randomBetween(-22, 22)}px`);
+    spark.style.setProperty("--spark-scale", `${randomBetween(0.8, 1.45)}`);
+    document.body.append(spark);
+    spark.addEventListener(
+      "animationend",
+      () => {
+        spark.remove();
+      },
+      { once: true }
+    );
   };
 
   document.addEventListener(
@@ -281,28 +630,40 @@ function initPointerAnimation() {
     (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
-      dot.classList.add("is-visible");
-      ring.classList.add("is-visible");
-      syncHoverState(event.target);
+      star.classList.add("is-visible");
+      const isInteractive = syncHoverState(event.target);
+      const now = performance.now();
+
+      if (now - lastSparkAt > 34) {
+        spawnSpark(mouseX, mouseY, isInteractive);
+        lastSparkAt = now;
+      }
     },
     { passive: true }
   );
 
   document.addEventListener("mouseleave", () => {
-    dot.classList.remove("is-visible");
-    ring.classList.remove("is-visible");
+    star.classList.remove("is-visible", "is-hover", "is-active");
   });
 
   document.addEventListener("mousedown", () => {
-    dot.classList.add("is-hover");
-    ring.classList.add("is-hover");
+    star.classList.add("is-active");
+
+    for (let index = 0; index < 4; index += 1) {
+      spawnSpark(mouseX, mouseY, true);
+    }
   });
 
   document.addEventListener("mouseup", (event) => {
+    star.classList.remove("is-active");
     syncHoverState(event.target);
   });
 
   window.requestAnimationFrame(render);
+}
+
+function randomBetween(min, max) {
+  return min + Math.random() * (max - min);
 }
 
 function initEmailJs() {

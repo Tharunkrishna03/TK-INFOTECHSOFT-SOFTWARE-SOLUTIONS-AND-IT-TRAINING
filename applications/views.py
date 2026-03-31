@@ -1,4 +1,4 @@
-﻿from django.http import JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -12,6 +12,8 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def services(request):
+    return render(request, 'services.html')
 
 def programmes(request):
     return render(request, 'programes.html')
@@ -72,3 +74,4 @@ def application_form(request):
         }
 
     return render(request, 'form.html', context)
+
