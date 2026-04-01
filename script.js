@@ -129,31 +129,21 @@ function initMobileSidebar() {
 }
 
 function initPageTransitions() {
-  if (document.querySelector(".page-loader")) {
-    return;
+  const clearLoadingState = () => {
+    document.body.classList.remove("page-loading", "page-transitioning");
+  };
+
+  const finishInitialLoad = () => {
+    window.setTimeout(clearLoadingState, 120);
+  };
+
+  if (document.readyState === "complete") {
+    finishInitialLoad();
+  } else {
+    window.addEventListener("load", finishInitialLoad, { once: true });
   }
 
-  const loader = document.createElement("div");
-  loader.className = "page-loader";
-  loader.setAttribute("aria-hidden", "true");
-  loader.innerHTML = `
-    <div class="page-loader-panel">
-      <span class="page-loader-label">Loading next step</span>
-      <div class="page-loader-pulse" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <p class="page-loader-copy">Opening the next TK INFO-TECH page...</p>
-    </div>
-  `;
-
-  document.body.append(loader);
-
-  window.addEventListener("pageshow", () => {
-    document.body.classList.remove("page-transitioning");
-    loader.classList.remove("is-visible");
-  });
+  window.addEventListener("pageshow", finishInitialLoad);
 
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
@@ -163,12 +153,12 @@ function initPageTransitions() {
     }
 
     event.preventDefault();
+    document.body.classList.remove("page-loading");
     document.body.classList.add("page-transitioning");
-    loader.classList.add("is-visible");
 
     window.setTimeout(() => {
       window.location.href = link.href;
-    }, 220);
+    }, 240);
   });
 }
 
