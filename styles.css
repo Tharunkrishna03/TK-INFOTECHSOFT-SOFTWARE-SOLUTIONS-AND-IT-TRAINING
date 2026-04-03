@@ -56,12 +56,16 @@ body.page-transitioning {
   cursor: progress;
 }
 
-html.js body.page-loading::before,
-html.js body.page-transitioning::before {
-  content: "";
+.page-loader {
   position: fixed;
   inset: 0;
   z-index: 1390;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
   background:
     radial-gradient(circle at 20% 20%, rgba(0, 194, 255, 0.16), transparent 24%),
     radial-gradient(circle at 80% 18%, rgba(255, 190, 85, 0.16), transparent 22%),
@@ -69,63 +73,34 @@ html.js body.page-transitioning::before {
   backdrop-filter: blur(16px);
 }
 
-html.js body.page-loading::after,
-html.js body.page-transitioning::after {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
+.page-loader-shell {
   z-index: 1391;
   width: clamp(6.5rem, 16vw, 9.5rem);
   aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0 18%, transparent 19%),
-    conic-gradient(
-      from 0deg,
-      rgba(0, 194, 255, 0.12),
-      #00c2ff 34%,
-      #ffbe55 68%,
-      rgba(16, 26, 46, 0.08) 100%
-    );
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 0.72rem), #000 0);
-  mask: radial-gradient(farthest-side, transparent calc(100% - 0.72rem), #000 0);
+  display: grid;
+  place-items: center;
+  border-radius: 2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 247, 255, 0.88));
   box-shadow:
     0 0 0 1.1rem rgba(255, 255, 255, 0.18),
     0 0 3.4rem rgba(0, 121, 184, 0.2);
-  animation: pageLoaderSpin 0.9s linear infinite, pageLoaderPulse 1.45s ease-in-out infinite;
 }
 
-@keyframes pageLoaderSpin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.page-loader-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-@keyframes pageLoaderPulse {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1.1rem rgba(255, 255, 255, 0.18),
-      0 0 2.4rem rgba(0, 121, 184, 0.16);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 1.45rem rgba(255, 255, 255, 0.24),
-      0 0 4rem rgba(0, 121, 184, 0.28);
-  }
+body.page-loading .page-loader,
+body.page-transitioning .page-loader {
+  opacity: 1;
+  visibility: visible;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.js body.page-loading::after,
-  html.js body.page-transitioning::after {
-    animation: none;
+  .page-loader {
+    transition: none;
   }
 }
 
@@ -144,12 +119,22 @@ body.intro-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  overflow: hidden;
   background:
     radial-gradient(circle at 18% 16%, rgba(0, 194, 255, 0.16), transparent 28%),
     radial-gradient(circle at 82% 18%, rgba(255, 190, 85, 0.14), transparent 22%),
     rgba(248, 251, 255, 0.96);
   backdrop-filter: blur(18px);
+}
+
+.intro-card-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 1.5rem;
+  pointer-events: none;
 }
 
 .intro-screen[hidden] {
@@ -166,6 +151,7 @@ body.intro-active {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(241, 247, 255, 0.94));
   box-shadow: 0 30px 80px rgba(7, 17, 36, 0.18);
   text-align: center;
+  pointer-events: auto;
 }
 
 .intro-card::before,
@@ -241,10 +227,23 @@ body.intro-active {
   position: relative;
   z-index: 1;
   max-width: 31rem;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto 1.2rem;
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.75;
+}
+
+.intro-visual {
+  position: relative;
+  z-index: 1;
+  width: min(11rem, 46vw);
+  margin: 0 auto 1.35rem;
+}
+
+.intro-lottie-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .intro-power-shell {

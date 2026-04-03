@@ -1,4 +1,4 @@
-﻿const EMAILJS_CONFIG = {
+const EMAILJS_CONFIG = {
   publicKey: "Ou_qu_feu12sSNEkc",
   serviceId: "service_tpuqps7",
   templateId: "template_ln9myvv",
@@ -6,6 +6,18 @@
 
 const PRIMARY_EMAIL = "dtharunkrishna65@gmail.com";
 const INTRO_STORAGE_KEY = "tkIntroSeen";
+const LOADER_LOTTIE_SRC =
+  "https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie";
+const dotLottieReady =
+  window.__tkDotLottieReady ||
+  import("https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm")
+    .then(({ DotLottie }) => DotLottie)
+    .catch((error) => {
+      console.error("Lottie animation failed to load:", error);
+      return null;
+    });
+
+initLottieAnimations();
 
 document.addEventListener("DOMContentLoaded", () => {
   initPageTransitions();
@@ -19,6 +31,38 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initApplicationForm();
 });
+
+function initLottieAnimations() {
+  const canvases = document.querySelectorAll("canvas[data-lottie-src]");
+
+  if (!canvases.length) {
+    return;
+  }
+
+  dotLottieReady
+    .then((DotLottie) => {
+      if (!DotLottie) {
+        return;
+      }
+
+      canvases.forEach((canvas) => {
+        if (!(canvas instanceof HTMLCanvasElement) || canvas.dataset.lottieReady === "true") {
+          return;
+        }
+
+        const src = canvas.dataset.lottieSrc || LOADER_LOTTIE_SRC;
+
+        canvas.dataset.lottieReady = "true";
+
+        new DotLottie({
+          autoplay: true,
+          loop: true,
+          canvas,
+          src,
+        });
+      });
+    });
+}
 
 function initHeaderState() {
   const header = document.querySelector(".site-header");
