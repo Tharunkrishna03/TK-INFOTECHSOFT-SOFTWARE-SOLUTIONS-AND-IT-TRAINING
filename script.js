@@ -12,7 +12,6 @@ const EMAILJS_CONFIG = {
 };
 
 const PRIMARY_EMAIL = "dtharunkrishna65@gmail.com";
-const INTRO_STORAGE_KEY = "tkIntroSeen";
 const LOADER_LOTTIE_SRC =
   "https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie";
 const dotLottieReady =
@@ -28,7 +27,6 @@ initLottieAnimations();
 
 document.addEventListener("DOMContentLoaded", () => {
   initPageTransitions();
-  initIntroExperience();
   initHeaderState();
   initMobileSidebar();
   initStaggeredCardMotion();
@@ -256,278 +254,8 @@ function shouldTriggerPageTransition(link, event) {
   );
 }
 
-function initIntroExperience() {
-  const intro = document.getElementById("introScreen");
-  const enterButton = intro?.querySelector("[data-intro-enter]");
-  const introCard = intro?.querySelector(".intro-card");
-  const slideThumb = intro?.querySelector("[data-intro-thumb]");
-  const slideText = intro?.querySelector(".intro-slide-text");
-
-  if (!intro || !enterButton || !introCard || !slideThumb) {
-    return;
-  }
-
-  if (getSessionStorageValue(INTRO_STORAGE_KEY) === "true") {
-    intro.hidden = true;
-    return;
-  }
-
-  const reduceMotion = shouldReduceMotion();
-  const hasGsap = typeof gsap !== "undefined";
-
-  document.body.classList.add("intro-active");
-
-  if (hasGsap && !reduceMotion) {
-    gsap.fromTo(
-      introCard,
-      { y: 32, autoAlpha: 0, scale: 0.96 },
-      { y: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" }
-    );
-
-    gsap.fromTo(
-      introCard.children,
-      { y: 16, autoAlpha: 0 },
-      {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: "power2.out",
-        delay: 0.15,
-      }
-    );
-
-    gsap.to(intro.querySelectorAll(".intro-orb"), {
-      xPercent: 6,
-      yPercent: -8,
-      duration: 5.2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: 0.2,
-    });
-  }
-
-  const getMaxSlideProgress = () =>
-    Math.max(0, enterButton.clientWidth - slideThumb.offsetWidth - 12);
-
-  const slideState = {
-    value: 0,
-  };
-
-  const syncSlide = (nextValue) => {
-    const max = getMaxSlideProgress();
-    const clamped = Math.min(Math.max(nextValue, 0), max);
-    const ratio = max ? clamped / max : 0;
-
-    slideState.value = clamped;
-    enterButton.style.setProperty("--intro-slide-progress", `${clamped}px`);
-    enterButton.classList.toggle("is-ready", ratio >= 0.92);
-
-    if (slideText) {
-      slideText.style.opacity = String(Math.max(0.22, 1 - ratio * 0.72));
-    }
-
-    return { max, ratio };
-  };
-
-  const animateSlideTo = (targetValue, duration = 0.28, onComplete) => {
-    if (!hasGsap || reduceMotion) {
-      syncSlide(targetValue);
-      onComplete?.();
-      return;
-    }
-
-    const animatedValue = {
-      value: slideState.value,
-    };
-
-    gsap.to(animatedValue, {
-      value: targetValue,
-      duration,
-      ease: "power2.out",
-      onUpdate: () => {
-        syncSlide(animatedValue.value);
-      },
-      onComplete,
-    });
-  };
-
-  const finishIntro = () => {
-    intro.hidden = true;
-    document.body.classList.remove("intro-active");
-
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
-  };
-
-  const completeIntro = () => {
-    if (enterButton.dataset.busy === "true") {
-      return;
-    }
-
-    enterButton.dataset.busy = "true";
-    intro.classList.add("is-armed");
-    enterButton.setAttribute("aria-pressed", "true");
-    setSessionStorageValue(INTRO_STORAGE_KEY, "true");
-
-    animateSlideTo(getMaxSlideProgress(), 0.16, () => {
-      if (!hasGsap || reduceMotion) {
-        finishIntro();
-        return;
-      }
-
-      const exitTimeline = gsap.timeline({ onComplete: finishIntro });
-
-      exitTimeline.to(
-        introCard,
-        {
-          y: -18,
-          scale: 0.975,
-          duration: 0.38,
-          ease: "power2.in",
-        },
-        0
-      );
-
-      exitTimeline.to(
-        intro,
-        {
-          autoAlpha: 0,
-          duration: 0.72,
-          ease: "power2.out",
-        },
-        0.12
-      );
-    });
-  };
-
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartProgress = 0;
-  let activePointerId = null;
-
-  const endDrag = (shouldComplete = false) => {
-    if (!isDragging) {
-      return;
-    }
-
-    isDragging = false;
-    activePointerId = null;
-    enterButton.classList.remove("is-dragging");
-
-    if (shouldComplete) {
-      completeIntro();
-      return;
-    }
-
-    if (enterButton.dataset.busy === "true") {
-      return;
-    }
-
-    const { ratio } = syncSlide(slideState.value);
-
-    if (ratio >= 0.96) {
-      completeIntro();
-      return;
-    }
-
-    animateSlideTo(0, 0.32);
-  };
-
-  syncSlide(0);
-
-  enterButton.addEventListener("click", (event) => {
-    event.preventDefault();
-  });
-
-  enterButton.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") {
-      return;
-    }
-
-    event.preventDefault();
-    completeIntro();
-  });
-
-  enterButton.addEventListener("pointerdown", (event) => {
-    if (enterButton.dataset.busy === "true") {
-      return;
-    }
-
-    if (event.pointerType === "mouse" && event.button !== 0) {
-      return;
-    }
-
-    event.preventDefault();
-    activePointerId = event.pointerId;
-    isDragging = true;
-    dragStartX = event.clientX;
-    dragStartProgress = slideState.value;
-    enterButton.classList.add("is-dragging");
-    enterButton.setPointerCapture?.(event.pointerId);
-  });
-
-  enterButton.addEventListener("pointermove", (event) => {
-    if (!isDragging || event.pointerId !== activePointerId) {
-      return;
-    }
-
-    event.preventDefault();
-
-    const delta = event.clientX - dragStartX;
-    const { ratio } = syncSlide(dragStartProgress + delta);
-
-    if (ratio >= 0.96) {
-      endDrag(true);
-    }
-  });
-
-  enterButton.addEventListener("pointerup", (event) => {
-    if (event.pointerId !== activePointerId) {
-      return;
-    }
-
-    endDrag();
-  });
-
-  enterButton.addEventListener("pointercancel", (event) => {
-    if (event.pointerId !== activePointerId) {
-      return;
-    }
-
-    endDrag();
-  });
-
-  enterButton.addEventListener("lostpointercapture", () => {
-    endDrag();
-  });
-
-  window.addEventListener("resize", () => {
-    syncSlide(slideState.value);
-  });
-}
-
 function shouldReduceMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function getSessionStorageValue(key) {
-  try {
-    return sessionStorage.getItem(key);
-  } catch (error) {
-    console.error("Session storage read error:", error);
-    return null;
-  }
-}
-
-function setSessionStorageValue(key, value) {
-  try {
-    sessionStorage.setItem(key, value);
-  } catch (error) {
-    console.error("Session storage write error:", error);
-  }
 }
 
 
@@ -881,7 +609,7 @@ function initContactForm() {
       return;
     }
 
-    const emailBody = `Quick enquiry from TK INFO-TECH website
+    const emailBody = `Quick enquiry from Tk-infotechsoftwares website
 
 Name: ${name}
 Email: ${email}
@@ -964,7 +692,7 @@ function initApplicationForm() {
       submitButton.disabled = true;
     }
 
-    const emailSubject = `Internship application from ${payload.name || "TK INFO-TECH website"}`;
+    const emailSubject = `Internship application from ${payload.name || "Tk-infotechsoftwares website"}`;
     const emailBody = buildApplicationMessage(payload);
 
     setStatus(status, "Sending your application...");
@@ -1092,7 +820,7 @@ function clearStoredApplication() {
 }
 
 function buildApplicationMessage(payload) {
-  return `TK INFO-TECH internship enquiry
+  return `Tk-infotechsoftwares internship enquiry
 
 Name: ${payload.name || ""}
 Phone: ${payload.phone || ""}
