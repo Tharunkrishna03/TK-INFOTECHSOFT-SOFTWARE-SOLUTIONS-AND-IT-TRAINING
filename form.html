@@ -242,7 +242,7 @@
           <p>
             Use this form to apply for an internship, request counselling, or tell us which
             programme you are interested in. The form saves your details on this device for
-            convenience and stores submitted applications in the Django database.
+            convenience and sends your submitted application by email.
           </p>
         </div>
       </section>
@@ -258,8 +258,7 @@
             </p>
             <div class="inline-note" id="selected-track-note" hidden></div>
 
-            <form id="application-form" class="application-form" method="post" action="./form.html" novalidate>
-              {% csrf_token %}
+            <form id="application-form" class="application-form" novalidate>
               <div class="field-grid">
                 <div>
                   <label class="form-label" for="application-name">Full name</label>
@@ -349,7 +348,7 @@
               </div>
 
               <div class="inline-note">
-                Your application is saved in the Django backend and also cached in this browser
+                Your application details are emailed to our team and also cached in this browser
                 until the submission succeeds.
               </div>
 
@@ -357,7 +356,7 @@
                 <button class="btn btn-brand" type="submit">Send application</button>
                 <a class="btn btn-outline-secondary" href="./index.html">Back to home</a>
               </div>
-              <p id="application-status" class="form-status{% if status_type == 'success' %} status-success{% elif status_type == 'error' %} status-error{% endif %}" aria-live="polite">{% if status_message %}{{ status_message }}{% endif %}</p>
+              <p id="application-status" class="form-status" aria-live="polite"></p>
             </form>
           </section>
 

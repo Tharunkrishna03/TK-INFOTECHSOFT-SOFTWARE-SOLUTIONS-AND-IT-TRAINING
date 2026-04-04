@@ -1,7 +1,14 @@
 const EMAILJS_CONFIG = {
-  publicKey: "Ou_qu_feu12sSNEkc",
-  serviceId: "service_tpuqps7",
-  templateId: "template_ln9myvv",
+  contact: {
+    publicKey: "Ou_qu_feu12sSNEkc",
+    serviceId: "service_tpuqps7",
+    templateId: "template_ln9myvv",
+  },
+  application: {
+    publicKey: "Nw-A_RtWpccfLfDE1",
+    serviceId: "service_tuvi97l",
+    templateId: "template_vxbtcnh",
+  },
 };
 
 const PRIMARY_EMAIL = "dtharunkrishna65@gmail.com";
@@ -253,10 +260,10 @@ function initIntroExperience() {
   const intro = document.getElementById("introScreen");
   const enterButton = intro?.querySelector("[data-intro-enter]");
   const introCard = intro?.querySelector(".intro-card");
-  const powerGlow = intro?.querySelector(".intro-power-glow");
-  const powerStatus = intro?.querySelector(".intro-power-status");
+  const slideThumb = intro?.querySelector("[data-intro-thumb]");
+  const slideText = intro?.querySelector(".intro-slide-text");
 
-  if (!intro || !enterButton || !introCard) {
+  if (!intro || !enterButton || !introCard || !slideThumb) {
     return;
   }
 
@@ -301,6 +308,51 @@ function initIntroExperience() {
     });
   }
 
+  const getMaxSlideProgress = () =>
+    Math.max(0, enterButton.clientWidth - slideThumb.offsetWidth - 12);
+
+  const slideState = {
+    value: 0,
+  };
+
+  const syncSlide = (nextValue) => {
+    const max = getMaxSlideProgress();
+    const clamped = Math.min(Math.max(nextValue, 0), max);
+    const ratio = max ? clamped / max : 0;
+
+    slideState.value = clamped;
+    enterButton.style.setProperty("--intro-slide-progress", `${clamped}px`);
+    enterButton.classList.toggle("is-ready", ratio >= 0.92);
+
+    if (slideText) {
+      slideText.style.opacity = String(Math.max(0.22, 1 - ratio * 0.72));
+    }
+
+    return { max, ratio };
+  };
+
+  const animateSlideTo = (targetValue, duration = 0.28, onComplete) => {
+    if (!hasGsap || reduceMotion) {
+      syncSlide(targetValue);
+      onComplete?.();
+      return;
+    }
+
+    const animatedValue = {
+      value: slideState.value,
+    };
+
+    gsap.to(animatedValue, {
+      value: targetValue,
+      duration,
+      ease: "power2.out",
+      onUpdate: () => {
+        syncSlide(animatedValue.value);
+      },
+      onComplete,
+    });
+  };
+
   const finishIntro = () => {
     intro.hidden = true;
     document.body.classList.remove("intro-active");
@@ -310,9 +362,7 @@ function initIntroExperience() {
     }
   };
 
-  enterButton.addEventListener("click", (event) => {
-    event.preventDefault();
-
+  const completeIntro = () => {
     if (enterButton.dataset.busy === "true") {
       return;
     }
@@ -321,71 +371,141 @@ function initIntroExperience() {
     intro.classList.add("is-armed");
     enterButton.setAttribute("aria-pressed", "true");
     setSessionStorageValue(INTRO_STORAGE_KEY, "true");
-    powerStatus?.classList.add("is-live");
 
-    if (!hasGsap || reduceMotion) {
-      finishIntro();
-      return;
-    }
+    animateSlideTo(getMaxSlideProgress(), 0.16, () => {
+      if (!hasGsap || reduceMotion) {
+        finishIntro();
+        return;
+      }
 
-    const exitTimeline = gsap.timeline({ onComplete: finishIntro });
+      const exitTimeline = gsap.timeline({ onComplete: finishIntro });
 
-    if (powerGlow) {
       exitTimeline.to(
-        powerGlow,
+        introCard,
         {
-          autoAlpha: 1,
-          scale: 1.08,
-          duration: 0.28,
-          ease: "power2.out",
+          y: -18,
+          scale: 0.975,
+          duration: 0.38,
+          ease: "power2.in",
         },
         0
       );
-    }
 
-    exitTimeline.to(
-      enterButton,
-      {
-        scale: 1.06,
-        duration: 0.28,
-        ease: "power2.out",
-      },
-      0
-    );
-
-    if (powerStatus) {
       exitTimeline.to(
-        powerStatus,
+        intro,
         {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power1.out",
+          autoAlpha: 0,
+          duration: 0.72,
+          ease: "power2.out",
         },
-        0.1
+        0.12
       );
+    });
+  };
+
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartProgress = 0;
+  let activePointerId = null;
+
+  const endDrag = (shouldComplete = false) => {
+    if (!isDragging) {
+      return;
     }
 
-    exitTimeline.to(
-      introCard,
-      {
-        y: -18,
-        scale: 0.97,
-        duration: 0.35,
-        ease: "power2.in",
-      },
-      0
-    );
+    isDragging = false;
+    activePointerId = null;
+    enterButton.classList.remove("is-dragging");
 
-    exitTimeline.to(
-      intro,
-      {
-        autoAlpha: 0,
-        duration: 0.65,
-        ease: "power2.out",
-      },
-      0.24
-    );
+    if (shouldComplete) {
+      completeIntro();
+      return;
+    }
+
+    if (enterButton.dataset.busy === "true") {
+      return;
+    }
+
+    const { ratio } = syncSlide(slideState.value);
+
+    if (ratio >= 0.96) {
+      completeIntro();
+      return;
+    }
+
+    animateSlideTo(0, 0.32);
+  };
+
+  syncSlide(0);
+
+  enterButton.addEventListener("click", (event) => {
+    event.preventDefault();
+  });
+
+  enterButton.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    completeIntro();
+  });
+
+  enterButton.addEventListener("pointerdown", (event) => {
+    if (enterButton.dataset.busy === "true") {
+      return;
+    }
+
+    if (event.pointerType === "mouse" && event.button !== 0) {
+      return;
+    }
+
+    event.preventDefault();
+    activePointerId = event.pointerId;
+    isDragging = true;
+    dragStartX = event.clientX;
+    dragStartProgress = slideState.value;
+    enterButton.classList.add("is-dragging");
+    enterButton.setPointerCapture?.(event.pointerId);
+  });
+
+  enterButton.addEventListener("pointermove", (event) => {
+    if (!isDragging || event.pointerId !== activePointerId) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const delta = event.clientX - dragStartX;
+    const { ratio } = syncSlide(dragStartProgress + delta);
+
+    if (ratio >= 0.96) {
+      endDrag(true);
+    }
+  });
+
+  enterButton.addEventListener("pointerup", (event) => {
+    if (event.pointerId !== activePointerId) {
+      return;
+    }
+
+    endDrag();
+  });
+
+  enterButton.addEventListener("pointercancel", (event) => {
+    if (event.pointerId !== activePointerId) {
+      return;
+    }
+
+    endDrag();
+  });
+
+  enterButton.addEventListener("lostpointercapture", () => {
+    endDrag();
+  });
+
+  window.addEventListener("resize", () => {
+    syncSlide(slideState.value);
   });
 }
 
@@ -700,14 +820,14 @@ function randomBetween(min, max) {
   return min + Math.random() * (max - min);
 }
 
-function initEmailJs() {
+function initEmailJs(publicKey) {
   if (typeof emailjs === "undefined") {
     return false;
   }
 
-  if (!initEmailJs.ready) {
-    emailjs.init(EMAILJS_CONFIG.publicKey);
-    initEmailJs.ready = true;
+  if (publicKey && initEmailJs.currentKey !== publicKey) {
+    emailjs.init(publicKey);
+    initEmailJs.currentKey = publicKey;
   }
 
   return true;
@@ -769,7 +889,7 @@ Enquiry: ${message}`;
 
     setStatus(status, "Sending your enquiry...");
 
-    if (!initEmailJs()) {
+    if (!initEmailJs(EMAILJS_CONFIG.contact.publicKey)) {
       openMailClient(`Website enquiry from ${name}`, emailBody);
       setStatus(
         status,
@@ -780,13 +900,20 @@ Enquiry: ${message}`;
     }
 
     try {
-      await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
-        from_name: name,
-        email_id: email,
-        reply_to: email,
-        to_email: PRIMARY_EMAIL,
-        message: emailBody,
-      });
+      await emailjs.send(
+        EMAILJS_CONFIG.contact.serviceId,
+        EMAILJS_CONFIG.contact.templateId,
+        {
+          from_name: name,
+          email_id: email,
+          reply_to: email,
+          to_email: PRIMARY_EMAIL,
+          message: emailBody,
+        },
+        {
+          publicKey: EMAILJS_CONFIG.contact.publicKey,
+        }
+      );
 
       form.reset();
       setStatus(status, "Thanks. Your enquiry was sent successfully.", "success");
@@ -807,7 +934,6 @@ function initApplicationForm() {
   const status = document.getElementById("application-status");
   const selectedTrackNote = document.getElementById("selected-track-note");
   const submitButton = form?.querySelector('button[type="submit"]');
-  const csrfToken = form?.querySelector('input[name="csrfmiddlewaretoken"]');
 
   if (!form) {
     return;
@@ -823,22 +949,14 @@ function initApplicationForm() {
       return;
     }
 
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-    const phoneDigits = String(payload.phone || "").replace(/\D/g, "");
-    const phoneField = form.elements.namedItem("phone");
+    const payload = getApplicationPayload(form);
 
-    if (phoneDigits.length !== 10) {
+    if (payload.phone.length !== 10) {
       setStatus(status, "Enter a valid 10-digit phone number.", "error");
       return;
     }
 
-    payload.phone = phoneDigits;
-    formData.set("phone", phoneDigits);
-
-    if (phoneField) {
-      phoneField.value = phoneDigits;
-    }
+    syncApplicationFields(form, payload);
 
     saveApplicationLocally(payload);
 
@@ -846,49 +964,85 @@ function initApplicationForm() {
       submitButton.disabled = true;
     }
 
-    setStatus(status, "Saving your application...");
+    const emailSubject = `Internship application from ${payload.name || "TK INFO-TECH website"}`;
+    const emailBody = buildApplicationMessage(payload);
+
+    setStatus(status, "Sending your application...");
+
+    if (!initEmailJs(EMAILJS_CONFIG.application.publicKey)) {
+      openMailClient(emailSubject, emailBody);
+      setStatus(
+        status,
+        "Your email app has been opened so you can finish sending the application. Your details are still saved on this device."
+      );
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+      return;
+    }
 
     try {
-      const response = await fetch(form.getAttribute("action") || window.location.href, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "X-CSRFToken": csrfToken?.value || "",
-          "X-Requested-With": "XMLHttpRequest",
-        },
-        body: formData,
-        credentials: "same-origin",
-      });
-      const data = await response.json().catch(() => ({}));
+      prepareApplicationEmailFields(form, payload, emailSubject, emailBody);
 
-      if (!response.ok) {
-        setStatus(
-          status,
-          data.message || "We could not save your application. Please try again.",
-          "error"
-        );
-        return;
-      }
+      await emailjs.sendForm(
+        EMAILJS_CONFIG.application.serviceId,
+        EMAILJS_CONFIG.application.templateId,
+        form,
+        {
+          publicKey: EMAILJS_CONFIG.application.publicKey,
+        }
+      );
 
       form.reset();
       clearStoredApplication();
       applySelectedCourseFromQuery(form, selectedTrackNote);
       setStatus(
         status,
-        data.message || "Application saved successfully. We will contact you soon.",
+        "Application sent successfully. We will contact you soon.",
         "success"
       );
     } catch (error) {
-      console.error("Application save error:", error);
+      const errorMessage = getEmailJsErrorMessage(error);
+
+      console.error("Application email error:", {
+        status: error?.status,
+        text: error?.text,
+        message: errorMessage,
+        serviceId: EMAILJS_CONFIG.application.serviceId,
+        templateId: EMAILJS_CONFIG.application.templateId,
+        error,
+      });
+      openMailClient(emailSubject, emailBody);
       setStatus(
         status,
-        "We could not reach the server. Please try again in a moment.",
-        "error"
+        "Your email app was opened so you can continue the application, and your details are still saved on this device."
       );
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
       }
+    }
+  });
+}
+
+function getApplicationPayload(form) {
+  return {
+    name: String(form.elements.namedItem("name")?.value || "").trim(),
+    phone: String(form.elements.namedItem("phone")?.value || "").replace(/\D/g, ""),
+    email: String(form.elements.namedItem("email")?.value || "").trim(),
+    course: String(form.elements.namedItem("course")?.value || "").trim(),
+    startDate: String(form.elements.namedItem("startDate")?.value || "").trim(),
+    address: String(form.elements.namedItem("address")?.value || "").trim(),
+    enquiry: String(form.elements.namedItem("enquiry")?.value || "").trim(),
+  };
+}
+
+function syncApplicationFields(form, payload) {
+  Object.entries(payload).forEach(([key, value]) => {
+    const field = form.elements.namedItem(key);
+
+    if (field) {
+      field.value = value;
     }
   });
 }
@@ -947,6 +1101,54 @@ Address: ${payload.address || ""}
 Enquiry course: ${payload.course || ""}
 Preferred start date: ${payload.startDate || "Not provided"}
 Enquiry: ${payload.enquiry || ""}`;
+}
+
+function prepareApplicationEmailFields(form, payload, subject, message) {
+  const hiddenFields = {
+    from_name: payload.name,
+    email_id: payload.email,
+    reply_to: payload.email,
+    to_email: PRIMARY_EMAIL,
+    subject,
+    message,
+    phone_number: payload.phone,
+    enquiry_course: payload.course,
+    start_date: payload.startDate || "Not provided",
+    preferred_start_date: payload.startDate || "Not provided",
+  };
+
+  Object.entries(hiddenFields).forEach(([name, value]) => {
+    upsertHiddenField(form, name, value);
+  });
+}
+
+function upsertHiddenField(form, name, value) {
+  let field = form.querySelector(`input[type="hidden"][name="${name}"]`);
+
+  if (!field) {
+    field = document.createElement("input");
+    field.type = "hidden";
+    field.name = name;
+    form.append(field);
+  }
+
+  field.value = value;
+}
+
+function getEmailJsErrorMessage(error) {
+  if (!error) {
+    return "Unknown EmailJS error";
+  }
+
+  if (typeof error.text === "string" && error.text.trim()) {
+    return error.text.trim();
+  }
+
+  if (typeof error.message === "string" && error.message.trim()) {
+    return error.message.trim();
+  }
+
+  return `Request failed${error.status ? ` with status ${error.status}` : ""}`;
 }
 
 function populateStoredApplication(form) {
