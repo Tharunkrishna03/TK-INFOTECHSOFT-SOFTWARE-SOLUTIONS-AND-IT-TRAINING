@@ -80,10 +80,7 @@ body.page-transitioning {
   display: grid;
   place-items: center;
   border-radius: 2rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 247, 255, 0.88));
-  box-shadow:
-    0 0 0 1.1rem rgba(255, 255, 255, 0.18),
-    0 0 3.4rem rgba(0, 121, 184, 0.2);
+ background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 247, 255, 0.88));
 }
 
 .page-loader-canvas {
