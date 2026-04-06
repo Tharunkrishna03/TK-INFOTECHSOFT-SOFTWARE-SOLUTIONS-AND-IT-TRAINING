@@ -585,6 +585,68 @@ function openMailClient(subject, body) {
   window.location.href = `mailto:${PRIMARY_EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
 }
 
+function showFieldError(input, message) {
+  clearFieldError(input);
+  input.classList.add("is-invalid");
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "invalid-feedback";
+  errorDiv.textContent = message;
+  input.parentNode.appendChild(errorDiv);
+}
+
+function clearFieldError(input) {
+  input.classList.remove("is-invalid");
+  const errorDiv = input.parentNode.querySelector(".invalid-feedback");
+  if (errorDiv) {
+    errorDiv.remove();
+  }
+}
+
+function validateForm(form) {
+  let isValid = true;
+  const elements = form.elements;
+  
+  for (let i = 0; i < elements.length; i++) {
+    const el = elements[i];
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
+      clearFieldError(el);
+      if (!el.dataset.validationBound) {
+        el.addEventListener("input", () => clearFieldError(el));
+        el.dataset.validationBound = "true";
+      }
+    }
+  }
+
+  for (let i = 0; i < elements.length; i++) {
+    const el = elements[i];
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
+      const isRequired = el.hasAttribute("required");
+      const val = el.value.trim();
+
+      if (isRequired && !val) {
+        showFieldError(el, "This field is required.");
+        isValid = false;
+      } else if (val) {
+        if (el.type === "email" || el.name === "email") {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(val)) {
+            showFieldError(el, "Please enter a valid email address.");
+            isValid = false;
+          }
+        } else if (el.type === "tel" || el.name === "phone") {
+          const phoneVal = val.replace(/\D/g, "");
+          if (phoneVal.length !== 10) {
+            showFieldError(el, "Please enter a valid 10-digit phone number.");
+            isValid = false;
+          }
+        }
+      }
+    }
+  }
+  
+  return isValid;
+}
+
 function initContactForm() {
   const form = document.getElementById("contact-form");
   const status = document.getElementById("contact-form-status");
@@ -596,18 +658,18 @@ function initContactForm() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const name = form.elements.namedItem("name")?.value.trim() || "";
-    const email = form.elements.namedItem("email")?.value.trim() || "";
-    const message = form.elements.namedItem("message")?.value.trim() || "";
-
-    if (!name || !email || !message) {
+    if (!validateForm(form)) {
       setStatus(
         status,
-        "Please fill in your name, email, and enquiry before sending.",
+        "Please check the form for errors.",
         "error"
       );
       return;
     }
+
+    const name = form.elements.namedItem("name")?.value.trim() || "";
+    const email = form.elements.namedItem("email")?.value.trim() || "";
+    const message = form.elements.namedItem("message")?.value.trim() || "";
 
     const emailBody = `Quick enquiry from Tk-infotechsoftwares website
 
@@ -673,16 +735,11 @@ function initApplicationForm() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!form.reportValidity()) {
+    if (!validateForm(form)) {
       return;
     }
 
     const payload = getApplicationPayload(form);
-
-    if (payload.phone.length !== 10) {
-      setStatus(status, "Enter a valid 10-digit phone number.", "error");
-      return;
-    }
 
     syncApplicationFields(form, payload);
 
