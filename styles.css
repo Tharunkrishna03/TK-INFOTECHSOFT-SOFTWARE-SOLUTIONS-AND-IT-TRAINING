@@ -913,9 +913,9 @@ body.mobile-sidebar-open {
 
 .logo-badge img,
 .partner-tile img {
-  max-height: 74px;
+ height: auto;
   width: auto;
-  object-fit: contain;
+  object-fit: fill;
 }
 
 .surface-panel,
@@ -1009,6 +1009,7 @@ body.mobile-sidebar-open {
 .leader-card p {
   color: var(--text-muted);
   line-height: 1.72;
+  font-size: 0.97rem;
 }
 
 .feature-card h3,
@@ -1152,7 +1153,7 @@ body.mobile-sidebar-open {
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.8;
-  font-size: 1.04rem;
+  font-size: 1rem;
 }
 
 .about-layout,
@@ -1399,6 +1400,7 @@ body.mobile-sidebar-open {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text);
+  font-size: 0.92rem;
 }
 
 .form-control,
@@ -1411,6 +1413,7 @@ body.mobile-sidebar-open {
   line-height: 1.5;
   color: var(--text);
   box-shadow: none;
+  font-size: 0.95rem;
 }
 
 .form-control::placeholder,
@@ -1471,6 +1474,7 @@ body.mobile-sidebar-open {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr 0.9fr 1.2fr;
   gap: 1rem;
+  align-items: start;
 }
 
 .site-footer .footer-card {
@@ -1490,6 +1494,7 @@ body.mobile-sidebar-open {
 .footer-card a,
 .footer-list a {
   color: rgba(255, 255, 255, 0.78);
+  font-size: 0.96rem;
 }
 
 .footer-list {
@@ -1514,6 +1519,12 @@ body.mobile-sidebar-open {
 
 .contact-pair a {
   display: inline-block;
+  word-break: break-word;
+}
+
+.contact-pair div {
+  min-width: 0;
+  line-height: 1.6;
 }
 
 .site-footer .form-control,
@@ -1525,7 +1536,7 @@ body.mobile-sidebar-open {
   margin: 2rem 0 0;
   text-align: center;
   color: rgba(255, 255, 255, 0.62);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .reveal {

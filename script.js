@@ -11,7 +11,7 @@ const EMAILJS_CONFIG = {
   },
 };
 
-const PRIMARY_EMAIL = "dtharunkrishna65@gmail.com";
+const PRIMARY_EMAIL = "tkinfotechsoft@gmail.com";
 const LOADER_LOTTIE_SRC =
   "https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie";
 const dotLottieReady =
@@ -671,7 +671,7 @@ function initContactForm() {
     const email = form.elements.namedItem("email")?.value.trim() || "";
     const message = form.elements.namedItem("message")?.value.trim() || "";
 
-    const emailBody = `Quick enquiry from Tk-infotechsoftwares website
+    const emailBody = `Quick enquiry from TK-INFOTECHSOFT website
 
 Name: ${name}
 Email: ${email}
@@ -729,6 +729,8 @@ function initApplicationForm() {
     return;
   }
 
+  const applicationCopy = getApplicationCopy(form);
+
   populateStoredApplication(form);
   applySelectedCourseFromQuery(form, selectedTrackNote);
 
@@ -749,16 +751,16 @@ function initApplicationForm() {
       submitButton.disabled = true;
     }
 
-    const emailSubject = `Internship application from ${payload.name || "Tk-infotechsoftwares website"}`;
-    const emailBody = buildApplicationMessage(payload);
+    const emailSubject = `${applicationCopy.requestLabel} from ${payload.name || applicationCopy.siteLabel}`;
+    const emailBody = buildApplicationMessage(payload, applicationCopy);
 
-    setStatus(status, "Sending your application...");
+    setStatus(status, applicationCopy.sendingLabel);
 
     if (!initEmailJs(EMAILJS_CONFIG.application.publicKey)) {
       openMailClient(emailSubject, emailBody);
       setStatus(
         status,
-        "Your email app has been opened so you can finish sending the application. Your details are still saved on this device."
+        `Your email app has been opened so you can finish sending the ${applicationCopy.requestLabelLower}. Your details are still saved on this device.`
       );
       if (submitButton) {
         submitButton.disabled = false;
@@ -781,11 +783,7 @@ function initApplicationForm() {
       form.reset();
       clearStoredApplication();
       applySelectedCourseFromQuery(form, selectedTrackNote);
-      setStatus(
-        status,
-        "Application sent successfully. We will contact you soon.",
-        "success"
-      );
+      setStatus(status, applicationCopy.successLabel, "success");
     } catch (error) {
       const errorMessage = getEmailJsErrorMessage(error);
 
@@ -800,7 +798,7 @@ function initApplicationForm() {
       openMailClient(emailSubject, emailBody);
       setStatus(
         status,
-        "Your email app was opened so you can continue the application, and your details are still saved on this device."
+        `Your email app was opened so you can continue the ${applicationCopy.requestLabelLower}, and your details are still saved on this device.`
       );
     } finally {
       if (submitButton) {
@@ -856,7 +854,7 @@ function applySelectedCourseFromQuery(form, noteNode) {
 
   if (noteNode) {
     noteNode.hidden = false;
-    noteNode.textContent = `Selected track: ${course}. You can change it before sending the application.`;
+    noteNode.textContent = `Selected option: ${course}. You can change it before sending the form.`;
   }
 }
 
@@ -876,16 +874,31 @@ function clearStoredApplication() {
   }
 }
 
-function buildApplicationMessage(payload) {
-  return `Tk-infotechsoftwares internship enquiry
+function buildApplicationMessage(payload, applicationCopy) {
+  return `${applicationCopy.mailIntro}
 
 Name: ${payload.name || ""}
 Phone: ${payload.phone || ""}
 Email: ${payload.email || ""}
 Address: ${payload.address || ""}
-Enquiry course: ${payload.course || ""}
+Enquiry topic: ${payload.course || ""}
 Preferred start date: ${payload.startDate || "Not provided"}
 Enquiry: ${payload.enquiry || ""}`;
+}
+
+function getApplicationCopy(form) {
+  const requestLabel = String(form?.dataset.requestLabel || "Free course registration").trim();
+
+  return {
+    siteLabel: String(form?.dataset.siteLabel || "TK-INFOTECHSOFT website").trim(),
+    requestLabel,
+    requestLabelLower: requestLabel.toLowerCase(),
+    sendingLabel: String(form?.dataset.sendingLabel || "Sending your registration...").trim(),
+    successLabel: String(
+      form?.dataset.successLabel || "Registration sent successfully. We will contact you soon."
+    ).trim(),
+    mailIntro: String(form?.dataset.mailIntro || "TK-INFOTECHSOFT free course enquiry").trim(),
+  };
 }
 
 function prepareApplicationEmailFields(form, payload, subject, message) {
@@ -964,4 +977,3 @@ function populateStoredApplication(form) {
     console.error("Could not parse saved application:", error);
   }
 }
-
