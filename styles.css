@@ -240,12 +240,20 @@ main {
 
 .brand-mark {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
   font-weight: 700;
   font-size: 1.4rem;
   letter-spacing: -0.04em;
   line-height: 1;
   color: var(--white) !important;
   white-space: nowrap;
+}
+
+.brand-logo {
+  display: block;
+  height: 46px;
+  width: auto;
 }
 
 .brand-mark span {
@@ -1584,6 +1592,10 @@ body.mobile-sidebar-open {
     white-space: normal;
   }
 
+  .brand-logo {
+    height: 40px;
+  }
+
   .sidebar-toggle {
     width: 2.85rem;
     min-width: 2.85rem;
@@ -1637,6 +1649,10 @@ body.mobile-sidebar-open {
 
   .brand-mark {
     font-size: 0.98rem;
+  }
+
+  .brand-logo {
+    height: 36px;
   }
 
   .brand-mark span {
@@ -1720,6 +1736,10 @@ body.mobile-sidebar-open {
 
   .brand-mark {
     font-size: 0.9rem;
+  }
+
+  .brand-logo {
+    height: 32px;
   }
 
   .sidebar-toggle {
