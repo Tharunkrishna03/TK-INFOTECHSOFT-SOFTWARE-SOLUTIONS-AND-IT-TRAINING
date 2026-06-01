@@ -80,8 +80,8 @@ body.page-transitioning {
 
 .page-loader-logo {
   display: block;
-  width: 90px;
-  height: 90px;
+  width: clamp(750px, 58vw, 520px);
+  height: clamp(750px, 58vw, 520px);
   object-fit: contain;
   animation: pageLoaderPulse 1.6s ease-in-out infinite;
 }
