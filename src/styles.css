@@ -19,7 +19,7 @@
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 14px;
-  --header-height: 70px;
+  --header-height: 56px;
 }
 
 *,
@@ -37,7 +37,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.65;
   color: var(--text);
   background:
@@ -66,11 +66,7 @@ body.page-transitioning {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.22s ease, visibility 0.22s ease;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0, 194, 255, 0.16), transparent 24%),
-    radial-gradient(circle at 80% 18%, rgba(255, 190, 85, 0.16), transparent 22%),
-    rgba(248, 251, 255, 0.84);
-  backdrop-filter: blur(16px);
+  background: #ffffff;
 }
 
 .page-loader-shell {
@@ -79,15 +75,33 @@ body.page-transitioning {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border-radius: 2rem;
- background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 247, 255, 0.88));
+  background: transparent;
 }
 
-.page-loader-canvas {
+.page-loader-logo {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  animation: pageLoaderPulse 1.6s ease-in-out infinite;
 }
+
+@keyframes pageLoaderPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(0, 194, 255, 0.32));
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.75;
+  }
+}
+
 
 body.page-loading .page-loader,
 body.page-transitioning .page-loader {
@@ -116,14 +130,14 @@ h6,
 
 h1,
 h2 {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.025em;
 }
 
@@ -202,7 +216,7 @@ main {
   background: rgba(255, 255, 255, 0.12);
   color: var(--white);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -216,7 +230,7 @@ main {
   position: fixed;
   inset: 0 0 auto;
   z-index: 1030;
-  padding: 0.85rem 0;
+  padding: 0.45rem 0;
   background: rgba(6, 13, 27, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
@@ -224,7 +238,7 @@ main {
 }
 
 .site-header.is-scrolled {
-  padding: 0.65rem 0;
+  padding: 0.3rem 0;
   background: rgba(8, 18, 36, 0.94);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
 }
@@ -242,7 +256,7 @@ main {
   margin: 0;
   display: inline-flex;
   align-items: center;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.4rem;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -252,7 +266,7 @@ main {
 
 .brand-logo {
   display: block;
-  height: 46px;
+  height: 34px;
   width: auto;
 }
 
@@ -280,10 +294,11 @@ main {
 
 .navbar-nav .nav-link {
   font-family: var(--font-heading);
-  padding: 0.65rem 1rem !important;
+  padding: 0.45rem 0.85rem !important;
+  font-size: 0.88rem;
   position: relative;
   color: rgba(255, 255, 255, 0.82) !important;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   transition: color 0.25s ease;
 }
@@ -292,8 +307,8 @@ main {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 1rem;
-  right: 1rem;
+  left: 0.85rem;
+  right: 0.85rem;
   height: 2px;
   background-color: var(--brand);
   transform: scaleX(0);
@@ -316,11 +331,11 @@ main {
 .sidebar-toggle,
 .sidebar-close {
   border: 1px solid rgba(255, 255, 255, 0.22);
-  height: 2.8rem;
+  height: 2.2rem;
   display: grid;
   place-items: center;
   padding: 0;
-  border-radius: 16px;
+  border-radius: 12px;
   color: var(--white);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
   flex-shrink: 0;
@@ -343,8 +358,8 @@ main {
 
 .toggle-label {
   font-family: var(--font-heading);
-  font-size: 0.86rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -419,7 +434,7 @@ main {
   background: rgba(0, 194, 255, 0.14);
   color: #dffaff;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -485,7 +500,7 @@ main {
   color: var(--white);
   display: block;
   font-size: 0.97rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -657,7 +672,7 @@ body.mobile-sidebar-open {
   position: relative;
   overflow: hidden;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
   padding: 0.8rem 1.2rem;
@@ -808,7 +823,7 @@ body.mobile-sidebar-open {
   max-width: 11ch;
   font-size: clamp(2.6rem, 6vw, 5.2rem);
   line-height: 1.08;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
 
@@ -903,7 +918,7 @@ body.mobile-sidebar-open {
   display: block;
   margin-bottom: 0.2rem;
   font-size: clamp(1.6rem, 3vw, 2.3rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.05;
 }
 
@@ -1085,7 +1100,7 @@ body.mobile-sidebar-open {
   align-items: center;
   gap: 0.35rem;
   margin-top: auto;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--brand-dark);
 }
@@ -1171,7 +1186,7 @@ body.mobile-sidebar-open {
   margin: 0 0 1rem;
   font-size: clamp(2.3rem, 5vw, 4.1rem);
   line-height: 1.08;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
 
