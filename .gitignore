@@ -1,3 +1,7 @@
-﻿__pycache__/
+__pycache__/
 *.py[cod]
 db.sqlite3
+
+node_modules/
+dist/
+.vite/

@@ -1,6 +1,6 @@
 :root {
   --font-heading: "Poppins", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-body: "Poppins", sans-serif;
   --bg: #08111f;
   --bg-soft: #102448;
   --surface: #ffffff;
@@ -281,16 +281,35 @@ main {
 .navbar-nav .nav-link {
   font-family: var(--font-heading);
   padding: 0.65rem 1rem !important;
-  border-radius: 999px;
+  position: relative;
   color: rgba(255, 255, 255, 0.82) !important;
   font-weight: 600;
   letter-spacing: -0.01em;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: color 0.25s ease;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background-color: var(--brand);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-  background: rgba(255, 255, 255, 0.09);
+  background: none !important;
   color: var(--white) !important;
 }
 

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="TK-INFOTECHSOFT, training partner of MC-TECH Industrial School, helps students and fresh graduates build job-ready tech skills through live learning, projects, and guided registration." />
+  <title>TK-INFOTECHSOFT | Career-Focused IT Training</title>
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://lottie.host" crossorigin />
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="./tk-logo.png" type="image/png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module">
+    window.__tkDotLottieReady = import("https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm")
+      .then(({ DotLottie }) => DotLottie)
+      .catch((error) => {
+        console.error("DotLottie bootstrap failed:", error);
+        return null;
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+
+<body class="page-loading">
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader-shell">
+      <canvas
+        class="page-loader-canvas"
+        width="300"
+        height="300"
+        data-lottie-src="https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie"
+      ></canvas>
+    </div>
+  </div>
+  <header class="site-header">
+    <nav class="navbar p-0" aria-label="Main navigation">
+      <div class="site-nav">
+        <button class="sidebar-toggle d-lg-none" type="button" data-sidebar-target="#mobileSidebar"
+          aria-controls="mobileSidebar" aria-expanded="false" aria-label="Open navigation menu">
+          <i class="bx bx-menu-alt-left"></i><span class="toggle-label">Menu</span>
+        </button>
+        <a class="navbar-brand brand-mark" href="./index.html" aria-label="TK INFOTECHSOFT home">
+          <img class="brand-logo" src="./favicon-tk.svg" alt="TK INFOTECHSOFT logo" />
+        </a>
+        <div class="desktop-nav d-none d-lg-flex ms-auto">
+          <ul class="navbar-nav flex-row align-items-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./programes.html">Programmes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacts">Contact</a>
+            </li>
+          </ul>
+          <a class="btn btn-brand btn-sm desktop-apply" href="./form.html">Register </a>
+        </div>
+      </div>
+    </nav>
+    <div class="offcanvas offcanvas-start mobile-sidebar d-lg-none" tabindex="-1" id="mobileSidebar"
+      aria-label="Mobile navigation">
+      <div class="offcanvas-header">
+        <div class="mobile-sidebar-brand">
+          <a class="navbar-brand brand-mark" href="./index.html" aria-label="TK INFOTECHSOFT home">
+            <img class="brand-logo" src="./favicon-tk.svg" alt="TK INFOTECHSOFT logo" />
+          </a>
+          <p>Explore courses, services, contact options, and  registration from one clear mobile sidebar.</p>
+        </div>
+        <button type="button" class="sidebar-close" data-bs-dismiss="offcanvas" aria-label="Close navigation menu">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="mobile-icon-nav" aria-label="Mobile navigation links">
+          <a class="mobile-icon-link active" href="./index.html" title="Home" aria-label="Home">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-home"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>Home</strong>
+              <small>Overview and learner highlights</small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+          <a class="mobile-icon-link" href="./services.html" title="Services" aria-label="Services">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-briefcase-alt-2"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>Services</strong>
+              <small>Career services and digital support</small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+          <a class="mobile-icon-link" href="./programes.html" title="Programmes" aria-label="Programmes">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-book-content"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>Programmes</strong>
+              <small>Career tracks and skill paths</small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+          <a class="mobile-icon-link" href="./about.html" title="About" aria-label="About">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-user-circle"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>About</strong>
+              <small>Mission, founder, and mentoring</small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+          <a class="mobile-icon-link" href="#contacts" title="Contact" aria-label="Contact">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-envelope"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>Contact</strong>
+              <small>Phone, email, and quick enquiry</small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+          <a class="mobile-icon-link" href="./form.html" title="Register" aria-label="Register for ">
+            <span class="mobile-icon-symbol">
+              <i class="bx bxs-send"></i>
+            </span>
+            <span class="mobile-icon-copy">
+              <strong>Register</strong>
+              <small>Start your learning journey </small>
+            </span>
+            <span class="mobile-link-arrow" aria-hidden="true">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </a>
+        </nav>
+        <div class="mobile-sidebar-cta">
+          <p>Start with a quick registration and we can guide you to the right programme.</p>
+          <a class="btn btn-brand btn-sm" href="./form.html" data-bs-dismiss="offcanvas">Register for </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-section">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="./3129957-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-backdrop"></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i class="bx bxs-rocket"></i>  Course with Certificate</span>
+          <h1>Bridge the gap between college and your career.</h1>
+          <p>
+            Learn through job-ready education, then use our services for resumes, ATS,
+             course registration, and digital growth so your progress feels complete from
+            learning to action.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-brand btn-lg" href="./programes.html">Explore programmes</a>
+            <a class="btn btn-outline-light-soft btn-lg" href="./form.html">
+              Register 
+            </a>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card reveal">
+              <span class="stat-number" data-count-to="1000" data-suffix="+">0+</span>
+              <span class="stat-label">Students trained</span>
+            </article>
+            <article class="stat-card reveal">
+              <span class="stat-number" data-count-to="95" data-suffix="%">0%</span>
+              <span class="stat-label">Success-focused outcomes</span>
+            </article>
+            <article class="stat-card reveal">
+              <span class="stat-number" data-count-to="100" data-suffix="+">0+</span>
+              <span class="stat-label">Company-ready pathways</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Highlights">
+          <h2>Why learners choose TK-INFOTECHSOFT</h2>
+          <p>
+            TK-INFOTECHSOFT is a training partner of MC-TECH Industrial School, connecting
+            education and services so learners can build skills and move toward real opportunities.
+          </p>
+          <ul class="info-list">
+            <li>
+              <i class="bx bxs-badge-check"></i>
+              <span>Live mentor-led sessions with guidance you can actually use.</span>
+            </li>
+            <li>
+              <i class="bx bxs-briefcase"></i>
+              <span>Portfolio projects and interview-focused practice built into learning.</span>
+            </li>
+            <li>
+              <i class="bx bxs-graduation"></i>
+              <span>Career support for resumes, ATS readiness, and course registration.</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-space trust-strip">
+      <div class="site-container">
+        <div class="section-intro">
+          <span class="kicker">Recognitions</span>
+          <h2>Backed by trusted education and startup ecosystems</h2>
+          <p>
+            These recognitions reflect our focus on structured learning and practical career
+            readiness.
+          </p>
+        </div>
+        <div class="logo-cloud">
+          <div class="logo-badge reveal">
+            <img src="./web.webp" alt="ISO certification logo" loading="lazy" />
+          </div>
+          <div class="logo-badge reveal">
+            <img src="./app.webp" alt="MCA logo" loading="lazy" />
+          </div>
+          <div class="logo-badge reveal">
+            <img src="./res.webp" alt="Nasscom logo" loading="lazy" />
+          </div>
+          <div class="logo-badge reveal">
+            <img src="./intern.webp" alt="Startup India logo" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="offerings">
+      <div class="site-container">
+        <div class="section-intro">
+          <span class="kicker">What we offer</span>
+          <h2>Career tools and programmes built for faster growth</h2>
+          <p>
+            We focus on practical support that helps learners improve skills, present
+            themselves better, and get closer to real job opportunities.
+          </p>
+        </div>
+
+        <div class="surface-panel">
+          <div class="row g-3">
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-group"></i></div>
+                <h3>Fellowship support</h3>
+                <p>
+                  Structured mentoring, regular guidance, and accountability to keep your
+                  learning journey on track.
+                </p>
+                <a class="card-link" href="./form.html">Start your journey <i class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-book-content"></i></div>
+                <h3>Job-ready courses</h3>
+                <p>
+                  Learn full stack development, UI/UX, cloud, and other skills through
+                  hands-on practice instead of theory alone.
+                </p>
+                <a class="card-link" href="./programes.html">See all programmes <i
+                    class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-file-find"></i></div>
+                <h3>ATS resume review</h3>
+                <p>
+                  Improve how your resume performs in screening systems and make your profile
+                  easier for recruiters to shortlist.
+                </p>
+                <a class="card-link" href="./services.html#ats-support">Request guidance <i
+                    class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-file-doc"></i></div>
+                <h3>Resume builder</h3>
+                <p>
+                  Shape your projects, achievements, and technical skills into a cleaner,
+                  more professional resume.
+                </p>
+                <a class="card-link" href="./services.html#resume-guidance">Get support <i
+                    class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-briefcase-alt-2"></i></div>
+                <h3>course registration</h3>
+                <p>
+                  Learn how to choose the right course with certificate and register before
+                  limited seats close.
+                </p>
+                <a class="card-link" href="./services.html#course-registration">Register with confidence <i
+                    class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="feature-card reveal">
+                <div class="feature-icon"><i class="bx bxs-wallet-alt"></i></div>
+                <h3>Salary and role clarity</h3>
+                <p>
+                  Understand role expectations, career paths, and salary ranges so your next
+                  move feels informed.
+                </p>
+                <a class="card-link" href="./about.html">Learn how we guide you <i
+                    class="bx bx-right-arrow-alt"></i></a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="why-us">
+      <div class="site-container">
+        <div class="section-intro">
+          <span class="kicker">Education + Services</span>
+          <h2>Learn the skill, then use the right support to move faster</h2>
+          <p>
+            TK-INFOTECHSOFT combines practical education with career services so users do not
+            have to switch between multiple places to learn, improve, and apply.
+          </p>
+        </div>
+
+        <div class="reason-grid mb-4">
+          <article class="reason-card reveal">
+            <h3>Education that builds confidence</h3>
+            <p>
+              Programmes focus on clear concepts, guided projects, and structured practice for
+              learners who want job-ready understanding.
+            </p>
+          </article>
+          <article class="reason-card reveal">
+            <h3>Services that improve outcomes</h3>
+            <p>
+              Resume support, ATS guidance, application strategy, and digital services help
+              you use what you learn more effectively.
+            </p>
+          </article>
+          <article class="reason-card reveal">
+            <h3>One smoother user journey</h3>
+            <p>
+              From discovery to action, the site now makes it easier to understand where
+              education ends, where services begin, and how both work together.
+            </p>
+          </article>
+        </div>
+
+        <div class="section-intro">
+          <span class="kicker">Why choose us</span>
+          <h2>Support that feels practical, personal, and career-focused</h2>
+          <p>
+            Beyond coursework, we help learners build confidence through mentoring,
+            facilities, and real practice environments.
+          </p>
+        </div>
+
+        <div class="reason-grid mb-4">
+  <article class="reason-card reveal">
+    <h3>Live interactive sessions</h3>
+    <p>
+      Join real-time classes, ask questions instantly, and get guided support from mentors.
+    </p>
+  </article>
+  <article class="reason-card reveal">
+    <h3>AI-powered learning tools</h3>
+    <p>
+      Practice with modern online tools, coding platforms, and AI assistance from anywhere.
+    </p>
+  </article>
+  <article class="reason-card reveal">
+    <h3>Flexible learning from home</h3>
+    <p>
+      Attend classes, complete projects, and collaborate with peers without location limits.
+    </p>
+  </article>
+</div>
+            </section>
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="site-container">
+      <div class="footer-grid">
+        <section class="footer-card">
+          <h2>TK-INFOTECHSOFT</h2>
+          <p>
+            TK-INFOTECHSOFT is a training partner of MC-TECH Industrial School, delivering
+            career-focused IT training with mentor support and practical project guidance.
+          </p>
+          <div class="contact-pair">
+            <i class="bx bxs-phone-call"></i>
+            <div>
+              <a href="tel:+919597151915">+91 95971 51915</a><br />
+              <a href="tel:+9188707084318">+91 88707084318</a>
+            </div>
+          </div>
+          <div class="contact-pair">
+            <i class="bx bxs-envelope"></i>
+            <div>
+              <a href="mailto:tkinfotechsoft@gmail.com">tkinfotechsoft@gmail.com</a><br />
+              <a href="mailto:dtharunkrishna65@gmail.com">dtharunkrishna65@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-pair">
+            <i class="bx bxs-map"></i>
+            <div >
+              TK-INFOTECHSOFT<br/> (Training Partner of MC-TECH Industrial School)<br />
+              MKP Nagar, MC-TECH Campus,<br />
+              Kottur, Malayandi Pattinam,<br />
+              Anaimalai Tk, Coimbatore District - 642007
+          </div>
+          </div>
+        </section>
+
+        <section class="footer-card">
+          <h3>Courses</h3>
+          <ul class="footer-list">
+            <li><a href="./programes.html#course-catalogue">Python Full Stack</a></li>
+            <li><a href="./programes.html#course-catalogue">Java Full Stack</a></li>
+            <li><a href="./programes.html#course-catalogue">MERN Stack</a></li>
+            <li><a href="./programes.html#course-catalogue">UI/UX Design</a></li>
+            <li><a href="./programes.html#course-catalogue">AWS Foundations</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-card">
+          <h3>Services</h3>
+          <ul class="footer-list">
+            <li><a href="./services.html#web-development">Web Development</a></li>
+            <li><a href="./services.html#app-development">App Development</a></li>
+            <li><a href="./services.html#business-erp">Business ERP</a></li>
+            <li><a href="./services.html#resume-guidance">Resume guidance</a></li>
+            <li><a href="./services.html#ats-support">ATS support</a></li>
+            <li><a href="./services.html#course-registration">Course registration</a></li>
+            <li><a href="./about.html">Mentoring model</a></li>
+            <li><a href="./index.html#why-us">Facilities and support</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-card">
+          <h3>Quick enquiry</h3>
+          <form id="contact-form" class="contact-form" novalidate>
+            <div>
+              <label class="form-label" for="contact-name">Name</label>
+              <input class="form-control" id="contact-name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label class="form-label" for="contact-email">Email</label>
+              <input class="form-control" id="contact-email" name="email" type="email" placeholder="you@example.com"
+                required />
+            </div>
+            <div>
+              <label class="form-label" for="contact-message">Enquiry</label>
+              <textarea class="form-control" id="contact-message" name="message" rows="4"
+                placeholder="Tell us what you need help with" required></textarea>
+            </div>
+            <button class="btn btn-brand" type="submit">Send enquiry</button>
+            <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+
+      <p class="footer-note">TK-INFOTECHSOFT - Training Partner of MC-TECH Industrial School. Copyright &copy; 2026. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
