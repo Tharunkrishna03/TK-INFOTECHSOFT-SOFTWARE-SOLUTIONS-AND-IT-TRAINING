@@ -13,6 +13,7 @@ import Services from './pages/Services.jsx';
 import Programmes from './pages/Programmes.jsx';
 import About from './pages/About.jsx';
 import Register from './pages/Register.jsx';
+import Contact from './pages/Contact.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -190,6 +191,7 @@ function AppContent() {
       '/programmes': 'Programmes | TK-INFOTECHSOFT',
       '/about': 'About | TK-INFOTECHSOFT',
       '/register': 'Register | TK-INFOTECHSOFT',
+      '/contact': 'Contact | TK-INFOTECHSOFT',
     };
 
     const routeDescs = {
@@ -198,6 +200,7 @@ function AppContent() {
       '/programmes': 'Explore TK-INFOTECHSOFT programmes in full stack development, UI/UX, cloud, and digital careers.',
       '/about': 'Learn about TK-INFOTECHSOFT, our founder, and our role as a training partner of MC-TECH Industrial School.',
       '/register': 'Register for a course with certificate at TK-INFOTECHSOFT through our responsive registration form.',
+      '/contact': 'Contact TK-INFOTECHSOFT for course, service, and quick enquiry support.',
     };
 
     document.title = routeTitles[location.pathname] || 'TK-INFOTECHSOFT';
@@ -306,6 +309,7 @@ function AppContent() {
         <Route path="/programmes" element={<Programmes />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />

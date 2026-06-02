@@ -27,18 +27,6 @@ export default function Header() {
     setIsSidebarOpen(false);
   }, [location.pathname]);
 
-  // Handle hash scrolling for #contacts
-  const handleHashLinkClick = (e, hash) => {
-    if (hash === '#contacts') {
-      e.preventDefault();
-      setIsSidebarOpen(false);
-      const footerElement = document.getElementById('contacts');
-      if (footerElement) {
-        footerElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
     <>
       <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
@@ -75,9 +63,7 @@ export default function Header() {
                   <NavLink className="nav-link" to="/about">About</NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#contacts" onClick={(e) => handleHashLinkClick(e, '#contacts')}>
-                    Contact
-                  </a>
+                  <NavLink className="nav-link" to="/contact">Contact</NavLink>
                 </li>
               </ul>
             </div>
@@ -165,7 +151,7 @@ export default function Header() {
                 </span>
               </NavLink>
 
-              <a className="mobile-icon-link" href="#contacts" onClick={(e) => handleHashLinkClick(e, '#contacts')}>
+              <NavLink className="mobile-icon-link" to="/contact" onClick={() => setIsSidebarOpen(false)}>
                 <span className="mobile-icon-symbol">
                   <i className="bx bxs-envelope"></i>
                 </span>
@@ -176,7 +162,7 @@ export default function Header() {
                 <span className="mobile-link-arrow" aria-hidden="true">
                   <i className="bx bx-chevron-right"></i>
                 </span>
-              </a>
+              </NavLink>
 
               <NavLink className="mobile-icon-link" to="/register" onClick={() => setIsSidebarOpen(false)}>
                 <span className="mobile-icon-symbol">

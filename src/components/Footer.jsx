@@ -1,100 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import emailjs from '@emailjs/browser';
-
-const EMAILJS_CONFIG = {
-  publicKey: "Ou_qu_feu12sSNEkc",
-  serviceId: "service_tpuqps7",
-  templateId: "template_ln9myvv",
-};
-
-const PRIMARY_EMAIL = "tkinfotechsoft@gmail.com";
 
 export default function Footer() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ text: '', type: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'This field is required.';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'This field is required.';
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email.trim())) {
-        newErrors.email = 'Please enter a valid email address.';
-      }
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'This field is required.';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const openMailClient = (name, email, message) => {
-    const subject = `Website enquiry from ${name}`;
-    const body = `Quick enquiry from TK-INFOTECHSOFT website\n\nName: ${name}\nEmail: ${email}\nEnquiry: ${message}`;
-    window.location.href = `mailto:${PRIMARY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      setStatus({ text: 'Please check the form for errors.', type: 'error' });
-      return;
-    }
-
-    setIsSubmitting(true);
-    setStatus({ text: 'Sending your enquiry...', type: '' });
-
-    const emailBody = `Quick enquiry from TK-INFOTECHSOFT website\n\nName: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\nEnquiry: ${formData.message.trim()}`;
-
-    try {
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        {
-          from_name: formData.name.trim(),
-          email_id: formData.email.trim(),
-          reply_to: formData.email.trim(),
-          to_email: PRIMARY_EMAIL,
-          message: emailBody,
-        },
-        {
-          publicKey: EMAILJS_CONFIG.publicKey,
-        }
-      );
-
-      setFormData({ name: '', email: '', message: '' });
-      setStatus({ text: 'Thanks. Your enquiry was sent successfully.', type: 'success' });
-    } catch (error) {
-      console.error('EmailJS error:', error);
-      openMailClient(formData.name.trim(), formData.email.trim(), formData.message.trim());
-      setStatus({
-        text: 'Email sending failed in-browser, so your mail app was opened as a fallback.',
-        type: 'error'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleAnchorClick = (e, path, elementId) => {
     // If we're already on that page, scroll directly
     if (window.location.pathname === path) {
@@ -123,7 +30,7 @@ export default function Footer() {
                 <a href="tel:+9188707084318">+91 88707084318</a>
               </div>
             </div>
-            <div class="contact-pair">
+            <div className="contact-pair">
               <i className="bx bxs-envelope"></i>
               <div>
                 <a href="mailto:tkinfotechsoft@gmail.com">tkinfotechsoft@gmail.com</a><br />
@@ -164,66 +71,6 @@ export default function Footer() {
               <li><Link to="/about">Mentoring model</Link></li>
               <li><Link to="/#why-us" onClick={(e) => handleAnchorClick(e, '/', 'why-us')}>Facilities and support</Link></li>
             </ul>
-          </section>
-
-          <section className="footer-card reveal">
-            <h3>Quick enquiry</h3>
-            <form id="contact-form" className="contact-form" onSubmit={handleSubmit} noValidate>
-              <div>
-                <label className="form-label" htmlFor="contact-name">Name</label>
-                <input
-                  className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                  id="contact-name"
-                  name="name"
-                  type="text"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                />
-                {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-              </div>
-              <div>
-                <label className="form-label" htmlFor="contact-email">Email</label>
-                <input
-                  className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                  id="contact-email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-                {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-              </div>
-              <div>
-                <label className="form-label" htmlFor="contact-message">Enquiry</label>
-                <textarea
-                  className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                  id="contact-message"
-                  name="message"
-                  rows="4"
-                  placeholder="Tell us what you need help with"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                ></textarea>
-                {errors.message && <div className="invalid-feedback">{errors.message}</div>}
-              </div>
-              <button className="btn btn-brand" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'Send enquiry'}
-              </button>
-              {status.text && (
-                <p 
-                  id="contact-form-status" 
-                  className={`form-status ${status.type === 'success' ? 'status-success' : status.type === 'error' ? 'status-error' : ''}`} 
-                  aria-live="polite"
-                >
-                  {status.text}
-                </p>
-              )}
-            </form>
           </section>
         </div>
 
