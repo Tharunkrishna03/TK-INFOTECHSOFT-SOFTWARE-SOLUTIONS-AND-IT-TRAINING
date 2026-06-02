@@ -73,8 +73,56 @@ const softwareServices = [
   }
 ];
 
+const offeredCourses = [
+  {
+    title: 'Python Full Stack',
+    icon: 'bx bxl-python',
+    description:
+      'Build web applications using Python, frontend fundamentals, and backend workflows with project-based guidance.',
+    meta: ['Projects', 'Mentoring', 'Career prep']
+  },
+  {
+    title: 'Java Full Stack',
+    icon: 'bx bxl-java',
+    description:
+      'Learn Java-based application development with frontend integration, databases, and workflow-driven practice.',
+    meta: ['Enterprise focus', 'Hands-on tasks', 'Interview readiness']
+  },
+  {
+    title: 'MERN Stack',
+    icon: 'bx bxl-react',
+    description:
+      'Create full stack applications with MongoDB, Express, React, and Node.js while strengthening modern web development habits.',
+    meta: ['Portfolio projects', 'API practice', 'Frontend + backend']
+  },
+  {
+    title: 'UI/UX Design',
+    icon: 'bx bxs-palette',
+    description:
+      'Learn interface design, user journeys, layout systems, and practical thinking for digital products that feel easier to use.',
+    meta: ['Design thinking', 'Portfolio support', 'Visual systems']
+  },
+  {
+    title: 'AWS & Cloud Foundations',
+    tabTitle: 'AWS Foundations',
+    icon: 'bx bxs-cloud',
+    description:
+      'Understand cloud basics, deployment concepts, and practical platform workflows that support real-world development teams.',
+    meta: ['Cloud basics', 'Dev workflows', 'Career guidance']
+  },
+  {
+    title: 'Digital Marketing',
+    icon: 'bx bxs-megaphone',
+    description:
+      'Build a foundation in content strategy, campaigns, and digital growth skills for modern business environments.',
+    meta: ['Campaign basics', 'Content skills', 'Practical roadmap']
+  }
+];
+
 export default function Services() {
   const [activeSoftwareService, setActiveSoftwareService] = useState(0);
+  const [activeOfferedCourse, setActiveOfferedCourse] = useState(0);
+  const [isServicePopupOpen, setIsServicePopupOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -240,6 +288,16 @@ export default function Services() {
     }
   };
 
+  const openCourseEnquiryPopup = () => {
+    const selectedCourse = offeredCourses[activeOfferedCourse].title;
+    setFormData((prev) => ({ ...prev, course: selectedCourse }));
+    setStatus({ text: '', type: '' });
+    setIsServicePopupOpen(true);
+  };
+
+  const closeServicePopup = () => {
+    setIsServicePopupOpen(false);
+  };
   return (
     <main className="page-shell">
       <section className="services-hero">
@@ -317,231 +375,229 @@ export default function Services() {
         </div>
       </section>
 
-      
-      <section className="section-space">
-        <div className="site-container">
-          <div className="section-intro">
-            <span className="kicker">Connected journey</span>
-            <h2>Learning support and career support work better together</h2>
-            <p>
-              Programmes strengthen skill depth, while services help you present that work, apply
-              with better direction, or build real client-facing output.
-            </p>
-          </div>
+      <section className="software-services-section offered-courses-section" aria-labelledby="offered-courses-title">
+        <div className="site-container software-services-inner">
+          <h2 id="offered-courses-title">Course Offered</h2>
 
-          <div className="reason-grid mb-4">
-            <article className="reason-card reveal">
-              <h3>Start with education</h3>
-              <p>Choose a programme when you need stronger skills, projects, and practical confidence.</p>
-            </article>
-            <article className="reason-card reveal">
-              <h3>Add focused services</h3>
-              <p>Use targeted support when you need better applications, presentation, or digital delivery.</p>
-            </article>
-            <article className="reason-card reveal">
-              <h3>Move with clarity</h3>
-              <p>Both paths are explained clearly so users can understand what to choose and when.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space">
-        <div className="site-container about-layout">
-          <section className="info-panel reveal">
-            <span className="kicker">Why this works</span>
-            <h2>A simpler way to choose the right support</h2>
-            <p>
-              We start by understanding your situation, then match the request to the most useful
-              service instead of forcing you through an unnecessary package.
-            </p>
-            <ul className="checklist">
-              <li>
-                <i className="bx bxs-badge-check"></i>
-                <span>Clarity-first conversations so you know what to do next.</span>
-              </li>
-              <li>
-                <i className="bx bxs-badge-check"></i>
-                <span>Hands-on guidance for digital execution and career presentation.</span>
-              </li>
-              <li>
-                <i className="bx bxs-badge-check"></i>
-                <span>Actionable outcomes instead of vague advice and one-size-fits-all tips.</span>
-              </li>
-            </ul>
-          </section>
-
-          <section className="application-card reveal" id="service-contact">
-            <span className="kicker">Service-related contact</span>
-            <h2>Share your service enquiry</h2>
-            <p>
-              Use this form for service-related contact so we can understand the support you need,
-              your timing, and the result you want.
-            </p>
-
-            <form
-              id="application-form"
-              className="application-form"
-              onSubmit={handleSubmit}
-              noValidate
+          <div className="software-services-layout offered-courses-layout">
+            <article
+              className="software-service-card offered-course-card"
+              id="offered-course-panel"
+              role="tabpanel"
+              aria-labelledby={`offered-course-tab-${activeOfferedCourse}`}
             >
-              <div className="field-grid">
-                <div>
-                  <label className="form-label" htmlFor="application-name">Full name</label>
-                  <input
-                    className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                    id="application-name"
-                    name="name"
-                    type="text"
-                    placeholder="Your full name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-                </div>
-                <div>
-                  <label className="form-label" htmlFor="application-phone">Phone number</label>
-                  <input
-                    className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-                    id="application-phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="10-digit mobile number"
-                    inputmode="numeric"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
-                </div>
+              <h3>{offeredCourses[activeOfferedCourse].title}</h3>
+              <p>{offeredCourses[activeOfferedCourse].description}</p>
+              <div className="programme-meta">
+                {offeredCourses[activeOfferedCourse].meta.map((item) => (
+                  <span className="meta-chip" key={item}>{item}</span>
+                ))}
               </div>
+              <button className="btn btn-brand btn-lg core-services-button offered-course-link" type="button" onClick={openCourseEnquiryPopup}>
+                Register for this course <i className="bx bx-right-arrow-alt"></i>
+              </button>
+            </article>
 
-              <div className="field-grid">
-                <div>
-                  <label className="form-label" htmlFor="application-email">Email address</label>
-                  <input
-                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                    id="application-email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-                </div>
-                <div>
-                  <label className="form-label" htmlFor="application-course">Enquiry service</label>
-                  <select 
-                    className={`form-select ${errors.course ? 'is-invalid' : ''}`} 
-                    id="application-course" 
-                    name="course" 
-                    value={formData.course}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="">Select a service</option>
-                    <option value="Web Development">Web Development</option>
-                    <option value="App Development">App Development</option>
-                    <option value="Business ERP">Business ERP</option>
-                    <option value="Resume Guidance">Resume Guidance</option>
-                    <option value="ATS Support">ATS Support</option>
-                    <option value="Freelancing Services">Freelancing Services</option>
-                    <option value="General Service Enquiry">General Service Enquiry</option>
-                  </select>
-                  {errors.course && <div className="invalid-feedback">{errors.course}</div>}
-                </div>
-              </div>
-
-              <div className="field-grid">
-                <div>
-                  <label className="form-label" htmlFor="application-start-date">Preferred support date</label>
-                  <input
-                    className="form-control"
-                    id="application-start-date"
-                    name="startDate"
-                    type="date"
-                    value={formData.startDate}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div>
-                  <label className="form-label" htmlFor="application-address">Location / address</label>
-                  <input
-                    className={`form-control ${errors.address ? 'is-invalid' : ''}`}
-                    id="application-address"
-                    name="address"
-                    type="text"
-                    placeholder="City, area, office, or full address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  {errors.address && <div className="invalid-feedback">{errors.address}</div>}
-                </div>
-              </div>
-
-              <div>
-                <label className="form-label" htmlFor="application-enquiry">Service enquiry</label>
-                <textarea
-                  className={`form-control ${errors.enquiry ? 'is-invalid' : ''}`}
-                  id="application-enquiry"
-                  name="enquiry"
-                  rows="4"
-                  placeholder="Tell us which service you need and how we can help"
-                  value={formData.enquiry}
-                  onChange={handleInputChange}
-                  required
-                ></textarea>
-                {errors.enquiry && <div className="invalid-feedback">{errors.enquiry}</div>}
-              </div>
-
-              <div className="inline-note">
-                Your service enquiry details are emailed to our team and also cached in this
-                browser until the submission succeeds.
-              </div>
-
-              <div className="form-actions">
-                <button className="btn btn-brand" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : 'Send service enquiry'}
-                </button>
-                <Link className="btn btn-outline-secondary" to="/programmes">Explore programmes</Link>
-              </div>
-              
-              {status.text && (
-                <p 
-                  id="application-status" 
-                  className={`form-status ${status.type === 'success' ? 'status-success' : status.type === 'error' ? 'status-error' : ''}`} 
-                  aria-live="polite"
+            <div className="software-service-tabs offered-course-tabs" role="tablist" aria-label="Course offered">
+              {offeredCourses.map((course, index) => (
+                <button
+                  className={`software-service-tab ${activeOfferedCourse === index ? 'is-active' : ''}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeOfferedCourse === index}
+                  aria-controls="offered-course-panel"
+                  id={`offered-course-tab-${index}`}
+                  key={course.title}
+                  onClick={() => setActiveOfferedCourse(index)}
                 >
-                  {status.text}
-                </p>
-              )}
-            </form>
-          </section>
-        </div>
-      </section>
-
-      <section className="section-space">
-        <div className="site-container">
-          <div className="cta-banner reveal">
-            <div>
-              <span className="kicker">Start now</span>
-              <h2>Need a service, a programme, or both?</h2>
-              <p>
-                Tell us what you are trying to achieve and we will help you choose the right
-                support path without making the process complicated.
-              </p>
-            </div>
-            <div className="form-actions">
-              <a className="btn btn-brand" href="#service-contact">Service contact</a>
-              <Link className="btn btn-outline-light-soft" to="/programmes">Explore programmes</Link>
+                  <span className="software-service-fold" aria-hidden="true"></span>
+                  <span className="software-service-points" aria-hidden="true">
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                  </span>
+                  <span className="software-service-inner">{course.tabTitle || course.title}</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
+      
+
+      {isServicePopupOpen && (
+        <div className="service-popup" role="dialog" aria-modal="true" aria-labelledby="service-popup-title">
+          <button className="service-popup-backdrop" type="button" aria-label="Close service enquiry form" onClick={closeServicePopup}></button>
+          <div className="service-popup-panel">
+            <section className="application-card service-popup-card" id="service-contact">
+              <div className="service-popup-head">
+                <span className="kicker">Service-related contact</span>
+                <button className="service-popup-close" type="button" aria-label="Close service enquiry form" onClick={closeServicePopup}>
+                  <i className="bx bx-x"></i>
+                </button>
+              </div>
+              <h2 id="service-popup-title">Share your service enquiry</h2>
+              <p>
+                Use this form for service-related contact so we can understand the support you need,
+                your timing, and the result you want.
+              </p>
+
+              <form
+                id="application-form"
+                className="application-form"
+                onSubmit={handleSubmit}
+                noValidate
+              >
+                <div className="field-grid">
+                  <div>
+                    <label className="form-label" htmlFor="application-name">Full name</label>
+                    <input
+                      className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                      id="application-name"
+                      name="name"
+                      type="text"
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                  </div>
+                  <div>
+                    <label className="form-label" htmlFor="application-phone">Phone number</label>
+                    <input
+                      className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                      id="application-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="10-digit mobile number"
+                      inputMode="numeric"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+                  </div>
+                </div>
+
+                <div className="field-grid">
+                  <div>
+                    <label className="form-label" htmlFor="application-email">Email address</label>
+                    <input
+                      className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                      id="application-email"
+                      name="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                  </div>
+                  <div>
+                    <label className="form-label" htmlFor="application-course">Enquiry service</label>
+                    <select
+                      className={`form-select ${errors.course ? 'is-invalid' : ''}`}
+                      id="application-course"
+                      name="course"
+                      value={formData.course}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Select a service</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="App Development">App Development</option>
+                      <option value="Business ERP">Business ERP</option>
+                      <option value="Resume Guidance">Resume Guidance</option>
+                      <option value="ATS Support">ATS Support</option>
+                      <option value="Freelancing Services">Freelancing Services</option>
+                      <option value="General Service Enquiry">General Service Enquiry</option>
+                      {offeredCourses.map((course) => (
+                        <option value={course.title} key={course.title}>{course.title}</option>
+                      ))}
+                    </select>
+                    {errors.course && <div className="invalid-feedback">{errors.course}</div>}
+                  </div>
+                </div>
+
+                <div className="field-grid">
+                  <div>
+                    <label className="form-label" htmlFor="application-start-date">Preferred support date</label>
+                    <input
+                      className="form-control"
+                      id="application-start-date"
+                      name="startDate"
+                      type="date"
+                      value={formData.startDate}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="form-label" htmlFor="application-address">Location / address</label>
+                    <input
+                      className={`form-control ${errors.address ? 'is-invalid' : ''}`}
+                      id="application-address"
+                      name="address"
+                      type="text"
+                      placeholder="City, area, office, or full address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.address && <div className="invalid-feedback">{errors.address}</div>}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="form-label" htmlFor="application-enquiry">Service enquiry</label>
+                  <textarea
+                    className={`form-control ${errors.enquiry ? 'is-invalid' : ''}`}
+                    id="application-enquiry"
+                    name="enquiry"
+                    rows="3"
+                    placeholder="Tell us which service you need and how we can help"
+                    value={formData.enquiry}
+                    onChange={handleInputChange}
+                    required
+                  ></textarea>
+                  {errors.enquiry && <div className="invalid-feedback">{errors.enquiry}</div>}
+                </div>
+
+                <div className="inline-note">
+                  Your service enquiry details are emailed to our team and also cached in this
+                  browser until the submission succeeds.
+                </div>
+
+                <div className="form-actions">
+                  <button className="btn btn-brand" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Send service enquiry'}
+                  </button>
+                  <Link className="btn btn-outline-secondary" to="/programmes">Explore programmes</Link>
+                </div>
+
+                {status.text && (
+                  <p
+                    id="application-status"
+                    className={`form-status ${status.type === 'success' ? 'status-success' : status.type === 'error' ? 'status-error' : ''}`}
+                    aria-live="polite"
+                  >
+                    {status.text}
+                  </p>
+                )}
+              </form>
+            </section>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

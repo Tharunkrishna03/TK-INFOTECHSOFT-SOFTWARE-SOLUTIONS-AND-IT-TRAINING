@@ -1277,7 +1277,43 @@ body.mobile-sidebar-open {
 .software-service-card .checklist {
   margin: 0;
 }
+.offered-courses-layout {
+  grid-template-columns: minmax(0, 0.64fr) minmax(210px, 0.36fr);
+}
 
+.offered-course-tabs {
+  align-items: flex-end;
+}
+
+.offered-course-card {
+  transform: translateX(1rem);
+}
+
+.offered-course-card p {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  line-height: 1.72;
+}
+
+
+.offered-course-card h3 {
+  color: #6220fb;
+}
+
+.offered-course-card .meta-chip {
+  background: rgba(98, 32, 251, 0.12);
+  color: #6220fb;
+}
+
+.offered-course-card .offered-course-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: max-content;
+  white-space: nowrap;
+}
 .hero-highlights {
   min-height: 100svh;
   display: flex;
@@ -2702,6 +2738,116 @@ body.mobile-sidebar-open {
   display: grid;
   gap: 1rem;
 }
+.service-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.service-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(5, 10, 22, 0.64);
+  backdrop-filter: blur(8px);
+}
+
+.service-popup-panel {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: calc(100svh - 2rem);
+  overflow-y: auto;
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(5, 10, 22, 0.28);
+}
+
+.service-popup-card {
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-radius: 18px;
+}
+
+.service-popup-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.service-popup-close {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(98, 32, 251, 0.16);
+  border-radius: 50%;
+  color: #6220fb;
+  background: rgba(98, 32, 251, 0.08);
+}
+
+.service-popup-close i {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.service-popup-card h2 {
+  margin-bottom: 0.45rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+}
+
+.service-popup-card p {
+  margin-bottom: 0.85rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.service-popup-card .application-form {
+  gap: 0.7rem;
+}
+
+.service-popup-card .field-grid {
+  gap: 0.7rem;
+}
+
+.service-popup-card .form-label {
+  margin-bottom: 0.3rem;
+  font-size: 0.78rem;
+}
+
+.service-popup-card .form-control,
+.service-popup-card .form-select {
+  min-height: 2.35rem;
+  padding: 0.55rem 0.72rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.service-popup-card textarea.form-control {
+  min-height: 4.8rem;
+}
+
+.service-popup-card .inline-note {
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.service-popup-card .form-actions {
+  gap: 0.65rem;
+}
+
+.service-popup-card .form-actions .btn {
+  min-width: 170px;
+  padding: 0.65rem 1rem;
+  font-size: 0.78rem;
+}
 
 .form-actions {
   display: flex;
@@ -2957,6 +3103,14 @@ body.mobile-sidebar-open {
     padding: 0.85rem 0.9rem 1rem;
   }
 
+
+  .offered-course-tabs {
+    align-items: stretch;
+  }
+
+  .offered-course-card {
+    transform: none;
+  }
   .hero-grid,
   .why-template-grid,
   .core-services-inner,
