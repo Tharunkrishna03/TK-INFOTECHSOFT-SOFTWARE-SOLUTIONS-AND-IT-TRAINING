@@ -2762,13 +2762,14 @@ body.mobile-sidebar-open {
   width: min(760px, 100%);
   max-height: calc(100svh - 2rem);
   overflow-y: auto;
-  border-radius: 18px;
+  
   box-shadow: 0 28px 70px rgba(5, 10, 22, 0.28);
 }
 
 .service-popup-card {
   padding: clamp(1rem, 2vw, 1.35rem);
-  border-radius: 18px;
+  border-radius: 0;
+  /* border: 1px solid navy; */
 }
 
 .service-popup-head {
@@ -2784,7 +2785,7 @@ body.mobile-sidebar-open {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  border: 1px solid rgba(98, 32, 251, 0.16);
+  /* border: 1px solid rgba(98, 32, 251, 0.16); */
   border-radius: 50%;
   color: #6220fb;
   background: rgba(98, 32, 251, 0.08);
@@ -2823,9 +2824,16 @@ body.mobile-sidebar-open {
 .service-popup-card .form-select {
   min-height: 2.35rem;
   padding: 0.55rem 0.72rem;
-  border-radius: 10px;
+  border-radius: 0;
+  /* border: 1px solid navy; */
   font-size: 0.82rem;
   line-height: 1.35;
+}
+
+.service-popup-card .form-control:focus,
+.service-popup-card .form-select:focus {
+  border-color: navy;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 128, 0.25);
 }
 
 .service-popup-card textarea.form-control {
@@ -3346,5 +3354,24 @@ body.mobile-sidebar-open {
   .cursor-star,
   .cursor-spark {
     display: none !important;
+  }
+}
+
+
+@supports (animation-timeline: scroll()) {
+  .services-hero {
+    transform-origin: top center;
+    animation: serviceHeroScrollZoomOut linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 100vh;
+  }
+}
+
+@keyframes serviceHeroScrollZoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
   }
 }

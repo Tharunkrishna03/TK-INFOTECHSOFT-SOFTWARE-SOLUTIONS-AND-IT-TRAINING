@@ -87,14 +87,14 @@ export default function Home() {
         <div className="hero-grid">
           <div className="hero-copy">
             <span className="eyebrow"><i className="bx bxs-rocket"></i> Courses & Software solutions</span>
-            <h1>
+           <br/> <h1>
               Developing talent and
               
               delivering <br/><span className="typing-word">Technology
                 </span>.
-            </h1>
+            </h1><br/>
             <p>Building skills, developing solutions, achieving success.</p>
-            
+            <br/>
             <div className="hero-actions">
               <Link className="btn btn-brand btn-lg" to="/programmes">Explore programmes</Link>
               <Link className="btn btn-outline-light-soft btn-lg" to="/register">

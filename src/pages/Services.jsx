@@ -321,7 +321,7 @@ export default function Services() {
 
       <section className="software-services-section" aria-labelledby="software-services-title">
         <div className="site-container software-services-inner">
-          <h2 id="software-services-title">Our Software Services</h2>
+          <h2 id="software-services-title" style={{ letterSpacing: '0.1em', animation: 'whyBrandGlow 3.8s ease-in-out infinite' }}>Our Software Services</h2>
 
           <div className="software-services-layout">
             <div className="software-service-tabs" role="tablist" aria-label="Software services">
@@ -377,7 +377,7 @@ export default function Services() {
 
       <section className="software-services-section offered-courses-section" aria-labelledby="offered-courses-title">
         <div className="site-container software-services-inner">
-          <h2 id="offered-courses-title">Course Offered</h2>
+          <h2 id="offered-courses-title" style={{ letterSpacing: '0.1em', animation: 'whyBrandGlow 3.8s ease-in-out infinite' }}>Course Offered</h2>
 
           <div className="software-services-layout offered-courses-layout">
             <article
@@ -394,7 +394,7 @@ export default function Services() {
                 ))}
               </div>
               <button className="btn btn-brand btn-lg core-services-button offered-course-link" type="button" onClick={openCourseEnquiryPopup}>
-                Register for this course <i className="bx bx-right-arrow-alt"></i>
+                Register course <i className="bx bx-right-arrow-alt"></i>
               </button>
             </article>
 
@@ -444,11 +444,8 @@ export default function Services() {
                   <i className="bx bx-x"></i>
                 </button>
               </div>
-              <h2 id="service-popup-title">Share your service enquiry</h2>
-              <p>
-                Use this form for service-related contact so we can understand the support you need,
-                your timing, and the result you want.
-              </p>
+              <h2 id="service-popup-title"> Enquiry Course</h2>
+              <br/>
 
               <form
                 id="application-form"
@@ -578,8 +575,8 @@ export default function Services() {
                 </div>
 
                 <div className="form-actions">
-                  <button className="btn btn-brand" type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Sending...' : 'Send service enquiry'}
+                  <button className="btn btn-brand core-services-button" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'SUBMIT'}
                   </button>
                   <Link className="btn btn-outline-secondary" to="/programmes">Explore programmes</Link>
                 </div>

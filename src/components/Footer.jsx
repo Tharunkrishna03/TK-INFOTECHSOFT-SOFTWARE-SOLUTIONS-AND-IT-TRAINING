@@ -19,10 +19,7 @@ export default function Footer() {
         <div className="footer-grid">
           <section className="footer-card reveal">
             <h2>TK-INFOTECHSOFT</h2>
-            <p>
-              TK-INFOTECHSOFT is a training partner of MC-TECH Industrial School, delivering
-              career-focused IT training with mentor support and practical project guidance.
-            </p>
+           <br/>
             <div className="contact-pair">
               <i className="bx bxs-phone-call"></i>
               <div>
@@ -63,13 +60,12 @@ export default function Footer() {
             <h3>Services</h3>
             <ul className="footer-list">
               <li><Link to="/services#web-development" onClick={(e) => handleAnchorClick(e, '/services', 'web-development')}>Web Development</Link></li>
-              <li><Link to="/services#app-development" onClick={(e) => handleAnchorClick(e, '/services', 'app-development')}>App Development</Link></li>
+              <li><Link to="/services#app-development" onClick={(e) => handleAnchorClick(e, '/services', 'app-development')}>Ecommer website</Link></li>
               <li><Link to="/services#business-erp" onClick={(e) => handleAnchorClick(e, '/services', 'business-erp')}>Business ERP</Link></li>
-              <li><Link to="/services#resume-guidance" onClick={(e) => handleAnchorClick(e, '/services', 'resume-guidance')}>Resume guidance</Link></li>
-              <li><Link to="/services#ats-support" onClick={(e) => handleAnchorClick(e, '/services', 'ats-support')}>ATS support</Link></li>
-              <li><Link to="/services#course-registration" onClick={(e) => handleAnchorClick(e, '/services', 'course-registration')}>Course registration</Link></li>
-              <li><Link to="/about">Mentoring model</Link></li>
-              <li><Link to="/#why-us" onClick={(e) => handleAnchorClick(e, '/', 'why-us')}>Facilities and support</Link></li>
+              
+              <li><Link to="/services#course-registration" onClick={(e) => handleAnchorClick(e, '/services', 'course-registration')}>CRM</Link></li>
+              
+              
             </ul>
           </section>
         </div>
