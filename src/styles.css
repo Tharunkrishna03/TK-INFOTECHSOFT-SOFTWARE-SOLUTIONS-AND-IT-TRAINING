@@ -1330,6 +1330,57 @@ body.mobile-sidebar-open {
   margin-top: clamp(2rem, 5vw, 3.5rem);
 }
 
+.core-services-action {
+  align-self: start;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.core-services-button {
+  height: 40px;
+  min-width: 210px;
+  padding-right: 25px;
+  padding-left: 25px;
+  border: 0 solid;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
+  box-shadow: none;
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 100%
+  );
+  transition: 0.2s 0.1s;
+  animation: none;
+}
+
+.core-services-button::after {
+  display: none;
+}
+
+.core-services-button:hover,
+.core-services-button:focus {
+  padding-right: 30px;
+  padding-left: 30px;
+  color: #ffffff;
+  background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
+  box-shadow: none;
+  transition: all 0.3s ease-in;
+}
+
 .core-service-card {
   position: relative;
   flex: 1 1 0;
@@ -1684,6 +1735,149 @@ body.mobile-sidebar-open {
 
 .trust-strip {
   background: transparent;
+}
+
+.work-process-section {
+  background: #ffffff;
+}
+
+.work-process-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+  align-items: stretch;
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+}
+
+.work-process-head {
+  max-width: 620px;
+  margin: 0 0 1rem;
+  text-align: left;
+}
+
+.work-process-head h2 {
+  text-align: left;
+}
+
+.work-process-head .why-brand-word {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.work-process-tabs {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.work-process-tab {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.35rem 0 0.55rem;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.work-process-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0.42);
+  transform-origin: left;
+  opacity: 0.45;
+  transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+}
+
+.work-process-tab:hover,
+.work-process-tab:focus,
+.work-process-tab.is-active {
+  color: #6d28d9;
+}
+
+.work-process-tab:hover::after,
+.work-process-tab:focus::after,
+.work-process-tab.is-active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.work-process-cards {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.work-process-card {
+  min-height: 118px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 4px;
+  background: #f3ecff;
+  box-shadow: none;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  transition: border-color 0.28s ease, outline-color 0.28s ease, outline-offset 0.28s ease;
+}
+
+.work-process-card:hover,
+.work-process-card:focus-within {
+  border-color: rgba(124, 58, 237, 0.68);
+  outline-color: rgba(124, 58, 237, 0.68);
+  outline-offset: 4px;
+}
+
+.work-process-card span {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #5b21b6;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.work-process-card h3 {
+  margin: 0 0 0.35rem;
+  color: #4c1d95;
+  font-size: 1.05rem;
+}
+
+.work-process-card p {
+  margin: 0;
+  color: #5f4b7d;
+  font-size: 0.95rem;
+  line-height: 1.62;
+}
+
+.work-process-media {
+  overflow: hidden;
+  align-self: stretch;
+  min-height: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.work-process-media video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .logo-cloud {
@@ -2407,6 +2601,7 @@ body.mobile-sidebar-open {
   .hero-grid,
   .why-template-grid,
   .core-services-inner,
+  .work-process-layout,
   .about-layout,
   .application-layout,
   .services-page .service-detail,
@@ -2494,6 +2689,19 @@ body.mobile-sidebar-open {
     flex: 0 0 min(78vw, 260px);
     min-height: 230px;
     scroll-snap-align: center;
+  }
+
+  .work-process-tabs {
+    gap: 1rem;
+  }
+
+  .work-process-card {
+    min-height: auto;
+    padding: 0.95rem;
+  }
+
+  .work-process-media {
+    aspect-ratio: 16 / 10;
   }
 
   .service-signpost {

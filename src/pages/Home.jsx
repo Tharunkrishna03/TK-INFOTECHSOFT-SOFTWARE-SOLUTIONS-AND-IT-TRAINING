@@ -38,7 +38,39 @@ export default function Home() {
     { title: 'Portfolio Website', icon: 'bx bx-id-card' }
   ];
 
+  const workProcesses = {
+    software: [
+      {
+        title: 'Understand the Problem',
+        text: 'Collaborate with clients to analyze challenges and define clear, actionable objectives.'
+      },
+      {
+        title: 'Gather Requirements',
+        text: 'Collect and refine business requirements to align with the best IT solutions and practices.'
+      },
+      {
+        title: 'Optimize and Support',
+        text: 'Continuously monitor, refine, and provide support to ensure seamless operations and sustained growth.'
+      }
+    ],
+    training: [
+      {
+        title: 'Assess Learning Needs',
+        text: "Understand students' goals, current skill levels, and career aspirations to create the right learning path."
+      },
+      {
+        title: 'Deliver Practical Training',
+        text: 'Provide industry-focused training through expert instructors, hands-on projects, real-world case studies, and interactive sessions.'
+      },
+      {
+        title: 'Evaluate & Mentor',
+        text: 'Track progress with assessments, offer personalized guidance, and prepare students for certifications, interviews, and career opportunities.'
+      }
+    ]
+  };
+
   const [activeWhy, setActiveWhy] = useState(0);
+  const [activeProcess, setActiveProcess] = useState('software');
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -147,32 +179,65 @@ export default function Home() {
               </article>
             ))}
           </div>
+
+          <div className="core-services-action reveal">
+            <Link className="btn btn-brand btn-lg core-services-button" to="/services">Our services</Link>
+          </div>
         </div>
       </section>
 
-      <section className="section-space trust-strip">
-        <div className="site-container">
-          <div className="section-intro">
-            <span className="kicker">Recognitions</span>
-            <h2>Backed by trusted education and startup ecosystems</h2>
-            <p>
-              These recognitions reflect our focus on structured learning and practical career
-              readiness.
-            </p>
+      <section className="section-space work-process-section">
+        <div className="site-container work-process-layout">
+          <div className="work-process-content">
+            <div className="why-template-head work-process-head">
+              <span></span>
+              <h2>
+                {activeProcess === 'training'
+                  ? 'How Our Training Process'
+                  : 'How Our Software Process'}
+                <br />
+                <span className="why-brand-word">Works</span>
+              </h2>
+            </div>
+
+            <div className="work-process-tabs" role="tablist" aria-label="Work process type">
+              <button
+                className={`work-process-tab ${activeProcess === 'software' ? 'is-active' : ''}`}
+                type="button"
+                role="tab"
+                aria-selected={activeProcess === 'software'}
+                onClick={() => setActiveProcess('software')}
+              >
+                Software
+              </button>
+              <button
+                className={`work-process-tab ${activeProcess === 'training' ? 'is-active' : ''}`}
+                type="button"
+                role="tab"
+                aria-selected={activeProcess === 'training'}
+                onClick={() => setActiveProcess('training')}
+              >
+                Training
+              </button>
+            </div>
+
+            <div className="work-process-cards">
+              {workProcesses[activeProcess].map((step, index) => (
+                <article className="work-process-card" key={step.title}>
+                  <span>{index + 1}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="logo-cloud">
-            <div className="logo-badge reveal">
-              <img src="/web.webp" alt="ISO certification logo" loading="lazy" />
-            </div>
-            <div className="logo-badge reveal">
-              <img src="/app.webp" alt="MCA logo" loading="lazy" />
-            </div>
-            <div className="logo-badge reveal">
-              <img src="/res.webp" alt="Nasscom logo" loading="lazy" />
-            </div>
-            <div className="logo-badge reveal">
-              <img src="/intern.webp" alt="Startup India logo" loading="lazy" />
-            </div>
+
+          <div className="work-process-media reveal" aria-hidden="true">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/workprocess.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
