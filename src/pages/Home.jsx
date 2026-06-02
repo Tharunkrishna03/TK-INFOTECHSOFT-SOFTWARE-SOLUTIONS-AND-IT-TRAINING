@@ -1,66 +1,131 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+  const whyHighlights = [
+    {
+      icon: 'bx bxs-user-voice',
+      title: 'Mentor Guidance',
+      text: 'Live mentor-led sessions with guidance you can actually use.'
+    },
+    {
+      icon: 'bx bxs-briefcase',
+      title: 'Portfolio Practice',
+      text: 'Portfolio projects and interview-focused practice built into learning.'
+    },
+    {
+      icon: 'bx bxs-file-doc',
+      title: 'Career Support',
+      text: 'Career support for resumes, ATS readiness, and course registration.'
+    },
+    {
+      icon: 'bx bxs-devices',
+      title: 'Web Development',
+      text: 'From career training to custom web development, we provide end-to-end solutions designed for growth. Our focus on quality, innovation, and real-world results ensures value for both learners and businesses.'
+    },
+    {
+      icon: 'bx bxs-dashboard',
+      title: 'Business ERP',
+      text: 'Built with flexibility and performance in mind, our product streamlines workflows, centralizes business processes, and delivers real-time insights. It adapts to your needs, helping you work smarter and achieve better results.'
+    }
+  ];
+
+  const [activeWhy, setActiveWhy] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveWhy((current) => (current + 1) % whyHighlights.length);
+    }, 3200);
+
+    return () => window.clearInterval(timer);
+  }, [whyHighlights.length]);
+
   return (
     <main className="page-shell">
       <section className="hero-section">
-        <video className="hero-video" autoPlay muted loop playsInline preLoad="metadata" aria-hidden="true">
-          <source src="/3129957-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-        </video>
         <div className="hero-backdrop"></div>
         <div className="hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow"><i className="bx bxs-rocket"></i> Course with Certificate</span>
-            <h1>Bridge the gap between college and your career.</h1>
-            <p>
-              Learn through job-ready education, then use our services for resumes, ATS,
-              course registration, and digital growth so your progress feels complete from
-              learning to action.
-            </p>
+            <span className="eyebrow"><i className="bx bxs-rocket"></i> Courses & Software solutions</span>
+            <h1>
+              Developing talent and
+              
+              delivering <br/><span className="typing-word">Technology
+                </span>.
+            </h1>
+            <p>Building skills, developing solutions, achieving success.</p>
+            
             <div className="hero-actions">
               <Link className="btn btn-brand btn-lg" to="/programmes">Explore programmes</Link>
               <Link className="btn btn-outline-light-soft btn-lg" to="/register">
                 Register
               </Link>
             </div>
-            <div className="stats-grid">
-              <article className="stat-card reveal">
-                <span className="stat-number" data-count-to="1000" data-suffix="+">0+</span>
-                <span className="stat-label">Students trained</span>
+            
+          </div>
+
+          <div className="hero-visual reveal" aria-hidden="true">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/hero.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section className="hero-highlights" aria-label="Why choose TK-INFOTECHSOFT">
+        <div className="site-container">
+          <div className="why-template-head reveal">
+            <span></span>
+            <h2>Why Choose ?
+             <br/> <span className="why-brand-word">TK-INFOTECHSOFT</span></h2>
+            <p>
+              We bridge the gap between education, careers, and digital growth through training,
+              career support, and technology services.
+            </p>
+          </div>
+
+          <div className="why-template-grid">
+            <div className="why-orbit reveal">
+              <div className="why-orbit-ring"></div>
+              <div className="why-orbit-center">
+                <h3>{whyHighlights[activeWhy].title}</h3>
+                <p>{whyHighlights[activeWhy].text}</p>
+              </div>
+              {whyHighlights.map((item, index) => (
+                <button
+                  className={`why-orbit-icon why-orbit-icon-${index + 1} ${activeWhy === index ? 'is-active' : ''}`}
+                  type="button"
+                  key={item.title}
+                  aria-label={item.text}
+                  aria-pressed={activeWhy === index}
+                  onClick={() => setActiveWhy(index)}
+                  onFocus={() => setActiveWhy(index)}
+                  onMouseEnter={() => setActiveWhy(index)}
+                >
+                  <i className={item.icon}></i>
+                </button>
+              ))}
+            </div>
+
+            <div className="why-metrics reveal">
+              <article>
+                <strong>1000<span>+</span></strong>
+                <p>Students trained</p>
               </article>
-              <article className="stat-card reveal">
-                <span className="stat-number" data-count-to="95" data-suffix="%">0%</span>
-                <span className="stat-label">Success-focused outcomes</span>
+              <article>
+                <strong>95<span>%</span></strong>
+                <p>Success-focused outcomes</p>
               </article>
-              <article className="stat-card reveal">
-                <span className="stat-number" data-count-to="100" data-suffix="+">0+</span>
-                <span className="stat-label">Company-ready pathways</span>
+              <article>
+                <strong>100<span>+</span></strong>
+                <p>Company-ready pathways</p>
+              </article>
+              <article>
+                <strong>5<span>+</span></strong>
+                <p>Career and digital services</p>
               </article>
             </div>
           </div>
-
-          <aside className="hero-card reveal" aria-label="Highlights">
-            <h2>Why learners choose TK-INFOTECHSOFT</h2>
-            <p>
-              TK-INFOTECHSOFT is a training partner of MC-TECH Industrial School, connecting
-              education and services so learners can build skills and move toward real opportunities.
-            </p>
-            <ul className="info-list">
-              <li>
-                <i className="bx bxs-badge-check"></i>
-                <span>Live mentor-led sessions with guidance you can actually use.</span>
-              </li>
-              <li>
-                <i className="bx bxs-briefcase"></i>
-                <span>Portfolio projects and interview-focused practice built into learning.</span>
-              </li>
-              <li>
-                <i className="bx bxs-graduation"></i>
-                <span>Career support for resumes, ATS readiness, and course registration.</span>
-              </li>
-            </ul>
-          </aside>
         </div>
       </section>
 
