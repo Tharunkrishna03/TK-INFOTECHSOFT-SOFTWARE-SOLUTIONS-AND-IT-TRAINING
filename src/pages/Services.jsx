@@ -10,7 +10,71 @@ const EMAILJS_CONFIG = {
 
 const PRIMARY_EMAIL = "tkinfotechsoft@gmail.com";
 
+const softwareServices = [
+  {
+    title: 'Web Development',
+    icon: 'bx bx-code-curly',
+    headline: 'Custom Websites That Build Your Digital Presence',
+    points: [
+      'Responsive Design - Websites that work seamlessly across desktops, tablets, and mobile devices.',
+      'Custom Development - Tailor-made solutions designed to match your business goals and brand identity.',
+      'High Performance - Fast-loading, optimized websites for a better user experience and higher engagement.',
+      'SEO-Friendly Structure - Built with search engine best practices to improve online visibility.',
+      'Secure & Scalable - Developed with modern technologies to ensure security and future growth.'
+    ]
+  },
+  {
+    title: 'E-Commerce Website',
+    icon: 'bx bx-store-alt',
+    headline: 'Powerful Online Stores That Drive Sales',
+    points: [
+      'User-Friendly Shopping Experience - Intuitive navigation and smooth checkout process for customers.',
+      'Secure Payment Integration - Support for multiple payment gateways with secure transactions.',
+      'Inventory Management - Easy product, stock, and order management from a centralized dashboard.',
+      'Mobile Commerce Ready - Optimized shopping experience across all devices.',
+      'Growth-Focused Features - Promotions, coupons, analytics, and customer engagement tools to increase revenue.'
+    ]
+  },
+  {
+    title: 'Business ERP',
+    icon: 'bx bx-layer',
+    headline: 'Integrated Solutions for Efficient Business Management',
+    points: [
+      'Centralized Operations - Manage finance, HR, inventory, sales, and procurement in one system.',
+      'Real-Time Reporting - Access accurate business insights and performance data instantly.',
+      'Process Automation - Reduce manual tasks and improve operational efficiency.',
+      'Department Collaboration - Enable seamless communication and workflow across teams.',
+      'Scalable Architecture - Flexible ERP solutions that grow with your business requirements.'
+    ]
+  },
+  {
+    title: 'CRM',
+    icon: 'bx bx-user-pin',
+    headline: 'Strengthen Customer Relationships and Boost Sales',
+    points: [
+      'Lead Management - Capture, organize, and track potential customers effectively.',
+      'Sales Automation - Streamline sales processes and improve conversion rates.',
+      'Customer Interaction Tracking - Maintain complete customer communication history.',
+      'Performance Analytics - Monitor sales performance and customer engagement metrics.',
+      'Improved Customer Retention - Build stronger relationships through personalized interactions and support.'
+    ]
+  },
+  {
+    title: 'Portfolio Website',
+    icon: 'bx bx-id-card',
+    headline: 'Showcase Your Brand, Work, and Achievements',
+    points: [
+      'Professional Online Presence - Create a strong first impression with a modern portfolio website.',
+      'Project Showcase - Highlight your work, achievements, and success stories effectively.',
+      'Personal Branding - Reflect your unique identity, skills, and expertise.',
+      'Lead Generation - Convert visitors into clients with strategic contact and inquiry sections.',
+      'Easy Content Management - Update projects, services, and information effortlessly as you grow.'
+    ]
+  }
+];
+
 export default function Services() {
+  const [activeSoftwareService, setActiveSoftwareService] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -178,171 +242,82 @@ export default function Services() {
 
   return (
     <main className="page-shell">
-      <section className="page-hero">
-        <div className="site-container">
-          <span className="eyebrow"><i className="bx bxs-briefcase-alt-2"></i> Services</span>
-          <h1>Services that move your learning, profile, and career plans forward.</h1>
-          <p>
-            Our services work alongside education pathways, so learners and businesses can move
-            from skill-building to profile growth, digital execution, and career action in one place.
-          </p>
-        </div>
-      </section>
-
-      <section className="section-space" id="services-catalogue">
-        <div className="site-container">
-          <div className="section-intro">
-            <span className="kicker">Services catalogue</span>
-            <h2>Choose the service that fits your next move</h2>
+      <section className="services-hero">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <h1>Software Solutions & Training for Growth and Success</h1>
             <p>
-              Each service below explains where it helps, what you receive, and how the work is
-              delivered so you can compare options quickly.
+              We deliver innovative software solutions for businesses and practical,
+              industry-focused training for learners. Empowering organizations and individuals
+              with the skills and technology needed to succeed.
             </p>
           </div>
 
-          <div className="services-detail-list">
-            <article className="service-detail reveal" id="web-development">
-              <div className="service-detail-content">
-                <span className="service-detail-index">01</span>
-                <div className="feature-icon"><i className="bx bx-code-curly"></i></div>
-                <h3>Web Development</h3>
-                <p className="service-detail-copy">
-                  Business websites and landing pages are built to present your brand clearly,
-                  load smoothly, and guide visitors toward enquiries, calls, or conversions.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">Responsive builds</span>
-                  <span className="meta-chip">Modern UI</span>
-                  <span className="meta-chip">Business-ready</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Business websites, portfolio pages, and campaign landing pages designed for desktop and mobile use.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Layout structure, content flow, and visual hierarchy shaped to make your offer easier to understand.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Performance-minded builds with cleaner sections, stronger calls to action, and practical maintenance support.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Request web support <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
-            </article>
+          <div className="hero-visual reveal" aria-hidden="true">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/service.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
 
-            <article className="service-detail reveal" id="app-development">
-              <div className="service-detail-content">
-                <span className="service-detail-index">02</span>
-                <div className="feature-icon"><i className="bx bx-mobile-alt"></i></div>
-                <h3>App Development</h3>
-                <p className="service-detail-copy">
-                  App ideas are shaped into usable product flows with attention to screens,
-                  user actions, and the practical steps needed for delivery.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">Product thinking</span>
-                  <span className="meta-chip">UX support</span>
-                  <span className="meta-chip">Delivery guidance</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Screen planning and interaction flow for service apps, internal tools, or customer-facing products.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Feature prioritization so the first version stays focused on what users actually need.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Guidance on interface consistency, handoff clarity, and scalable product direction.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Discuss your app idea <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
-            </article>
+      <section className="software-services-section" aria-labelledby="software-services-title">
+        <div className="site-container software-services-inner">
+          <h2 id="software-services-title">Our Software Services</h2>
 
-            <article className="service-detail reveal" id="business-erp">
-              <div className="service-detail-content">
-                <span className="service-detail-index">03</span>
-                <div className="feature-icon"><i className="bx bx-buildings"></i></div>
-                <h3>Business ERP</h3>
-                <p className="service-detail-copy">
-                  Operational workflows become easier to manage through better process visibility,
-                  cleaner mapping, and more organized systems support.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">Process mapping</span>
-                  <span className="meta-chip">Business systems</span>
-                  <span className="meta-chip">Workflow clarity</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Review of current business flow to identify delays, manual repetition, and reporting gaps.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>ERP-oriented planning for sales, inventory, operations, or coordination-heavy tasks.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Recommendations focused on structure, accountability, and easier day-to-day tracking.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Talk ERP needs <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
-            </article>
+          <div className="software-services-layout">
+            <div className="software-service-tabs" role="tablist" aria-label="Software services">
+              {softwareServices.map((service, index) => (
+                <button
+                  className={`software-service-tab ${activeSoftwareService === index ? 'is-active' : ''}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeSoftwareService === index}
+                  aria-controls="software-service-panel"
+                  id={`software-service-tab-${index}`}
+                  key={service.title}
+                  onClick={() => setActiveSoftwareService(index)}
+                >
+                  <span className="software-service-fold" aria-hidden="true"></span>
+                  <span className="software-service-points" aria-hidden="true">
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                    <span className="software-service-point"></span>
+                  </span>
+                  <span className="software-service-inner">{service.title}</span>
+                </button>
+              ))}
+            </div>
 
-            <article className="service-detail reveal" id="resume-guidance">
-              <div className="service-detail-content">
-                <span className="service-detail-index">04</span>
-                <div className="feature-icon"><i className="bx bxs-file-doc"></i></div>
-                <h3>Resume Guidance</h3>
-                <p className="service-detail-copy">
-                  Resume guidance focuses on making your strengths, projects, and role fit easier
-                  for recruiters to scan and understand.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">Resume polish</span>
-                  <span className="meta-chip">Project framing</span>
-                  <span className="meta-chip">Role alignment</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Content restructuring that highlights skills, coursework, academic projects, and measurable effort.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Stronger wording for summaries, experience lines, and project descriptions without overclaiming.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Cleaner role targeting for fresher and entry-level applications.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Upgrade your resume <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
-            </article>
-
-            <article className="service-detail reveal" id="ats-support">
-              <div className="service-detail-content">
-                <span className="service-detail-index">05</span>
-                <div className="feature-icon"><i className="bx bxs-file-find"></i></div>
-                <h3>ATS Support</h3>
-                <p className="service-detail-copy">
-                  ATS support improves how your resume is read by screening systems through tighter
-                  keywords, stronger structure, and cleaner formatting choices.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">ATS optimization</span>
-                  <span className="meta-chip">Keyword strategy</span>
-                  <span className="meta-chip">Cleaner structure</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Keyword alignment based on the roles you want instead of generic stuffing.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Formatting cleanup that reduces parsing issues and keeps section labels easy to identify.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Profile tuning for better matching in job portals and recruiter search workflows.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Improve ATS fit <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
-            </article>
-
-            <article className="service-detail service-detail-featured reveal" id="freelancing-services">
-              <div className="service-detail-content">
-                <span className="service-detail-index">07</span>
-                <span className="service-detail-badge">Freelancer Focus</span>
-                <div className="feature-icon"><i className="bx bx-briefcase-alt"></i></div>
-                <h3>Freelancing Services</h3>
-                <p className="service-detail-copy">
-                  Freelancers get help presenting their work better, packaging services clearly,
-                  and handling client-facing communication with more confidence.
-                </p>
-                <div className="programme-meta">
-                  <span className="meta-chip">Portfolio setup</span>
-                  <span className="meta-chip">Client proposals</span>
-                  <span className="meta-chip">Delivery support</span>
-                </div>
-                <ul className="service-detail-points checklist">
-                  <li><i className="bx bxs-check-circle"></i><span>Portfolio and service positioning for designers, developers, marketers, and student freelancers.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Proposal guidance, pricing clarity, and better project communication with potential clients.</span></li>
-                  <li><i className="bx bxs-check-circle"></i><span>Support for presenting deliverables professionally and building repeat-work credibility.</span></li>
-                </ul>
-                <a className="card-link" href="#service-contact">Start freelancing support <i className="bx bx-right-arrow-alt"></i></a>
-              </div>
+            <article
+              className="software-service-card"
+              id="software-service-panel"
+              role="tabpanel"
+              aria-labelledby={`software-service-tab-${activeSoftwareService}`}
+            >
+              <h3>{softwareServices[activeSoftwareService].title}</h3>
+              <h4>{softwareServices[activeSoftwareService].headline}</h4>
+              <ul className="checklist">
+                {softwareServices[activeSoftwareService].points.map((point) => (
+                  <li key={point}>
+                    <i className="bx bxs-check-circle"></i>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </article>
           </div>
         </div>
       </section>
 
+      
       <section className="section-space">
         <div className="site-container">
           <div className="section-intro">
