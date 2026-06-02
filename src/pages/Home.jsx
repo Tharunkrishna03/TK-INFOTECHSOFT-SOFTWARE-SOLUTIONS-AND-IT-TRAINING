@@ -30,6 +30,14 @@ export default function Home() {
     }
   ];
 
+  const coreServices = [
+    { title: 'Web Development', icon: 'bx bx-code-alt' },
+    { title: 'Ecommerce Website', icon: 'bx bx-store-alt' },
+    { title: 'Business ERP Softwares', icon: 'bx bx-layer' },
+    { title: 'CRM', icon: 'bx bx-user-pin' },
+    { title: 'Portfolio Website', icon: 'bx bx-id-card' }
+  ];
+
   const [activeWhy, setActiveWhy] = useState(0);
 
   useEffect(() => {
@@ -89,7 +97,6 @@ export default function Home() {
               <div className="why-orbit-ring"></div>
               <div className="why-orbit-center">
                 <h3>{whyHighlights[activeWhy].title}</h3>
-                <p>{whyHighlights[activeWhy].text}</p>
               </div>
               {whyHighlights.map((item, index) => (
                 <button
@@ -107,24 +114,38 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="why-metrics reveal">
-              <article>
-                <strong>1000<span>+</span></strong>
-                <p>Students trained</p>
+            <article className="why-content-card reveal">
+              <div className="why-content-icon" key={whyHighlights[activeWhy].title}>
+                <i className={whyHighlights[activeWhy].icon}></i>
+              </div>
+              <h3>{whyHighlights[activeWhy].title}</h3>
+              <p>{whyHighlights[activeWhy].text}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="core-services-section" aria-label="Core services">
+        <div className="core-services-grid" aria-hidden="true"></div>
+        <div className="site-container core-services-inner">
+          <div className="core-services-copy reveal">
+            <p>our core</p>
+            <h2>Services</h2>
+            <span>Smart solutions real results</span>
+          </div>
+
+          <div className="core-service-cards reveal">
+            {coreServices.map((service, index) => (
+              <article className={`core-service-card core-service-card-${index + 1}`} key={service.title}>
+                <div className="core-service-media" aria-hidden="true">
+                  <video autoPlay muted loop playsInline preload="metadata">
+                    <source src="/hero.mp4" type="video/mp4" />
+                  </video>
+                  <i className={service.icon}></i>
+                </div>
+                <h3>{service.title}</h3>
               </article>
-              <article>
-                <strong>95<span>%</span></strong>
-                <p>Success-focused outcomes</p>
-              </article>
-              <article>
-                <strong>100<span>+</span></strong>
-                <p>Company-ready pathways</p>
-              </article>
-              <article>
-                <strong>5<span>+</span></strong>
-                <p>Career and digital services</p>
-              </article>
-            </div>
+            ))}
           </div>
         </div>
       </section>
