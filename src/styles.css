@@ -462,10 +462,8 @@ main {
   position: relative;
   width: 100%;
   min-height: 3.8rem;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 0.8rem;
   overflow: hidden;
   padding: 0.8rem 0.95rem;
   border-radius: 0;
@@ -475,7 +473,7 @@ main {
   color: #ffffff;
   opacity: 0;
   transform: translateY(26px);
-  transition: color 0.28s ease, transform 0.32s ease;
+  transition: color 0.28s ease, transform 0.32s ease, text-decoration 0.28s ease;
 }
 
 .mobile-sidebar.show .mobile-icon-link {
@@ -561,37 +559,18 @@ main {
 .mobile-icon-link:hover,
 .mobile-icon-link:focus-visible,
 .mobile-icon-link.active {
-  color: #000000;
   background: transparent;
   box-shadow: none;
   transform: translateY(-2px);
 }
 
-.mobile-icon-link:hover::before,
-.mobile-icon-link:focus-visible::before,
-.mobile-icon-link.active::before {
-  transform: scaleY(1);
-}
-
-.mobile-icon-link:hover .mobile-icon-symbol,
-.mobile-icon-link:focus-visible .mobile-icon-symbol,
-.mobile-icon-link.active .mobile-icon-symbol {
-  color: #000000;
-  background: transparent;
-}
-
 .mobile-icon-link:hover .mobile-icon-copy strong,
 .mobile-icon-link:focus-visible .mobile-icon-copy strong,
 .mobile-icon-link.active .mobile-icon-copy strong {
-  color: #000000;
+  text-decoration: underline;
 }
 
-.mobile-icon-link:hover .mobile-link-arrow,
-.mobile-icon-link:focus-visible .mobile-link-arrow,
-.mobile-icon-link.active .mobile-link-arrow {
-  color: var(--accent);
-  transform: translateX(3px);
-}
+
 
 .mobile-sidebar-cta {
   margin-top: 0.25rem;
@@ -3441,4 +3420,64 @@ body.mobile-sidebar-open {
   100% {
     transform: scale(0.95);
   }
+}
+
+/* Mobile Menu Toggle Animation */
+#checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition-duration: .5s;
+}
+
+.bars {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  border-radius: 4px;
+}
+
+#bar2 {
+  transition-duration: .8s;
+}
+
+#bar1,#bar3 {
+  width: 70%;
+}
+
+#checkbox:checked + .toggle .bars {
+  position: absolute;
+  transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+  transform: scaleX(0);
+  transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar1 {
+  width: 100%;
+  transform: rotate(45deg);
+  transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar3 {
+  width: 100%;
+  transform: rotate(-45deg);
+  transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle {
+  transition-duration: .5s;
+  transform: rotate(180deg);
 }

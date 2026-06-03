@@ -96,7 +96,7 @@ export default function Home() {
             <p>Building skills, developing solutions, achieving success.</p>
             <br/>
             <div className="hero-actions">
-              <Link className="btn btn-brand btn-lg" to="/programmes">Explore programmes</Link>
+              <Link className="btn btn-brand btn-lg" to="/projects">Explore projects</Link>
               <Link className="btn btn-outline-light-soft btn-lg" to="/register">
                 Register
               </Link>

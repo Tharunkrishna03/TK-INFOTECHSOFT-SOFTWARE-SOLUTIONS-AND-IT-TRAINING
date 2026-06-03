@@ -4,15 +4,7 @@ export default function About() {
   return (
     <main className="page-shell">
       <section className="page-hero">
-        <div className="site-container">
-          <span className="eyebrow"><i className="bx bxs-user-detail"></i> About TK-INFOTECHSOFT</span>
-          <h1>We help learners become confident, employable tech professionals.</h1>
-          <p>
-            Our approach combines hands-on practice, personal guidance, and career readiness so
-            students can grow with direction instead of guesswork as part of a legally safe,
-            professional training partnership model.
-          </p>
-        </div>
+       
       </section>
 
       <section className="section-space">

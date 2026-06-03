@@ -192,7 +192,7 @@ export default function Register() {
           <h1>Register - Limited Seats Only.</h1>
           <p>
             Use this form to register for a course with certificate, request counselling, or
-            tell us which programme you are interested in. The form saves your details on this
+            tell us which project you are interested in. The form saves your details on this
             device for convenience and sends your submitted registration by email.
           </p>
         </div>
@@ -325,7 +325,7 @@ export default function Register() {
                   id="application-enquiry"
                   name="enquiry"
                   rows="4"
-                  placeholder="Tell us your goal, preferred programme, or any questions"
+                  placeholder="Tell us your goal, preferred project, or any questions"
                   value={formData.enquiry}
                   onChange={handleInputChange}
                   required
@@ -362,7 +362,7 @@ export default function Register() {
             <h2>We make the process simple</h2>
             <p>
               Once you share your details, you can use the contact section below to ask
-              questions, clarify programmes, or request direct guidance.
+              questions, clarify projects, or request direct guidance.
             </p>
             <ul className="checklist">
               <li>
@@ -375,7 +375,7 @@ export default function Register() {
               </li>
               <li>
                 <i className="bx bxs-check-circle"></i>
-                <span>Send a quick enquiry below if you need programme or certificate guidance.</span>
+                <span>Send a quick enquiry below if you need project or certificate guidance.</span>
               </li>
             </ul>
           </aside>

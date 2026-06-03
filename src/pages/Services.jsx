@@ -578,7 +578,7 @@ export default function Services() {
                   <button className="btn btn-brand core-services-button" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'SUBMIT'}
                   </button>
-                  <Link className="btn btn-outline-secondary" to="/programmes">Explore programmes</Link>
+                  <Link className="btn btn-outline-secondary" to="/projects">Explore projects</Link>
                 </div>
 
                 {status.text && (

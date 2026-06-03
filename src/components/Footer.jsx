@@ -48,11 +48,11 @@ export default function Footer() {
           <section className="footer-card reveal">
             <h3>Courses</h3>
             <ul className="footer-list">
-              <li><Link to="/programmes#course-catalogue" onClick={(e) => handleAnchorClick(e, '/programmes', 'course-catalogue')}>Python Full Stack</Link></li>
-              <li><Link to="/programmes#course-catalogue" onClick={(e) => handleAnchorClick(e, '/programmes', 'course-catalogue')}>Java Full Stack</Link></li>
-              <li><Link to="/programmes#course-catalogue" onClick={(e) => handleAnchorClick(e, '/programmes', 'course-catalogue')}>MERN Stack</Link></li>
-              <li><Link to="/programmes#course-catalogue" onClick={(e) => handleAnchorClick(e, '/programmes', 'course-catalogue')}>UI/UX Design</Link></li>
-              <li><Link to="/programmes#course-catalogue" onClick={(e) => handleAnchorClick(e, '/programmes', 'course-catalogue')}>AWS Foundations</Link></li>
+              <li><Link to="/projects#course-catalogue" onClick={(e) => handleAnchorClick(e, '/projects', 'course-catalogue')}>Python Full Stack</Link></li>
+              <li><Link to="/projects#course-catalogue" onClick={(e) => handleAnchorClick(e, '/projects', 'course-catalogue')}>Java Full Stack</Link></li>
+              <li><Link to="/projects#course-catalogue" onClick={(e) => handleAnchorClick(e, '/projects', 'course-catalogue')}>MERN Stack</Link></li>
+              <li><Link to="/projects#course-catalogue" onClick={(e) => handleAnchorClick(e, '/projects', 'course-catalogue')}>UI/UX Design</Link></li>
+              <li><Link to="/projects#course-catalogue" onClick={(e) => handleAnchorClick(e, '/projects', 'course-catalogue')}>AWS Foundations</Link></li>
             </ul>
           </section>
 
@@ -60,7 +60,7 @@ export default function Footer() {
             <h3>Services</h3>
             <ul className="footer-list">
               <li><Link to="/services#web-development" onClick={(e) => handleAnchorClick(e, '/services', 'web-development')}>Web Development</Link></li>
-              <li><Link to="/services#app-development" onClick={(e) => handleAnchorClick(e, '/services', 'app-development')}>Ecommer website</Link></li>
+              <li><Link to="/services#app-development" onClick={(e) => handleAnchorClick(e, '/services', 'app-development')}>Ecommerce website</Link></li>
               <li><Link to="/services#business-erp" onClick={(e) => handleAnchorClick(e, '/services', 'business-erp')}>Business ERP</Link></li>
               
               <li><Link to="/services#course-registration" onClick={(e) => handleAnchorClick(e, '/services', 'course-registration')}>CRM</Link></li>

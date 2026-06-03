@@ -10,7 +10,7 @@ import PageLoader from './components/PageLoader.jsx';
 
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
-import Programmes from './pages/Programmes.jsx';
+import Projects from './pages/Projects.jsx';
 import About from './pages/About.jsx';
 import Register from './pages/Register.jsx';
 import Contact from './pages/Contact.jsx';
@@ -188,7 +188,7 @@ function AppContent() {
     const routeTitles = {
       '/': 'TK-INFOTECHSOFT | Career-Focused IT Training',
       '/services': 'Services | TK-INFOTECHSOFT',
-      '/programmes': 'Programmes | TK-INFOTECHSOFT',
+      '/projects': 'Projects | TK-INFOTECHSOFT',
       '/about': 'About | TK-INFOTECHSOFT',
       '/register': 'Register | TK-INFOTECHSOFT',
       '/contact': 'Contact | TK-INFOTECHSOFT',
@@ -197,7 +197,7 @@ function AppContent() {
     const routeDescs = {
       '/': 'TK-INFOTECHSOFT, training partner of MC-TECH Industrial School, helps students and fresh graduates build job-ready tech skills.',
       '/services': 'Explore TK-INFOTECHSOFT services in web development, app development, ERP, resume guidance, and ATS support.',
-      '/programmes': 'Explore TK-INFOTECHSOFT programmes in full stack development, UI/UX, cloud, and digital careers.',
+      '/projects': 'Explore TK-INFOTECHSOFT projects in full stack development, UI/UX, cloud, and digital careers.',
       '/about': 'Learn about TK-INFOTECHSOFT, our founder, and our role as a training partner of MC-TECH Industrial School.',
       '/register': 'Register for a course with certificate at TK-INFOTECHSOFT through our responsive registration form.',
       '/contact': 'Contact TK-INFOTECHSOFT for course, service, and quick enquiry support.',
@@ -306,7 +306,7 @@ function AppContent() {
       <Routes location={{ pathname: currentPath }}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/programmes" element={<Programmes />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />

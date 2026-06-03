@@ -32,20 +32,26 @@ export default function Header() {
       <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
         <nav className="navbar p-0" aria-label="Main navigation">
           <div className="site-nav">
-            <button 
-              className="sidebar-toggle d-lg-none" 
-              type="button" 
-              onClick={() => setIsSidebarOpen(true)}
-              aria-controls="mobileSidebar" 
-              aria-expanded={isSidebarOpen} 
-              aria-label="Open navigation menu"
+            <input 
+              type="checkbox" 
+              id="checkbox" 
+              checked={isSidebarOpen}
+              onChange={(e) => setIsSidebarOpen(e.target.checked)}
+            />
+            <label 
+              htmlFor="checkbox" 
+              className="toggle d-lg-none"
+              aria-controls="mobileSidebar"
+              aria-expanded={isSidebarOpen}
+              aria-label="Toggle navigation menu"
             >
-              <i className="bx bx-menu-alt-left"></i>
-              <span className="toggle-label">Menu</span>
-            </button>
+              <div id="bar1" className="bars"></div>
+              <div id="bar2" className="bars"></div>
+              <div id="bar3" className="bars"></div>
+            </label>
             
             <Link className="navbar-brand brand-mark" to="/" aria-label="TK INFOTECHSOFT home">
-              <img className="brand-logo" src="/tttkkk.png" alt="TK INFOTECHSOFT logo" />
+              <img className="brand-logo" src="/logotk (1).png" alt="TK INFOTECHSOFT logo" />
             </Link>
 
             <div className="desktop-nav d-none d-lg-flex ms-auto">
@@ -57,7 +63,7 @@ export default function Header() {
                   <NavLink className="nav-link" to="/services">Services</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/programmes">Programmes</NavLink>
+                  <NavLink className="nav-link" to="/projects">Projects</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/about">About</NavLink>
@@ -100,89 +106,42 @@ export default function Header() {
           <div className="offcanvas-body">
             <nav className="mobile-icon-nav" aria-label="Mobile navigation links">
               <NavLink className="mobile-icon-link" to="/" end onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-home"></i>
-                </span>
                 <span className="mobile-icon-copy">
                   <strong>Home</strong>
-                  <small>Overview and learner highlights</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
                 </span>
               </NavLink>
 
               <NavLink className="mobile-icon-link" to="/services" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-briefcase-alt-2"></i>
-                </span>
                 <span className="mobile-icon-copy">
                   <strong>Services</strong>
-                  <small>Career services and digital support</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
                 </span>
               </NavLink>
 
-              <NavLink className="mobile-icon-link" to="/programmes" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-book-content"></i>
-                </span>
+              <NavLink className="mobile-icon-link" to="/projects" onClick={() => setIsSidebarOpen(false)}>
                 <span className="mobile-icon-copy">
-                  <strong>Programmes</strong>
-                  <small>Career tracks and skill paths</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
+                  <strong>Projects</strong>
                 </span>
               </NavLink>
 
               <NavLink className="mobile-icon-link" to="/about" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-user-circle"></i>
-                </span>
                 <span className="mobile-icon-copy">
                   <strong>About</strong>
-                  <small>Mission, founder, and mentoring</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
                 </span>
               </NavLink>
 
               <NavLink className="mobile-icon-link" to="/contact" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-envelope"></i>
-                </span>
                 <span className="mobile-icon-copy">
                   <strong>Contact</strong>
-                  <small>Phone, email, and quick enquiry</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
                 </span>
               </NavLink>
 
               <NavLink className="mobile-icon-link" to="/register" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-symbol">
-                  <i className="bx bxs-send"></i>
-                </span>
                 <span className="mobile-icon-copy">
                   <strong>Register</strong>
-                  <small>Start your learning journey</small>
-                </span>
-                <span className="mobile-link-arrow" aria-hidden="true">
-                  <i className="bx bx-chevron-right"></i>
                 </span>
               </NavLink>
             </nav>
-            <div className="mobile-sidebar-cta">
-              <p>Start with a quick registration and we can guide you to the right programme.</p>
-              <Link className="btn btn-brand btn-sm" to="/register" onClick={() => setIsSidebarOpen(false)}>
-                Register
-              </Link>
-            </div>
+
           </div>
         </div>
       </header>
