@@ -393,11 +393,9 @@ main {
   min-height: 100svh;
   height: 100svh;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top right, rgba(0, 194, 255, 0.2), transparent 32%),
-    linear-gradient(180deg, #061425 0%, #0a1e39 54%, #102448 100%);
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 24px 0 56px rgba(2, 10, 22, 0.34);
+  background: #000000;
+  border-right: 0;
+  box-shadow: none;
 }
 
 .mobile-sidebar .offcanvas-header {
@@ -457,24 +455,66 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 0.6rem;
+  gap: 0.35rem;
 }
 
 .mobile-icon-link {
+  position: relative;
   width: 100%;
   min-height: 3.8rem;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.8rem;
+  overflow: hidden;
   padding: 0.8rem 0.95rem;
-  border-radius: 1rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.82);
-  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: color 0.28s ease, transform 0.32s ease;
+}
+
+.mobile-sidebar.show .mobile-icon-link {
+  animation: mobileMenuItemRise 0.48s ease forwards;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(3) {
+  animation-delay: 0.18s;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.mobile-sidebar.show .mobile-icon-link:nth-child(6) {
+  animation-delay: 0.36s;
+}
+
+.mobile-icon-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #ffffff;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.32s ease;
 }
 
 .mobile-icon-symbol {
@@ -482,9 +522,11 @@ main {
   height: 3rem;
   display: grid;
   place-items: center;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  transition: color 0.28s ease;
 }
 
 .mobile-icon-link i {
@@ -500,11 +542,12 @@ main {
 
 .mobile-icon-copy strong {
   font-family: var(--font-heading);
-  color: var(--white);
+  color: #ffffff;
   display: block;
   font-size: 0.97rem;
   font-weight: 500;
   letter-spacing: -0.02em;
+  transition: color 0.28s ease;
 }
 
 .mobile-icon-copy small {
@@ -518,17 +561,29 @@ main {
 .mobile-icon-link:hover,
 .mobile-icon-link:focus-visible,
 .mobile-icon-link.active {
-  color: var(--white);
-  border-color: rgba(0, 194, 255, 0.34);
-  background: linear-gradient(135deg, rgba(0, 194, 255, 0.22), rgba(255, 255, 255, 0.08));
-  box-shadow: 0 18px 30px rgba(0, 194, 255, 0.14);
-  transform: translateY(-3px);
+  color: #000000;
+  background: transparent;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.mobile-icon-link:hover::before,
+.mobile-icon-link:focus-visible::before,
+.mobile-icon-link.active::before {
+  transform: scaleY(1);
 }
 
 .mobile-icon-link:hover .mobile-icon-symbol,
 .mobile-icon-link:focus-visible .mobile-icon-symbol,
 .mobile-icon-link.active .mobile-icon-symbol {
-  background: rgba(255, 255, 255, 0.12);
+  color: #000000;
+  background: transparent;
+}
+
+.mobile-icon-link:hover .mobile-icon-copy strong,
+.mobile-icon-link:focus-visible .mobile-icon-copy strong,
+.mobile-icon-link.active .mobile-icon-copy strong {
+  color: #000000;
 }
 
 .mobile-icon-link:hover .mobile-link-arrow,
@@ -540,11 +595,11 @@ main {
 
 .mobile-sidebar-cta {
   margin-top: 0.25rem;
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 1rem 0 0;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .mobile-sidebar-cta p {
@@ -560,8 +615,20 @@ main {
 }
 
 .offcanvas-backdrop.show {
-  opacity: 0.62;
-  backdrop-filter: blur(6px);
+  opacity: 0;
+  backdrop-filter: none;
+}
+
+@keyframes mobileMenuItemRise {
+  0% {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobile-sidebar-backdrop {
