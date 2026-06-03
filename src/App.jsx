@@ -74,7 +74,7 @@ function runCounters() {
 // Helper to stagger card animations
 function runStaggerCardMotion() {
   const animatedCards = document.querySelectorAll(
-    '.stat-card, .logo-badge, .feature-card, .reason-card, .programme-card, .value-card, .partner-tile, .footer-card'
+    '.stat-card, .logo-badge, .feature-card, .reason-card, .programme-card, .value-card, .partner-tile, .footer-card, .software-service-tab, .work-process-card, .about-profile-grid > article, .about-profile-contact-grid a, .application-form > *, .contact-form > *'
   );
 
   animatedCards.forEach((card, index) => {
@@ -82,10 +82,15 @@ function runStaggerCardMotion() {
   });
 }
 
+function smoothScrollToTop() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, left: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+}
+
 function getRevealMotion(item, index) {
   if (
     item.matches(
-      '.feature-card, .reason-card, .programme-card, .value-card, .partner-tile, .logo-badge, .stat-card'
+      '.feature-card, .reason-card, .programme-card, .value-card, .partner-tile, .logo-badge, .stat-card, .software-service-tab, .work-process-card, .about-profile-grid > article'
     )
   ) {
     return {
@@ -94,11 +99,11 @@ function getRevealMotion(item, index) {
     };
   }
 
-  if (item.matches('.story-card, .application-card, .info-panel, .leader-card')) {
+  if (item.matches('.story-card, .application-card, .info-panel, .leader-card, .software-service-card, .about-profile-panel')) {
     return { x: -54, y: 24 };
   }
 
-  if (item.matches('.hero-card')) {
+  if (item.matches('.hero-card, .about-first-view-media, .hero-visual')) {
     return { x: 64, y: 0 };
   }
 
@@ -114,11 +119,32 @@ function runRevealAnimations() {
   // Clear any existing ScrollTrigger instances to prevent layout shifting/duplication on route change
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-  const items = Array.from(document.querySelectorAll('.reveal'));
+  const revealSelector = [
+    '.reveal',
+    '.software-services-layout',
+    '.software-service-card',
+    '.software-service-tab',
+    '.offered-course-card',
+    '.work-process-card',
+    '.about-profile-grid > article',
+    '.about-profile-contact-grid a',
+    '.about-first-view-media',
+    '.application-form > *',
+    '.contact-form > *',
+    '.checklist li'
+  ].join(', ');
+
   const textBlocks = Array.from(
-    document.querySelectorAll(
-      '.hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > p, .hero-copy > .hero-actions, .page-hero > .site-container, .section-intro'
+    new Set(
+      Array.from(
+        document.querySelectorAll(
+          '.hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > p, .hero-copy > .hero-actions, .about-first-view-copy > .eyebrow, .about-first-view-copy > h1, .about-first-view-copy > p, .about-first-view-copy > .hero-actions, .page-hero > .site-container, .section-intro, .software-services-inner > h2, .why-template-head, .core-services-copy, .work-process-head, .product-contact-copy > h2, .product-contact-copy > p, .product-contact-copy > .btn, .about-profile-title, .about-profile-copy > p, .about-profile-contact h3'
+        )
+      )
     )
+  );
+  const items = Array.from(
+    new Set(Array.from(document.querySelectorAll(revealSelector)).filter((item) => !textBlocks.includes(item)))
   );
 
   if (!items.length && !textBlocks.length) {
@@ -136,9 +162,11 @@ function runRevealAnimations() {
     gsap.set(item, { autoAlpha: 0, y: 34 });
 
     ScrollTrigger.create({
-      trigger: item.closest('.hero-copy, .page-hero, .section-intro') || item,
+      trigger:
+        item.closest(
+          '.hero-copy, .about-first-view-copy, .page-hero, .section-intro, .software-services-inner, .why-template-head, .work-process-head, .product-contact-copy, .about-profile-head'
+        ) || item,
       start: 'top 86%',
-      once: true,
       onEnter: () => {
         item.classList.add('is-visible');
         gsap.to(item, {
@@ -147,6 +175,24 @@ function runRevealAnimations() {
           duration: 0.72,
           delay: index === 0 ? 0.08 : 0,
           ease: 'power3.out',
+        });
+      },
+      onEnterBack: () => {
+        item.classList.add('is-visible');
+        gsap.to(item, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.62,
+          ease: 'power3.out',
+        });
+      },
+      onLeaveBack: () => {
+        item.classList.remove('is-visible');
+        gsap.to(item, {
+          autoAlpha: 0,
+          y: 34,
+          duration: 0.42,
+          ease: 'power2.out',
         });
       },
     });
@@ -161,7 +207,6 @@ function runRevealAnimations() {
     ScrollTrigger.create({
       trigger: item,
       start: 'top 88%',
-      once: true,
       onEnter: () => {
         item.classList.add('is-visible');
         gsap.to(item, {
@@ -171,6 +216,26 @@ function runRevealAnimations() {
           duration: 0.82,
           delay: delay * 0.75,
           ease: 'power3.out',
+        });
+      },
+      onEnterBack: () => {
+        item.classList.add('is-visible');
+        gsap.to(item, {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+        });
+      },
+      onLeaveBack: () => {
+        item.classList.remove('is-visible');
+        gsap.to(item, {
+          autoAlpha: 0,
+          x: motion.x,
+          y: motion.y,
+          duration: 0.42,
+          ease: 'power2.out',
         });
       },
     });
@@ -260,11 +325,11 @@ function AppContent() {
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
           } else {
-            window.scrollTo(0, 0);
+            smoothScrollToTop();
           }
         }, 80);
       } else {
-        window.scrollTo(0, 0);
+        smoothScrollToTop();
       }
 
       // 2. Hide loader and end transition class

@@ -96,20 +96,10 @@ export default function Contact() {
 
   return (
     <main className="page-shell">
-      <section className="page-hero">
-        <div className="site-container">
-          <span className="eyebrow"><i className="bx bxs-envelope"></i> Contact</span>
-          <h1>Get in touch with TK-INFOTECHSOFT.</h1>
-          <p>
-            Share your enquiry and our team will contact you with the right next step.
-          </p>
-        </div>
-      </section>
-
-      <section className="section-space">
-        <div className="site-container">
-          <section className="application-card reveal">
-            <h2>Quick enquiry</h2>
+      <section className="contact-first-view">
+        <div className="site-container contact-first-view-grid">
+          <section className="contact-form-panel reveal">
+            <h4>Quick enquiry</h4>
             <form id="contact-form" className="contact-form" onSubmit={handleSubmit} noValidate>
               <div>
                 <label className="form-label" htmlFor="contact-name">Name</label>
@@ -167,6 +157,23 @@ export default function Contact() {
               )}
             </form>
           </section>
+
+          <aside className="contact-details-panel reveal" aria-label="TK-INFOTECHSOFT contact details">
+            <h3>TK-INFOTECHSOFT</h3>
+            <div className="contact-details-list">
+              <a href="tel:+919597151915">+91 95971 51915</a>
+              <a href="tel:+9188707084318">+91 88707084318</a>
+              <a href="mailto:tkinfotechsoft@gmail.com">tkinfotechsoft@gmail.com</a>
+              <a href="mailto:dtharunkrishna65@gmail.com">dtharunkrishna65@gmail.com</a>
+            </div>
+            <address>
+              <strong>TK-INFOTECHSOFT</strong><br />
+              (Training Partner of MC-TECH Industrial School)<br />
+              MKP Nagar, MC-TECH Campus,<br />
+              Kottur, Malayandi Pattinam,<br />
+              Anaimalai Tk, Coimbatore District - 642007
+            </address>
+          </aside>
         </div>
       </section>
     </main>
