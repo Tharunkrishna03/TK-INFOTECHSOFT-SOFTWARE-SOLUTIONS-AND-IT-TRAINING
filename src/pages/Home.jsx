@@ -105,7 +105,7 @@ export default function Home() {
           </div>
 
           <div className="hero-visual reveal" aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata">
+            <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
               <source src="/hero.mp4" type="video/mp4" />
             </video>
           </div>
@@ -170,7 +170,7 @@ export default function Home() {
             {coreServices.map((service, index) => (
               <article className={`core-service-card core-service-card-${index + 1}`} key={service.title}>
                 <div className="core-service-media" aria-hidden="true">
-                  <video autoPlay muted loop playsInline preload="metadata">
+                  <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
                     <source src="/hero.mp4" type="video/mp4" />
                   </video>
                   <i className={service.icon}></i>
@@ -235,7 +235,7 @@ export default function Home() {
           </div>
 
           <div className="work-process-media reveal" aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata">
+            <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
               <source src="/workprocess.mp4" type="video/mp4" />
             </video>
           </div>
@@ -245,7 +245,7 @@ export default function Home() {
       <section className="section-space product-contact-section">
         <div className="site-container product-contact-layout">
           <div className="product-contact-media reveal" aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata">
+            <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
               <source src="/contact.mp4" type="video/mp4" />
             </video>
           </div>

@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
+      <header className={`site-header ${isScrolled ? 'is-scrolled' : ''} ${isSidebarOpen ? 'mobile-sidebar-open' : ''}`}>
         <nav className="navbar p-0" aria-label="Main navigation">
           <div className="site-nav">
             <input 
@@ -92,8 +92,7 @@ export default function Header() {
               <Link className="navbar-brand brand-mark" to="/" onClick={() => setIsSidebarOpen(false)} aria-label="TK INFOTECHSOFT home">
                 <img className="brand-logo" src="/tttkkk.png" alt="TK INFOTECHSOFT logo" />
               </Link>
-              <p>Explore courses, services, contact options, and registration from one clear mobile sidebar.</p>
-            </div>
+                </div>
             <button 
               type="button" 
               className="sidebar-close" 

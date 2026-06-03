@@ -248,6 +248,22 @@ function AppContent() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const isFirstLoad = useRef(true);
 
+  useEffect(() => {
+    const preventMediaDownload = (event) => {
+      if (event.target.closest('img, video')) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', preventMediaDownload);
+    document.addEventListener('dragstart', preventMediaDownload);
+
+    return () => {
+      document.removeEventListener('contextmenu', preventMediaDownload);
+      document.removeEventListener('dragstart', preventMediaDownload);
+    };
+  }, []);
+
   // Synchronize document titles and meta descriptions for SEO
   useEffect(() => {
     const routeTitles = {

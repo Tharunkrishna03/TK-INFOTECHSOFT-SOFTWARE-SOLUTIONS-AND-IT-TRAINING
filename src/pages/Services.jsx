@@ -312,7 +312,7 @@ export default function Services() {
           </div>
 
           <div className="hero-visual reveal" aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata">
+            <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
               <source src="/service.mp4" type="video/mp4" />
             </video>
           </div>
