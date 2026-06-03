@@ -73,7 +73,7 @@ export default function Projects() {
             </button>
           </div>
           <div className="project-detail-media reveal">
-            <img src="/app.webp" alt="Service Management ERP System project" />
+            <img src="/project.jpg" alt="Service Management ERP System project" />
           </div>
         </div>
       </section>
