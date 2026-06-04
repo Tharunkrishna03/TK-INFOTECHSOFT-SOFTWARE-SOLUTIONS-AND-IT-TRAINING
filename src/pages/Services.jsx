@@ -356,7 +356,7 @@ export default function Services() {
       <section className="software-services-section" aria-labelledby="software-services-title">
         <div className="site-container software-services-inner">
           <h2 id="software-services-title" style={{ letterSpacing: '0.1em', animation: 'whyBrandGlow 3.8s ease-in-out infinite' }}>Our Software Services</h2>
-
+<br/>
           <div className="software-services-layout">
             <div className="software-service-tabs" role="tablist" aria-label="Software services">
               {softwareServices.map((service, index) => (
@@ -412,7 +412,7 @@ export default function Services() {
       <section className="software-services-section offered-courses-section" aria-labelledby="offered-courses-title">
         <div className="site-container software-services-inner">
           <h2 id="offered-courses-title" style={{ letterSpacing: '0.1em', animation: 'whyBrandGlow 3.8s ease-in-out infinite' }}>Course Offered</h2>
-
+<br/>
           <div className="software-services-layout offered-courses-layout">
             <article
               className="software-service-card offered-course-card"
