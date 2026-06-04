@@ -40,7 +40,7 @@ export default function Header() {
             />
             <label 
               htmlFor="checkbox" 
-              className="toggle d-lg-none"
+              className="toggle d-md-none"
               aria-controls="mobileSidebar"
               aria-expanded={isSidebarOpen}
               aria-label="Toggle navigation menu"
@@ -54,7 +54,7 @@ export default function Header() {
               <img className="brand-logo" src="/logotk (1).png" alt="TK INFOTECHSOFT logo" />
             </Link>
 
-            <div className="desktop-nav d-none d-lg-flex ms-auto">
+            <div className="desktop-nav d-none d-md-flex ms-auto">
               <ul className="navbar-nav flex-row align-items-center gap-lg-2">
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/" end>Home</NavLink>
@@ -78,7 +78,7 @@ export default function Header() {
 
         {/* Mobile Sidebar */}
         <div 
-          className={`offcanvas offcanvas-start mobile-sidebar d-lg-none ${isSidebarOpen ? 'show' : ''}`} 
+          className={`offcanvas offcanvas-start mobile-sidebar d-md-none ${isSidebarOpen ? 'show' : ''}`} 
           tabIndex="-1" 
           id="mobileSidebar"
           aria-label="Mobile navigation"
@@ -133,12 +133,6 @@ export default function Header() {
                   <strong>Contact</strong>
                 </span>
               </NavLink>
-
-              <NavLink className="mobile-icon-link" to="/register" onClick={() => setIsSidebarOpen(false)}>
-                <span className="mobile-icon-copy">
-                  <strong>Register</strong>
-                </span>
-              </NavLink>
             </nav>
 
           </div>
@@ -148,7 +142,7 @@ export default function Header() {
       {/* Sidebar Backdrop */}
       {isSidebarOpen && (
         <div 
-          className="offcanvas-backdrop fade show d-lg-none" 
+          className="offcanvas-backdrop fade show d-md-none" 
           onClick={() => setIsSidebarOpen(false)}
           style={{ zIndex: 1040 }}
         />

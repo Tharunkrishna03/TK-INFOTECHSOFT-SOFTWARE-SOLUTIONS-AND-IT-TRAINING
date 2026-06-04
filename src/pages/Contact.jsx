@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const EMAILJS_CONFIG = {
@@ -13,7 +13,18 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ text: '', type: '' });
+  const [toast, setToast] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!toast) return undefined;
+
+    const toastTimeout = window.setTimeout(() => {
+      setToast('');
+    }, 3600);
+
+    return () => window.clearTimeout(toastTimeout);
+  }, [toast]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -82,6 +93,7 @@ export default function Contact() {
 
       setFormData({ name: '', email: '', message: '' });
       setStatus({ text: 'Thanks. Your enquiry was sent successfully.', type: 'success' });
+      setToast('Thanks. Your enquiry was sent successfully.');
     } catch (error) {
       console.error('EmailJS error:', error);
       openMailClient(formData.name.trim(), formData.email.trim(), formData.message.trim());
@@ -96,6 +108,11 @@ export default function Contact() {
 
   return (
     <main className="page-shell">
+      {toast && (
+        <div className="toast-notification" role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
       <section className="contact-first-view">
         <div className="site-container contact-first-view-grid">
           <section className="contact-form-panel reveal">

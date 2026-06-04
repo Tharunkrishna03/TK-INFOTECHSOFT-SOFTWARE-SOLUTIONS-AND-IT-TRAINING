@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const whyHighlights = [
     {
       icon: 'bx bxs-user-voice',
@@ -31,11 +33,11 @@ export default function Home() {
   ];
 
   const coreServices = [
-    { title: 'Web Development', icon: 'bx bx-code-alt' },
-    { title: 'Ecommerce Website', icon: 'bx bx-store-alt' },
-    { title: 'Business ERP Softwares', icon: 'bx bx-layer' },
-    { title: 'CRM', icon: 'bx bx-user-pin' },
-    { title: 'Portfolio Website', icon: 'bx bx-id-card' }
+    { title: 'Web Development', icon: 'bx bx-code-alt', service: 'web-development' },
+    { title: 'Ecommerce Website', icon: 'bx bx-store-alt', service: 'e-commerce-website' },
+    { title: 'Business ERP Softwares', icon: 'bx bx-layer', service: 'business-erp' },
+    { title: 'CRM', icon: 'bx bx-user-pin', service: 'crm' },
+    { title: 'Portfolio Website', icon: 'bx bx-id-card', service: 'portfolio-website' }
   ];
 
   const workProcesses = {
@@ -72,6 +74,17 @@ export default function Home() {
   const [activeWhy, setActiveWhy] = useState(0);
   const [activeProcess, setActiveProcess] = useState('software');
 
+  const openServiceDetails = (service) => {
+    navigate(`/services?service=${service}`);
+  };
+
+  const handleServiceCardKeyDown = (event, service) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openServiceDetails(service);
+    }
+  };
+
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveWhy((current) => (current + 1) % whyHighlights.length);
@@ -97,8 +110,8 @@ export default function Home() {
             <br/>
             <div className="hero-actions">
               <Link className="btn btn-brand btn-lg" to="/projects">Explore projects</Link>
-              <Link className="btn btn-outline-light-soft btn-lg" to="/register">
-                Register
+              <Link className="btn btn-outline-light-soft btn-lg" to="/contact">
+                Enquiry now
               </Link>
             </div>
             
@@ -168,7 +181,14 @@ export default function Home() {
 
           <div className="core-service-cards reveal">
             {coreServices.map((service, index) => (
-              <article className={`core-service-card core-service-card-${index + 1}`} key={service.title}>
+              <article
+                className={`core-service-card core-service-card-${index + 1}`}
+                key={service.title}
+                role="link"
+                tabIndex="0"
+                onClick={() => openServiceDetails(service.service)}
+                onKeyDown={(event) => handleServiceCardKeyDown(event, service.service)}
+              >
                 <div className="core-service-media" aria-hidden="true">
                   <video autoPlay muted loop playsInline preload="metadata" controlsList="nodownload">
                     <source src="/hero.mp4" type="video/mp4" />

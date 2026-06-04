@@ -73,6 +73,14 @@ const softwareServices = [
   }
 ];
 
+const softwareServiceQueryMap = {
+  'web-development': 0,
+  'e-commerce-website': 1,
+  'business-erp': 2,
+  crm: 3,
+  'portfolio-website': 4,
+};
+
 const offeredCourses = [
   {
     title: 'Python Full Stack',
@@ -135,7 +143,27 @@ export default function Services() {
   
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ text: '', type: '' });
+  const [toast, setToast] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const selectedService = new URLSearchParams(window.location.search).get('service');
+    const selectedServiceIndex = softwareServiceQueryMap[selectedService];
+
+    if (selectedServiceIndex !== undefined) {
+      setActiveSoftwareService(selectedServiceIndex);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!toast) return undefined;
+
+    const toastTimeout = window.setTimeout(() => {
+      setToast('');
+    }, 3600);
+
+    return () => window.clearTimeout(toastTimeout);
+  }, [toast]);
 
   // Load cached form data from localStorage
   useEffect(() => {
@@ -276,6 +304,7 @@ export default function Services() {
         text: 'Service enquiry sent successfully. We will contact you soon.',
         type: 'success'
       });
+      setToast('Service enquiry sent successfully. We will contact you soon.');
     } catch (error) {
       console.error('Application email error:', error);
       openMailClient(payload);
@@ -300,6 +329,11 @@ export default function Services() {
   };
   return (
     <main className="page-shell">
+      {toast && (
+        <div className="toast-notification" role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
       <section className="services-hero">
         <div className="hero-grid">
           <div className="hero-copy">
