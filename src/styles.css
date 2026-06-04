@@ -662,8 +662,8 @@ body.mobile-sidebar-open {
 }
 
 .cursor-star {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   clip-path: polygon(50% 0%, 63% 33%, 100% 50%, 63% 67%, 50% 100%, 37% 67%, 0 50%, 37% 33%);
   background: linear-gradient(135deg, #1c1c1c, #6220fb 56%, #6d28d9);
   filter: drop-shadow(0 0 16px rgba(98, 32, 251, 0.44));
@@ -693,8 +693,8 @@ body.mobile-sidebar-open {
 }
 
 .cursor-spark {
-  width: 11px;
-  height: 11px;
+  width: 13px;
+  height: 13px;
   clip-path: polygon(50% 0%, 63% 33%, 100% 50%, 63% 67%, 50% 100%, 37% 67%, 0 50%, 37% 33%);
   background: linear-gradient(135deg, #1c1c1c, #6220fb 58%, #6d28d9);
   filter: drop-shadow(0 0 12px rgba(98, 32, 251, 0.28));
@@ -3476,6 +3476,64 @@ body.mobile-sidebar-open {
   font-weight: 500;
   line-height: 1.45;
   animation: toastSlideIn 0.24s ease-out;
+}
+
+.not-found-page {
+  min-height: calc(100svh - var(--header-height));
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+}
+
+.not-found-content {
+  width: min(100%, 760px);
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: 2rem 1rem;
+}
+
+.not-found-image {
+  width: min(100%, 560px);
+  height: auto;
+  object-fit: contain;
+}
+
+.not-found-button {
+  min-width: 140px;
+}
+
+.scroll-top-button {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 1060;
+  width: 2.65rem;
+  height: 2.65rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #4b0082;
+  box-shadow: 0 14px 32px rgba(7, 17, 36, 0.18);
+  font-size: 1.25rem;
+  line-height: 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.65rem);
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+}
+
+.scroll-top-button.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-button:hover,
+.scroll-top-button:focus-visible {
+  background: #1c1c1c;
 }
 
 @keyframes toastSlideIn {

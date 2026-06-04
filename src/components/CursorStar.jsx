@@ -54,9 +54,9 @@ export default function CursorStar() {
       spark.className = `cursor-spark${isInteractive ? ' is-hover' : ''}`;
       spark.style.left = `${x}px`;
       spark.style.top = `${y}px`;
-      spark.style.setProperty('--spark-x', `${randomBetween(-22, 22)}px`);
-      spark.style.setProperty('--spark-y', `${randomBetween(-22, 22)}px`);
-      spark.style.setProperty('--spark-scale', `${randomBetween(0.8, 1.45)}`);
+      spark.style.setProperty('--spark-x', `${randomBetween(-28, 28)}px`);
+      spark.style.setProperty('--spark-y', `${randomBetween(-28, 28)}px`);
+      spark.style.setProperty('--spark-scale', `${randomBetween(0.9, 1.65)}`);
       document.body.append(spark);
       spark.addEventListener(
         'animationend',
@@ -74,7 +74,7 @@ export default function CursorStar() {
       const isInteractive = syncHoverState(event.target);
       const now = performance.now();
 
-      if (now - lastSparkAt > 34) {
+      if (now - lastSparkAt > 24) {
         spawnSpark(mouseX, mouseY, isInteractive);
         lastSparkAt = now;
       }
@@ -86,7 +86,7 @@ export default function CursorStar() {
 
     const onMouseDown = () => {
       star.classList.add('is-active');
-      for (let index = 0; index < 4; index += 1) {
+      for (let index = 0; index < 6; index += 1) {
         spawnSpark(mouseX, mouseY, true);
       }
     };

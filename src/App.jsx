@@ -13,6 +13,7 @@ import Services from './pages/Services.jsx';
 import Projects from './pages/Projects.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -245,6 +246,7 @@ function AppContent() {
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const isFirstLoad = useRef(true);
 
   useEffect(() => {
@@ -261,6 +263,17 @@ function AppContent() {
       document.removeEventListener('contextmenu', preventMediaDownload);
       document.removeEventListener('dragstart', preventMediaDownload);
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 320);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Synchronize document titles and meta descriptions for SEO
@@ -387,9 +400,17 @@ function AppContent() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <button
+        type="button"
+        className={`scroll-top-button${showScrollTop ? ' is-visible' : ''}`}
+        aria-label="Scroll to top"
+        onClick={smoothScrollToTop}
+      >
+        ↑
+      </button>
       <CursorStar />
     </>
   );
