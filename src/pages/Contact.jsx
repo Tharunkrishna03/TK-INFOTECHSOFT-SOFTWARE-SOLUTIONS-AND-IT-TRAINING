@@ -185,7 +185,7 @@ export default function Contact() {
             </div>
             <address>
               <strong>TK-INFOTECHSOFT</strong><br />
-              (Training Partner of MC-TECH Industrial School)<br />
+              (TK Infotechsoft, an initiative of MC Tech Industrial School.)<br />
               MKP Nagar, MC-TECH Campus,<br />
               Kottur, Malayandi Pattinam,<br />
               Anaimalai Tk, Coimbatore District - 642007
