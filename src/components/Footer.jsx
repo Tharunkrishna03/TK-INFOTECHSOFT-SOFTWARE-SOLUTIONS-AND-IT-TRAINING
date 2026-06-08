@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="contact-pair">
               <i className="bx bxs-map"></i>
               <div>
-                TK-INFOTECHSOFT<br /> (Training Partner of MC-TECH Industrial School)<br />
+                TK-INFOTECHSOFT<br /> (TK Infotechsoft, an initiative of MC Tech Industrial School.)<br />
                 MKP Nagar, MC-TECH Campus,<br />
                 Kottur, Malayandi Pattinam,<br />
                 Anaimalai Tk, Coimbatore District - 642007
@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
 
         <p className="footer-note">
-          TK-INFOTECHSOFT - Training Partner of MC-TECH Industrial School. Copyright &copy; 2026. All rights reserved.
+          TK-INFOTECHSOFT - TK Infotechsoft, an initiative of MC TECH Industrial School.. Copyright &copy; 2026. All rights reserved.
         </p>
       </div>
     </footer>
