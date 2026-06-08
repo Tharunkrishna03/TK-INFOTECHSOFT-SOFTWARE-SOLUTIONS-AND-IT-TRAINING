@@ -1753,39 +1753,63 @@ body.mobile-sidebar-open {
 
 .core-service-card {
   position: relative;
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 250px;
+  flex: 0 1 clamp(180px, 17vw, 210px);
+  width: clamp(180px, 17vw, 210px);
+  height: 238px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 0.5rem;
+  gap: 1rem;
+  padding: clamp(0.9rem, 1.4vw, 1.1rem);
+  border: 1px solid rgba(16, 26, 46, 0.1);
+  border-radius: 0.45rem;
   overflow: hidden;
-  background: linear-gradient(145deg, rgba(98, 32, 251, 0.22), rgba(28, 28, 28, 0.76));
-  box-shadow: 0 22px 48px rgba(98, 32, 251, 0.18);
-  backdrop-filter: blur(18px);
-  animation: serviceCardLift 6s ease-in-out infinite;
+  isolation: isolate;
+  cursor: pointer;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 255, 0.92)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.12), rgba(255, 190, 85, 0.16));
+  box-shadow: 0 18px 36px rgba(8, 17, 31, 0.1);
+  transform: translateY(0);
+  animation: serviceCardRise 0.72s ease both;
+  transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease,
+    background 0.32s ease;
 }
 
 .core-service-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%);
+  inset: 0 auto 0 0;
+  width: 0.34rem;
+  background: linear-gradient(180deg, #00c2ff, #6220fb 52%, #ffbe55);
+  pointer-events: none;
+}
+
+.core-service-card::after {
+  content: "";
+  position: absolute;
+  inset: -45% auto auto -70%;
+  z-index: -1;
+  width: 80%;
+  height: 190%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  opacity: 0;
+  transform: rotate(18deg) translateX(-28%);
+  transition: opacity 0.32s ease, transform 0.72s ease;
   pointer-events: none;
 }
 
 .core-service-media {
   position: relative;
-  height: 120px;
+  height: 118px;
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0.35rem;
-  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 194, 255, 0.16);
+  border-radius: 0.4rem;
+  background:
+    linear-gradient(135deg, rgba(8, 17, 31, 0.9), rgba(12, 45, 78, 0.72)),
+    rgba(255, 255, 255, 0.8);
 }
 
 .core-service-media video {
@@ -1794,8 +1818,10 @@ body.mobile-sidebar-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.28;
-  filter: saturate(1.15) hue-rotate(24deg);
+  opacity: 0.2;
+  filter: saturate(1.05) contrast(1.08);
+  transform: scale(1.04);
+  transition: opacity 0.32s ease, transform 0.5s ease;
 }
 
 .core-service-media i {
@@ -1805,23 +1831,59 @@ body.mobile-sidebar-open {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   color: #ffffff;
   font-size: 1.75rem;
-  background: linear-gradient(135deg, #1c1c1c, #6220fb);
-  box-shadow: 0 14px 30px rgba(98, 32, 251, 0.28);
+  background: linear-gradient(135deg, #00a9e6, #6220fb);
+  box-shadow: 0 14px 28px rgba(0, 194, 255, 0.22);
+  animation: serviceIconGlow 3.8s ease-in-out infinite;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, background 0.32s ease;
 }
 
 .core-service-card h3 {
   position: relative;
   z-index: 1;
-  margin: 1rem 0 0;
-  color: #ffffff;
+  margin: 0;
+  color: #101a2e;
   font-size: clamp(0.92rem, 1.35vw, 1.08rem);
   font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: 0.04em;
+  line-height: 1.32;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+.core-service-card:hover,
+.core-service-card:focus-visible {
+  transform: translateY(-12px);
+  border-color: rgba(98, 32, 251, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(239, 249, 255, 0.98)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.16), rgba(255, 190, 85, 0.2));
+  box-shadow: 0 26px 54px rgba(8, 17, 31, 0.16);
+}
+
+.core-service-card:focus-visible {
+  outline: 3px solid rgba(0, 194, 255, 0.28);
+  outline-offset: 3px;
+}
+
+.core-service-card:hover::after,
+.core-service-card:focus-visible::after {
+  opacity: 1;
+  transform: rotate(18deg) translateX(210%);
+}
+
+.core-service-card:hover .core-service-media video,
+.core-service-card:focus-visible .core-service-media video {
+  opacity: 0.28;
+  transform: scale(1.12);
+}
+
+.core-service-card:hover .core-service-media i,
+.core-service-card:focus-visible .core-service-media i {
+  transform: translateY(-4px) scale(1.05);
+  background: linear-gradient(135deg, #1c1c1c, #6220fb);
+  box-shadow: 0 18px 34px rgba(98, 32, 251, 0.28);
 }
 
 .core-service-card-1 {
@@ -1829,19 +1891,19 @@ body.mobile-sidebar-open {
 }
 
 .core-service-card-2 {
-  animation-delay: 1.2s;
+  animation-delay: 0.08s;
 }
 
 .core-service-card-3 {
-  animation-delay: 2.4s;
+  animation-delay: 0.16s;
 }
 
 .core-service-card-4 {
-  animation-delay: 3.6s;
+  animation-delay: 0.24s;
 }
 
 .core-service-card-5 {
-  animation-delay: 4.8s;
+  animation-delay: 0.32s;
 }
 
 .service-signpost {
@@ -1961,21 +2023,32 @@ body.mobile-sidebar-open {
   }
 }
 
-@keyframes serviceCardLift {
-  0%,
-  100% {
-    transform: translateY(0);
+@keyframes serviceCardRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
   }
 
-  18%,
-  32% {
-    transform: translateY(-28px);
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes serviceIconGlow {
+  0%,
+  100% {
+    box-shadow: 0 14px 28px rgba(0, 194, 255, 0.22);
+  }
+
+  50% {
+    box-shadow: 0 18px 34px rgba(98, 32, 251, 0.3);
   }
 }
 
 @supports (animation-timeline: view()) {
   .core-service-card {
-    animation-name: serviceCardScrollLift;
+    animation-name: serviceCardScrollIn;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
@@ -2004,14 +2077,14 @@ body.mobile-sidebar-open {
   }
 }
 
-@keyframes serviceCardScrollLift {
+@keyframes serviceCardScrollIn {
   from {
-    transform: translateY(28px);
-    opacity: 0.76;
+    transform: translateY(24px) scale(0.98);
+    opacity: 0;
   }
 
   to {
-    transform: translateY(-28px);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
@@ -3267,6 +3340,7 @@ body.mobile-sidebar-open {
   display: grid;
   place-items: center;
   padding: clamp(0.75rem, 2vw, 1.25rem);
+  cursor: default;
 }
 
 .service-popup-backdrop {
@@ -3276,6 +3350,7 @@ body.mobile-sidebar-open {
   padding: 0;
   background: rgba(5, 10, 22, 0.64);
   backdrop-filter: blur(8px);
+  cursor: pointer;
 }
 
 .service-popup-panel {
@@ -3286,6 +3361,7 @@ body.mobile-sidebar-open {
   overflow-y: auto;
   
   box-shadow: 0 28px 70px rgba(5, 10, 22, 0.28);
+  cursor: default;
 }
 
 .service-popup-card {
@@ -3311,6 +3387,7 @@ body.mobile-sidebar-open {
   border-radius: 50%;
   color: #6220fb;
   background: rgba(98, 32, 251, 0.08);
+  cursor: pointer;
 }
 
 .service-popup-close i {
@@ -3352,6 +3429,17 @@ body.mobile-sidebar-open {
   line-height: 1.35;
 }
 
+.service-popup-card .form-control,
+.service-popup-card textarea.form-control {
+  cursor: text;
+}
+
+.service-popup-card .form-select,
+.service-popup-card label,
+.service-popup-card .btn {
+  cursor: pointer;
+}
+
 .service-popup-card .form-control:focus,
 .service-popup-card .form-select:focus {
   border-color: navy;
@@ -3377,6 +3465,11 @@ body.mobile-sidebar-open {
   min-width: 170px;
   padding: 0.65rem 1rem;
   font-size: 0.78rem;
+}
+
+body:has(.service-popup) .cursor-star,
+body:has(.service-popup) .cursor-spark {
+  display: none;
 }
 
 .form-actions {
@@ -3828,16 +3921,22 @@ body.mobile-sidebar-open {
   }
 
   .core-service-cards {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding: 0.5rem 0.2rem 1rem;
-    scroll-snap-type: x proximity;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    overflow: visible;
+    padding: 0.5rem 0 0;
+    scroll-snap-type: none;
   }
 
   .core-service-card {
-    flex: 0 0 min(78vw, 260px);
-    min-height: 230px;
-    scroll-snap-align: center;
+    width: min(100%, 340px);
+    height: 210px;
+    scroll-snap-align: none;
+  }
+
+  .core-service-media {
+    height: 104px;
   }
 
   .work-process-tabs {
