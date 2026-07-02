@@ -1,5 +1,68 @@
 import React, { useEffect, useState } from 'react';
 
+const ImageSlider = ({ images, altPrefix }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', overflow: 'hidden' }}>
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img}
+          alt={`${altPrefix} ${idx + 1}`}
+          style={{
+            position: idx === 0 ? 'relative' : 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: currentIndex === idx ? 1 : 0,
+            transition: 'opacity 0.6s ease-in-out',
+            zIndex: currentIndex === idx ? 1 : 0,
+          }}
+        />
+      ))}
+      <div style={{
+        position: 'absolute',
+        bottom: '16px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        gap: '8px',
+        zIndex: 2,
+      }}>
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => setCurrentIndex(idx)}
+            style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: currentIndex === idx ? '#00c2ff' : '#ffffff',
+              border: currentIndex === idx ? 'none' : '1px solid rgba(0,0,0,0.1)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+              padding: 0,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+            aria-label={`Go to image ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Projects() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isServicePopupOpen, setIsServicePopupOpen] = useState(false);
@@ -43,8 +106,15 @@ export default function Projects() {
 
       <section className="section-space project-detail-section" id="jewel-finance-project">
         <div className="site-container project-detail-layout">
-          <div className="project-detail-media reveal">
-            <img src="/project.jpg" alt="Jewel Finance ERP Software project" />
+          <div className="project-detail-media reveal" style={{ padding: 0 }}>
+            <ImageSlider 
+              images={[
+                '/tk-info-tech-career-bridge-learning-institute-demo-erp-1.png',
+                '/tk-info-tech-career-bridge-learning-institute-demo-erp-2.png',
+                '/tk-info-tech-career-bridge-learning-institute-demo-erp-3.png'
+              ]} 
+              altPrefix="Jewel Finance ERP Software"
+            />
           </div>
           <div className="project-detail-copy reveal">
             <h2>Jewel Finance ERP Software</h2>
