@@ -4333,3 +4333,11 @@ body:has(.service-popup) .cursor-spark {
   transition-duration: .5s;
   transform: rotate(180deg);
 }
+
+/* Add left margin space for the left side of starting content for full pages */
+.page-shell > section:first-of-type .hero-copy,
+.page-shell > section:first-of-type .core-services-copy,
+.page-shell > section:first-of-type .about-first-view-copy,
+.page-shell > section:first-of-type .contact-form-panel {
+  margin-left: clamp(1.5rem, 4vw, 3rem);
+}
