@@ -1,0 +1,186 @@
+.chatbot-container {
+  position: fixed;
+  bottom: 4.85rem; /* 1rem above the scroll-top button (which ends at 3.85rem) */
+  right: 0.025rem; /* Aligns its center exactly on the X-axis of the scroll top button */
+  z-index: 1040; /* High enough to be above header and loader */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.chatbot-container > * {
+  pointer-events: auto;
+}
+
+.chatbot-toggle-btn {
+  width: 5rem;  /* Increased size (80px) */
+  height: 5rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.chatbot-toggle-btn:hover {
+  transform: scale(1.08);
+}
+
+.chatbot-video-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen; /* Typically used to remove black backgrounds on AI video avatars */
+  pointer-events: none;
+}
+
+.chatbot-window {
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  height: 420px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-right: 0; /* Restores flush right alignment with the toggle button */
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transform-origin: bottom right;
+  animation: chatbotPop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes chatbotPop {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.chatbot-header {
+  background-color: var(--brand-dark, #0079b8);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-heading, inherit);
+  color: #fff;
+}
+
+.chatbot-close-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+
+.chatbot-close-btn:hover {
+  opacity: 1;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 15px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--surface-soft, #f9f9f9);
+}
+
+.chatbot-message {
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 85%;
+  font-size: 14px;
+  line-height: 1.45;
+  word-wrap: break-word;
+  font-family: var(--font-body, inherit);
+  animation: messageFadeIn 0.3s ease;
+}
+
+@keyframes messageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chatbot-message.bot {
+  background-color: #e9ecef;
+  color: var(--text, #333);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chatbot-message.user {
+  background-color: var(--brand-dark, #0079b8);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chatbot-input-form {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.chatbot-input-form input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-body, inherit);
+  transition: border-color 0.2s;
+  color: #333;
+}
+
+.chatbot-input-form input:focus {
+  border-color: var(--brand, #00c2ff);
+}
+
+.chatbot-input-form button {
+  margin-left: 10px;
+  padding: 0 16px;
+  background-color: var(--brand-dark, #0079b8);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  font-family: var(--font-body, inherit);
+}
+
+.chatbot-input-form button:hover {
+  background-color: var(--brand, #00c2ff);
+}
+
+@media (max-width: 768px) {
+  .chatbot-container {
+    right: 0.525rem; /* Recalibrated center alignment over scroll-top-button */
+  }
+  .chatbot-toggle-btn {
+    width: 4rem; /* Slightly smaller icon footprint, exactly 64px */
+    height: 4rem;
+  }
+}

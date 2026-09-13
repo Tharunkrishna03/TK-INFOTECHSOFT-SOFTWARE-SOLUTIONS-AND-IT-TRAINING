@@ -12,6 +12,7 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import CursorStar from './components/CursorStar.jsx';
 import PageLoader from './components/PageLoader.jsx';
+import Chatbot from './components/Chatbot.jsx';
 
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
@@ -375,18 +376,18 @@ function AppContent() {
       }
 
       // Scroll to hash or top
-      if (location.hash) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (location.hash) {
           const el = document.getElementById(location.hash.substring(1));
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
           } else {
-            smoothScrollToTop();
+            window.scrollTo(0, 0);
           }
-        }, 80);
-      } else {
-        smoothScrollToTop();
-      }
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }, 80);
 
       // 2. Hide loader and end transition class
       const endTransitionTimeout = setTimeout(() => {
@@ -441,6 +442,7 @@ function AppContent() {
       >
         ↑
       </button>
+      <Chatbot />
       <CursorStar />
     </>
   );

@@ -91,6 +91,13 @@ body.page-transitioning {
   background: #ffffff;
 }
 
+.page-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .page-loader-shell {
   z-index: 1021;
   width: clamp(6.5rem, 16vw, 9.5rem);
@@ -98,6 +105,39 @@ body.page-transitioning {
   display: grid;
   place-items: center;
   background: transparent;
+}
+
+.page-loader-text {
+  font-family: var(--font-heading);
+  display: flex;
+  gap: 0.05rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  letter-spacing: 0.05em;
+}
+
+.loader-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: loaderCharSequence 2.6s ease infinite;
+}
+
+@keyframes loaderCharSequence {
+  0%, 15% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  30%, 75% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 10px rgba(0, 194, 255, 0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
 }
 
 .page-loader-logo {

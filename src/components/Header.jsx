@@ -78,19 +78,19 @@ export default function Header() {
             <div className="desktop-nav d-none d-md-flex ms-auto">
               <ul className="navbar-nav flex-row align-items-center gap-lg-2">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" end>Home</NavLink>
+                  <NavLink className="nav-link" to="/" end onClick={() => window.scrollTo(0, 0)}>Home</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/services">Services</NavLink>
+                  <NavLink className="nav-link" to="/services" onClick={() => window.scrollTo(0, 0)}>Services</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/projects">Projects</NavLink>
+                  <NavLink className="nav-link" to="/projects" onClick={() => window.scrollTo(0, 0)}>Projects</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/about">About</NavLink>
+                  <NavLink className="nav-link" to="/about" onClick={() => window.scrollTo(0, 0)}>About</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                  <NavLink className="nav-link" to="/contact" onClick={() => window.scrollTo(0, 0)}>Contact</NavLink>
                 </li>
               </ul>
             </div>
@@ -125,31 +125,31 @@ export default function Header() {
           </div>
           <div className="offcanvas-body">
             <nav className="mobile-icon-nav" aria-label="Mobile navigation links">
-              <NavLink className="mobile-icon-link" to="/" end onClick={() => setIsSidebarOpen(false)}>
+              <NavLink className="mobile-icon-link" to="/" end onClick={() => { setIsSidebarOpen(false); window.scrollTo(0, 0); }}>
                 <span className="mobile-icon-copy">
                   <strong>Home</strong>
                 </span>
               </NavLink>
 
-              <NavLink className="mobile-icon-link" to="/services" onClick={() => setIsSidebarOpen(false)}>
+              <NavLink className="mobile-icon-link" to="/services" onClick={() => { setIsSidebarOpen(false); window.scrollTo(0, 0); }}>
                 <span className="mobile-icon-copy">
                   <strong>Services</strong>
                 </span>
               </NavLink>
 
-              <NavLink className="mobile-icon-link" to="/projects" onClick={() => setIsSidebarOpen(false)}>
+              <NavLink className="mobile-icon-link" to="/projects" onClick={() => { setIsSidebarOpen(false); window.scrollTo(0, 0); }}>
                 <span className="mobile-icon-copy">
                   <strong>Projects</strong>
                 </span>
               </NavLink>
 
-              <NavLink className="mobile-icon-link" to="/about" onClick={() => setIsSidebarOpen(false)}>
+              <NavLink className="mobile-icon-link" to="/about" onClick={() => { setIsSidebarOpen(false); window.scrollTo(0, 0); }}>
                 <span className="mobile-icon-copy">
                   <strong>About</strong>
                 </span>
               </NavLink>
 
-              <NavLink className="mobile-icon-link" to="/contact" onClick={() => setIsSidebarOpen(false)}>
+              <NavLink className="mobile-icon-link" to="/contact" onClick={() => { setIsSidebarOpen(false); window.scrollTo(0, 0); }}>
                 <span className="mobile-icon-copy">
                   <strong>Contact</strong>
                 </span>
