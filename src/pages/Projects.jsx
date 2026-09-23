@@ -14,12 +14,13 @@ export default function Projects() {
   // State hooks for managing the visibility of project details popups
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isServicePopupOpen, setIsServicePopupOpen] = useState(false);
+  const [isExcelPopupOpen, setIsExcelPopupOpen] = useState(false);
 
   /**
    * Smoothly scrolls down to the first project section on the page.
    */
   const scrollToProject = () => {
-    const el = document.getElementById('jewel-finance-project');
+    const el = document.getElementById('first-project');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -31,18 +32,19 @@ export default function Projects() {
    * Keyboard event listener to close any open popups when the 'Escape' key is pressed.
    */
   useEffect(() => {
-    if (!isPopupOpen && !isServicePopupOpen) return undefined;
+    if (!isPopupOpen && !isServicePopupOpen && !isExcelPopupOpen) return undefined;
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setIsPopupOpen(false);
         setIsServicePopupOpen(false);
+        setIsExcelPopupOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPopupOpen, isServicePopupOpen]);
+  }, [isPopupOpen, isServicePopupOpen, isExcelPopupOpen]);
 
   // Scroll animation observer for images
   useEffect(() => {
@@ -83,6 +85,93 @@ export default function Projects() {
             transform: scale(1.05);
             transition: transform 0.3s ease-in-out;
           }
+
+          /* Explore More Animated Button (Uiverse) */
+          .explore-more-btn {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            background: transparent;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+            width: 12rem;
+            height: auto;
+          }
+          
+          .explore-more-btn .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: darkviolet;
+            border-radius: 1.625rem;
+          }
+          
+          .explore-more-btn .circle .icon {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+          }
+          
+          .explore-more-btn .circle .icon.arrow {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+          }
+          
+          .explore-more-btn .circle .icon.arrow::before {
+            position: absolute;
+            content: "";
+            top: -0.29rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+          }
+          
+          .explore-more-btn .button-text {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: darkviolet;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+          }
+          
+          .explore-more-btn:hover .circle {
+            width: 100%;
+          }
+          
+          .explore-more-btn:hover .circle .icon.arrow {
+            background: #fff;
+            transform: translate(1rem, 0);
+          }
+          
+          .explore-more-btn:hover .button-text {
+            color: #fff;
+          }
         `}
       </style>
       {/* Hero Section for Projects */}
@@ -118,76 +207,230 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Project 1: Jewel Finance ERP */}
-      <section className="section-space project-detail-section" id="jewel-finance-project">
-        <div className="site-container project-detail-layout">
-          <div className="project-detail-media" style={{ background: 'transparent' }}>
-            <img src="/project.jpg" alt="Jewel Finance ERP Software project" className="project-scroll-animate" style={{ width: '85%', height: 'auto', display: 'block', margin: '0 auto', borderRadius: '10px' }} />
+      {/* Project 1: Excel Data Cleaner */}
+      <section className="section-space project-detail-section" id="first-project">
+        <div className="site-container" style={{ position: 'relative', display: 'flex', justifySelf: 'center', justifyContent: 'center', paddingBottom: '80px', marginTop: '2rem' }}>
+          <div className="project-detail-media" style={{ background: 'transparent', width: '100%', maxWidth: '900px' }}>
+            <img src="/excel tool.png" alt="Excel Data Cleaner project" className="project-scroll-animate" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }} />
           </div>
-          <div className="project-detail-copy">
-            <h2>Jewel Finance ERP Software</h2>
-            <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
-              A comprehensive ERP solution designed specifically for jewelry finance businesses to streamline customer
-              management, financial operations, and daily transactions through a secure and user-friendly platform.
+          <div className="project-detail-copy" style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '2%',
+            background: 'white',
+            padding: '1.5rem',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            width: '90%',
+            maxWidth: '420px',
+            textAlign: 'left',
+            zIndex: 10
+          }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Excel Data Cleaner</h2>
+            <p style={{
+              margin: '0 0 1.5rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#444',
+              lineHeight: '1.6',
+              fontSize: '0.95rem'
+            }}>
+              Excel Data Cleaner is a local desktop application built using Electron, React, and Python. It allows users to process, clean, compare, map, and merge Excel (.xlsx, .xls) and CSV files without sending data to external cloud services.
             </p>
-            <button className="btn btn-brand core-services-button" type="button" onClick={() => setIsPopupOpen(true)}>
-              Read more
-            </button>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="https://t-tool.vercel.app" target="_blank" rel="noopener noreferrer" className="explore-more-btn" style={{ margin: 0 }}>
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">Explore more</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Project 2: Service Management ERP System */}
+      {/* Project 2: Jewel Finance ERP */}
       <section className="section-space project-detail-section">
-        <div className="site-container project-detail-layout">
-          <div className="project-detail-copy">
-            <h2>Service Management ERP System</h2>
-            <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
+        <div className="site-container" style={{ position: 'relative', display: 'flex', justifySelf: 'center', justifyContent: 'center', paddingBottom: '80px', marginTop: '2rem' }}>
+          <div className="project-detail-media" style={{ background: 'transparent', width: '100%', maxWidth: '900px' }}>
+            <img src="/project.jpg" alt="Jewel Finance ERP Software project" className="project-scroll-animate" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }} />
+          </div>
+          <div className="project-detail-copy" style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '2%',
+            background: 'white',
+            padding: '1.5rem',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            width: '90%',
+            maxWidth: '420px',
+            textAlign: 'left',
+            zIndex: 10
+          }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Jewel Finance ERP Software</h2>
+            <p style={{
+              margin: '0 0 1.5rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#444',
+              lineHeight: '1.6',
+              fontSize: '0.95rem'
+            }}>
+              A comprehensive ERP solution designed specifically for jewelry finance businesses to streamline customer
+              management, financial operations, and daily transactions through a secure and user-friendly platform.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <button className="explore-more-btn" type="button" style={{ margin: 0, transform: 'scale(0.85)', transformOrigin: 'left center' }} onClick={() => setIsPopupOpen(true)}>
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">Read more</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project 3: Service Management ERP System */}
+      <section className="section-space project-detail-section">
+        <div className="site-container" style={{ position: 'relative', display: 'flex', justifySelf: 'center', justifyContent: 'center', paddingBottom: '80px', marginTop: '2rem' }}>
+          <div className="project-detail-media" style={{ background: 'transparent', width: '100%', maxWidth: '900px' }}>
+            <img src="/project.jpg" alt="Service Management ERP System project" className="project-scroll-animate" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }} />
+          </div>
+          <div className="project-detail-copy" style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '2%',
+            background: 'white',
+            padding: '1.5rem',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            width: '90%',
+            maxWidth: '420px',
+            textAlign: 'left',
+            zIndex: 10
+          }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Service Management ERP System</h2>
+            <p style={{
+              margin: '0 0 1.5rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#444',
+              lineHeight: '1.6',
+              fontSize: '0.95rem'
+            }}>
               A powerful ERP solution developed for service-based businesses to manage clients, projects, employees,
               service requests, billing, and operations through a centralized platform with advanced Role-Based Access
               Control (RBAC).
             </p>
-            <button className="btn btn-brand core-services-button" type="button" onClick={() => setIsServicePopupOpen(true)}>
-              Read more
-            </button>
-          </div>
-          <div className="project-detail-media" style={{ background: 'transparent' }}>
-            <img src="/project.jpg" alt="Service Management ERP System project" className="project-scroll-animate" style={{ width: '85%', height: 'auto', display: 'block', margin: '0 auto', borderRadius: '10px' }} />
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <button className="explore-more-btn" type="button" style={{ margin: 0, transform: 'scale(0.85)', transformOrigin: 'left center' }} onClick={() => setIsServicePopupOpen(true)}>
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">Read more</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Project 3: Field Flow Exports */}
+      {/* Project 4: Field Flow Exports */}
       <section className="section-space project-detail-section">
-        <div className="site-container project-detail-layout">
-          <div className="project-detail-media" style={{ background: 'transparent' }}>
-            <img src="/fieldflowexports.png" alt="Field Flow Exports project" className="project-scroll-animate" style={{ width: '85%', height: 'auto', display: 'block', margin: '0 auto', borderRadius: '10px' }} />
+        <div className="site-container" style={{ position: 'relative', display: 'flex', justifySelf: 'center', justifyContent: 'center', paddingBottom: '80px', marginTop: '2rem' }}>
+          <div className="project-detail-media" style={{ background: 'transparent', width: '100%', maxWidth: '900px' }}>
+            <img src="/fieldflowexports.png" alt="Field Flow Exports project" className="project-scroll-animate" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }} />
           </div>
-          <div className="project-detail-copy">
-            <h2>Field Flow Exports</h2>
-            <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
+          <div className="project-detail-copy" style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '2%',
+            background: 'white',
+            padding: '1.5rem',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            width: '90%',
+            maxWidth: '420px',
+            textAlign: 'left',
+            zIndex: 10
+          }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Field Flow Exports</h2>
+            <p style={{
+              margin: '0 0 1.5rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#444',
+              lineHeight: '1.6',
+              fontSize: '0.95rem'
+            }}>
               Field Flow Exports is a professional corporate website developed to establish a strong online presence for an export business. It features a modern, responsive design with an intuitive user experience across all devices. The website showcases the company's products, services, and global export capabilities while building customer trust. SEO-friendly architecture and optimized performance improve visibility and engagement. The platform helps generate business inquiries and strengthen the brand's digital identity.
             </p>
-            <a href="https://fieldflowexports.com/" target="_blank" rel="noopener noreferrer" className="btn btn-brand core-services-button" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>
-              Explore more
-            </a>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="https://fieldflowexports.com/" target="_blank" rel="noopener noreferrer" className="explore-more-btn" style={{ margin: 0 }}>
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">Explore more</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Project 5: Namma Amma Pickles */}
       <section className="section-space project-detail-section">
-        <div className="site-container project-detail-layout">
-          <div className="project-detail-copy">
-            <h2>Namma Amma Pickles</h2>
-            <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
+        <div className="site-container" style={{ position: 'relative', display: 'flex', justifySelf: 'center', justifyContent: 'center', paddingBottom: '80px', marginTop: '2rem' }}>
+          <div className="project-detail-media" style={{ background: 'transparent', width: '100%', maxWidth: '900px' }}>
+            <img src="/pickles.png" alt="Numma Amma Pickles project" className="project-scroll-animate" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }} />
+          </div>
+          <div className="project-detail-copy" style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '2%',
+            background: 'white',
+            padding: '1.5rem',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            width: '90%',
+            maxWidth: '420px',
+            textAlign: 'left',
+            zIndex: 10
+          }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Namma Amma Pickles</h2>
+            <p style={{
+              margin: '0 0 1.5rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#444',
+              lineHeight: '1.6',
+              fontSize: '0.95rem'
+            }}>
               Namma Amma Pickles is a responsive e-commerce website developed for a homemade South Indian pickle brand. It offers an intuitive shopping experience with beautifully designed product listings, detailed descriptions, and category-based navigation. The website features a modern UI, smooth animations, WhatsApp order integration, and mobile-friendly responsiveness. Built with performance and SEO in mind, it helps the brand expand its online presence and connect directly with customers. The platform combines traditional flavors with a modern digital experience to drive customer engagement and sales.
             </p>
-            <a href="https://numma-amma-pickle.vercel.app/" target="_blank" rel="noopener noreferrer" className="btn btn-brand core-services-button" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>
-              Explore more
-            </a>
-          </div>
-          <div className="project-detail-media" style={{ background: 'transparent' }}>
-            <img src="/pickles.png" alt="Numma Amma Pickles project" className="project-scroll-animate" style={{ width: '85%', height: 'auto', display: 'block', margin: '0 auto', borderRadius: '10px' }} />
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="https://numma-amma-pickle.vercel.app/" target="_blank" rel="noopener noreferrer" className="explore-more-btn" style={{ margin: 0 }}>
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">Explore more</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -367,6 +610,41 @@ export default function Projects() {
                 efficient management of projects, clients, employees, billing, and reporting through a single integrated
                 solution. The system helps organizations increase productivity, maintain transparency, and scale
                 operations with confidence.
+              </p>
+            </section>
+          </div>
+        </div>
+      )}
+
+      {isExcelPopupOpen && (
+        <div className="service-popup" role="dialog" aria-modal="true" aria-labelledby="excel-project-popup-title">
+          <button
+            className="service-popup-backdrop"
+            type="button"
+            aria-label="Close project details"
+            onClick={() => setIsExcelPopupOpen(false)}
+          ></button>
+          <div className="service-popup-panel project-popup-panel">
+            <section className="application-card service-popup-card project-popup-card">
+              <div className="service-popup-head">
+                <span className="kicker">Project overview</span>
+                <button
+                  className="service-popup-close"
+                  type="button"
+                  aria-label="Close project details"
+                  onClick={() => setIsExcelPopupOpen(false)}
+                >
+                  <i className="bx bx-x"></i>
+                </button>
+              </div>
+              <h2 id="excel-project-popup-title">Excel Data Cleaner</h2>
+              <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
+                Excel Data Cleaner is a local desktop application built using Electron, React, and Python. It allows users to process, clean, compare, map, and merge Excel (.xlsx, .xls) and CSV files without sending data to external cloud services.
+              </p>
+              
+              <h3 style={{ marginLeft: '1rem', marginRight: '1rem' }}>Architecture Overview</h3>
+              <p style={{ textAlign: 'justify', marginLeft: '1rem', marginRight: '1rem' }}>
+                The application architecture utilizes a React frontend (bundled via Vite) communicating over local HTTP with a Python/FastAPI backend that handles the heavy data processing using Pandas. The Electron shell serves as the desktop container that coordinates both the visual interface and the underlying API server.
               </p>
             </section>
           </div>
